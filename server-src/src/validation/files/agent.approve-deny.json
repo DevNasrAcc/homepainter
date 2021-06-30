@@ -1,0 +1,19 @@
+{
+    "password": {
+        "type": "string",
+        "required": true,
+        "enum": ["ao9ngpa09bnapr09gbpq98n35vpq9nba;9fghnapwb8n"]
+    },
+    "approved": {
+        "type": "boolean",
+        "required": true
+    },
+    "customerId": {
+        "type": "string",
+        "required": true
+    },
+    "customerCode": {
+        "type": "string",
+        "required": ["obj", "return obj.approved"]
+    }
+}

@@ -1,0 +1,43 @@
+<h1 class="center-align">Time Frame</h1>
+<div class="row mt20 mb10">
+  <div class="input-field col offset-l3 l6 offset-m2 m8 s12">
+    <select id="time-frame-start" class="no-autoinit" (change)="onSelectTimeFrameStart($event)">
+      <option value="flexibleStartDate" [selected]="details.timeFrameStart === 'flexibleStartDate'">
+        Flexible start date
+      </option>
+      <option value="startWithinNextWeek" [selected]="details.timeFrameStart === 'startWithinNextWeek'">
+        Within the next week
+      </option>
+      <option value="startWithinNextMonth" [selected]="details.timeFrameStart === 'startWithinNextMonth'">
+        Within the next month
+      </option>
+    </select>
+    <label for="time-frame-start">Start Date</label>
+  </div>
+</div>
+
+<div class="row mt20 mb10">
+  <div class="input-field col offset-l3 l6 offset-m2 m8 s12">
+    <select id="time-frame-end" class="no-autoinit" (change)="onSelectTimeFrameEnd($event)">
+      <option value="flexibleEndDate" [selected]="details.timeFrameEnd === 'flexibleEndDate'">
+        Flexible end date
+      </option>
+      <option value="finishWithinAMonth" [selected]="details.timeFrameEnd === 'finishWithinAMonth'">
+        Finish within one month
+      </option>
+      <option value="finishWithinThreeMonths" [selected]="details.timeFrameEnd === 'finishWithinThreeMonths'">
+        Finish within three months
+      </option>
+      <option value="endDateInMind" [selected]="details.timeFrameEnd === 'endDateInMind'">
+        I have an end date in mind
+      </option>
+    </select>
+    <label for="time-frame-end">End Date</label>
+  </div>
+  <div class="col offset-l3 l6 offset-m2 m8 s12 input-field"
+       [ngClass]="{'hide': details.timeFrameEnd !== 'endDateInMind'}">
+
+    <input [(ngModel)]="details.expectedEndDate" type="text" class="datepicker" id="expectedEndDate" (change)="onSelectedEndDate($event)">
+    <label for="expectedEndDate">Enter expected end date here</label>
+  </div>
+</div>

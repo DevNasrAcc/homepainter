@@ -1,0 +1,42 @@
+@import "../../../../../variables";
+
+.animate-rotation {
+  transition-duration: 0.3s;
+  transition-property: transform;
+
+  &.rotate {
+    -ms-transform: rotate(180deg); /* IE 9 */
+    -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+    transform: rotate(180deg);
+  }
+}
+
+img {
+  text-align: center;
+  max-height: 96px;
+  padding: 18px;
+
+  @media @mobile {
+    padding: 0;
+  }
+}
+
+agm-map {
+  height: 300px;
+
+  * {
+    font-family: Lato;
+  }
+
+  a {
+    color: darkblue;
+  }
+}
+
+#customer-commment {
+  height: 300px;
+
+  @media @mobile {
+    height: auto;
+  }
+}

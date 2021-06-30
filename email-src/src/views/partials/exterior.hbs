@@ -1,0 +1,68 @@
+<h3>{{this.defaultName}}</h3>
+<table>
+    <tbody>
+    <tr style="border-bottom: none">
+        {{#if_not_eq this.type 'deck'}}
+            {{#if_not_eq this.type 'detachedGarage'}}
+                <td style="width: 50%">
+                    <p class="center-align" style="margin: 0">Number of stories: {{this.numberOfStories}}</p>
+                </td>
+            {{/if_not_eq}}
+        {{/if_not_eq}}
+        {{#if_eq this.type 'deck'}}
+            <td style="width: 50%">
+                <p class="center-align" style="margin: 0">Elevation: {{storageName2DisplayName this.deckElevation}}</p>
+            </td>
+
+        {{/if_eq}}
+        {{#if this.garageSize.label}}
+            <td style="width: 50%">
+                <p class="center-align" style="margin: 0">Garage Size: {{storageName2DisplayName this.garageSize.label}}</p>
+            </td>
+        {{/if}}
+        <td style="width: 50%">
+            <p class="center-align" style="margin: 0">Paint Condition: {{storageName2DisplayName this.paintCondition}}</p>
+        </td>
+    </tr>
+    </tbody>
+</table>
+{{#if_eq this.type 'deck'}}
+    <table>
+        <tbody>
+        <tr>
+            <td>Deck Treatment:</td>
+            <td>{{storageName2DisplayName this.deckTreatment}}</td>
+        </tr>
+        <tr>
+            <td>Deck Size:</td>
+            <td>{{storageName2DisplayName this.deckSize.label}}</td>
+        </tr>
+        </tbody>
+    </table>
+{{/if_eq}}
+{{#if_not_eq this.type 'deck'}}
+    <table>
+        <thead>
+        <tr>
+            <th style="width: 35%;">Item</th>
+            <th style="width: 65%">Details</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each this.items}}
+            <tr>
+                <td><strong>{{storageName2DisplayName this.type}}</strong></td>
+                <td>
+                    <ul style="margin:0">
+                        {{#if_eq this.type 'siding'}}
+                            <li>Siding Types: {{formatList this.sidingTypes}}</li>
+                            <li>Sides to Paint: {{formatList this.sidesToPaint}}</li>
+                        {{/if_eq}}
+                    </ul>
+                </td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+{{/if_not_eq}}
+{{>photos this}}

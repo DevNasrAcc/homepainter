@@ -1,0 +1,64 @@
+{
+  "_id": "5e14c504b351ac0d4be26422",
+  "__v": 1,
+  "createdAt": "2020-01-07T17:43:08.918Z",
+  "customer": "5e14c1fb5c02f94ff49d0b27",
+  "contractor": "5dd70296cbf01f28e021d6bf",
+  "status": "awaitingStartEndDateSubmission",
+  "chargeDetails": {
+    "contractPrice": 600,
+    "serviceFee": 50,
+    "discount": 50,
+    "subtotal": 650,
+    "taxRate": 0.07,
+    "tax": 45.5,
+    "total": 695.5,
+    "downPaymentPercent": 0.1,
+    "downPaymentAmount": 69.55,
+    "payoutPercent": 0.85,
+    "payoutAmount": 510,
+    "downPaymentPayoutAmount": 51
+  },
+  "details": {
+    "project": "5e14c1fb5c02f94ff49d0b29",
+    "startDate": "2020-01-07T17:43:08.918Z",
+    "endDate": "2020-01-07T17:43:08.918Z"
+  },
+  "promoCode": "5e74db34182df927bbbe5245",
+  "payments": [
+    {
+      "_id": "5e14c504b351ac0d4be26423",
+      "createdAt": "2020-01-07T17:43:08.918Z",
+      "description": "downPayment",
+      "amount": 69.55,
+      "stripePaymentIntentId": "pm_19a33bfee32275491",
+      "stripeSuccessDate": "2020-01-07T17:43:12.818Z"
+    },
+    {
+      "_id": "5e14c504b351ac0d4be26423",
+      "createdAt": "2020-02-05T17:43:08.918Z",
+      "description": "finalPayment",
+      "amount": 625.95,
+      "stripePaymentIntentId": "pm_add914f3b7146c56ad",
+      "stripeSuccessDate": "2020-02-05T17:43:18.833Z"
+    }
+  ],
+  "payouts": [
+    {
+      "_id": "5e14c504b351ac0d4be26423",
+      "createdAt": "2020-01-07T17:45:08.918Z",
+      "description": "downPayment",
+      "amount": 61.05,
+      "stripeTransferID": "tf_ece8914a3185298",
+      "stripeSuccessDate": "2020-01-07T17:45:012.918Z"
+    },
+    {
+      "_id": "5e14c504b351ac0d4be26423",
+      "createdAt": "2020-02-05T17:43:08.918Z",
+      "description": "finalPayment",
+      "amount": 625.95,
+      "stripeTransferID": "tf_5e9497c56add914f3b",
+      "stripeSuccessDate": "2020-02-05T17:43:18.833Z"
+    }
+  ]
+}

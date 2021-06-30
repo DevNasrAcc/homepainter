@@ -1,0 +1,90 @@
+<div class="row">
+  <div class="col offset-l1 l7 s12">
+    <div class="card">
+      <div class="card-content">
+        <div class="card-title center">
+          <p>What's Next?</p>
+        </div>
+        <div class="section">
+          <div class="row">
+            <div class="col offset-s1 s10">
+              <p>Your painter will contact you to...</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col offset-s1 s2 offset-m1 m1 offset-xl1 xl1">
+              <picture>
+                <source data-srcset="/assets/images/checkout/schedule.webp" type="image/webp">
+                <source data-srcset="/assets/images/checkout/schedule.png" type="image/png">
+                <img class="responsive-img lazyload" data-src="/assets/images/checkout/schedule.png" alt="picture of a schedule icon">
+              </picture>
+            </div>
+            <div class="col s8 m9 xl9">
+              <p>Schedule your project</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col offset-s1 s2 offset-m1 m1 offset-xl1 xl1">
+              <picture>
+                <source data-srcset="/assets/images/checkout/paint.webp" type="image/webp">
+                <source data-srcset="/assets/images/checkout/paint.png" type="image/png">
+                <img class="responsive-img lazyload" data-src="/assets/images/checkout/paint.png" alt="picture of a paint bucket">
+              </picture>
+            </div>
+            <div class="col s8 m9 xl9">
+              <p>Discuss colors and paint brands</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col offset-s1 s2 offset-m1 m1 offset-xl1 xl1">
+              <picture>
+                <source data-srcset="/assets/images/checkout/questions.webp" type="image/webp">
+                <source data-srcset="/assets/images/checkout/questions.png" type="image/png">
+                <img class="responsive-img lazyload" data-src="/assets/images/checkout/questions.png" alt="picture of a question mark">
+              </picture>
+            </div>
+            <div class="col s8 m9 xl9">
+              <p>Answer any questions you have</p>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="row">
+            <div class="col offset-s1 s10 offset-m1 m5 center">
+              <p>Cancellation Policy</p>
+              <small>Customers may receive a full refund of their deposit when they cancel within 48 hrs of booking
+                (see <a routerLink="/terms-and-conditions" target="_blank">terms and conditions</a> for full details)</small>
+            </div>
+            <div class="col offset-s1 s10 m5 center mobile-gap">
+              <p>Dispute Resolution Services</p>
+              <small>Contact us at any time if you experience trouble with your paint project.
+                We will work with the painter to fix it, or assign a new painter to finish the job.</small>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="row">
+            <div class="col offset-s1 s10 center">
+              <a href="/blog/faqs/" target="_blank">More Frequently Asked Questions</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col offset-l1 l3 s12">
+    <div class="card">
+      <div class="card-content">
+        <checkout-element [projectDetails]="project.details" [proposal]="project.selectedProposal"
+                          [promoCode]="project.promoCode" [chargeDetails]="chargeDetails"
+                          [pending]="pending" [btnText]="'continue'" [btnEnabled]="true"
+                          (checkoutButtonClicked)="onCheckoutButtonClick()" (editDetailsClicked)="onEditDetailsClicked()"
+                          (viewDetailsClicked)="onViewDetailsClicked()" (getDiscountClicked)="onGetDiscountClicked($event)">
+        </checkout-element>
+      </div>
+    </div>
+  </div>
+</div>
+
+<final-details-modal [open]="finalDetailsModal.open" [details]="finalDetailsModal.details"
+                     (close)="onCloseFinalDetails()"></final-details-modal>

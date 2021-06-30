@@ -1,0 +1,523 @@
+{
+  "_id": "5deffb2e8698123a415ff5ba",
+  "__v": 6,
+  "details": {
+    "exterior": [
+      {
+        "photos": [
+          {
+            "createdAt": "2020-05-26T19:29:29.273+00:00",
+            "url": "https://us-east-1.linodeobjects.com/homepainter-images-development/example6.JPG",
+            "originalName": "example6.JPG",
+            "size": 1567249
+          },
+          {
+            "createdAt": "2020-05-26T19:29:29.273+00:00",
+            "url": "https://us-east-1.linodeobjects.com/homepainter-images-development/example7.JPG",
+            "originalName": "example7.JPG",
+            "size": 1567249
+          }
+        ],
+        "defaultName": "House",
+        "type": "house",
+        "numberOfStories": 3,
+        "paintCondition": "good",
+        "deckElevation": "",
+        "deckTreatment": "",
+        "deckSize": {
+          "name": "",
+          "squareFootage": 0,
+          "label": ""
+        },
+        "items": [
+          {
+            "sidesToPaint": ["front", "left", "right", "back"],
+            "type": "siding",
+            "sidingTypes": ["wood"]
+          },
+          {
+            "sidesToPaint": [],
+            "type": "trim",
+            "sidingTypes": []
+          },
+          {
+            "sidesToPaint": [],
+            "type": "soffit",
+            "sidingTypes": []
+          },
+          {
+            "sidesToPaint": [],
+            "type": "facia",
+            "sidingTypes": []
+          },
+          {
+            "sidesToPaint": [],
+            "type": "windowTrim",
+            "sidingTypes": []
+          },
+          {
+            "sidesToPaint": [],
+            "type": "gutters",
+            "sidingTypes": []
+          },
+          {
+            "sidesToPaint": [],
+            "type": "exteriorDoor",
+            "sidingTypes": []
+          },
+          {
+            "sidesToPaint": [],
+            "type": "garageDoor",
+            "sidingTypes": []
+          }
+        ]
+      },
+      {
+        "photos": [
+          {
+            "createdAt": "2020-05-26T19:29:29.273+00:00",
+            "url": "https://us-east-1.linodeobjects.com/homepainter-images-development/example6.JPG",
+            "originalName": "example6.JPG",
+            "size": 1567249
+          },
+          {
+            "createdAt": "2020-05-26T19:29:29.273+00:00",
+            "url": "https://us-east-1.linodeobjects.com/homepainter-images-development/example7.JPG",
+            "originalName": "example7.JPG",
+            "size": 1567249
+          }
+        ],
+        "defaultName": "Detached Garage",
+        "type": "detachedGarage",
+        "numberOfStories": 1,
+        "paintCondition": "aLotOfFlaking",
+        "deckElevation": "",
+        "deckTreatment": "",
+        "deckSize": {
+          "name": "",
+          "squareFootage": 0,
+          "label": ""
+        },
+        "garageSize": {
+          "label": "2 Car",
+          "size": 2
+        },
+        "items": [
+          {
+            "sidesToPaint": ["front", "left", "right", "back"],
+            "type": "siding",
+            "sidingTypes": ["vinyl", "wood"]
+          },
+          {
+            "sidesToPaint": [],
+            "type": "garageDoor",
+            "sidingTypes": []
+          },
+          {
+            "sidesToPaint": [],
+            "type": "exteriorDoor",
+            "sidingTypes": []
+          },
+          {
+            "sidesToPaint": [],
+            "type": "gutters",
+            "sidingTypes": []
+          },
+          {
+            "sidesToPaint": [],
+            "type": "windowTrim",
+            "sidingTypes": []
+          },
+          {
+            "sidesToPaint": [],
+            "type": "facia",
+            "sidingTypes": []
+          },
+          {
+            "sidesToPaint": [],
+            "type": "trim",
+            "sidingTypes": []
+          },
+          {
+            "sidesToPaint": [],
+            "type": "soffit",
+            "sidingTypes": []
+          }
+        ]
+      },
+      {
+        "photos": [
+          {
+            "createdAt": "2020-05-26T19:29:29.273+00:00",
+            "url": "https://us-east-1.linodeobjects.com/homepainter-images-development/example6.JPG",
+            "originalName": "example6.JPG",
+            "size": 1567249
+          },
+          {
+            "createdAt": "2020-05-26T19:29:29.273+00:00",
+            "url": "https://us-east-1.linodeobjects.com/homepainter-images-development/example7.JPG",
+            "originalName": "example7.JPG",
+            "size": 1567249
+          }
+        ],
+        "defaultName": "Shed",
+        "type": "shed",
+        "numberOfStories": 1,
+        "paintCondition": "good",
+        "deckElevation": "",
+        "deckTreatment": "",
+        "deckSize": {
+          "name": "",
+          "squareFootage": 0,
+          "label": ""
+        },
+        "items": [
+          {
+            "sidesToPaint": ["front", "left", "right", "back"],
+            "type": "siding",
+            "sidingTypes": ["other"]
+          },
+          {
+            "sidesToPaint": [],
+            "type": "trim",
+            "sidingTypes": []
+          },
+          {
+            "sidesToPaint": [],
+            "type": "soffit",
+            "sidingTypes": []
+          },
+          {
+            "sidesToPaint": [],
+            "type": "gutters",
+            "sidingTypes": []
+          },
+          {
+            "sidesToPaint": [],
+            "type": "windowTrim",
+            "sidingTypes": []
+          },
+          {
+            "sidesToPaint": [],
+            "type": "facia",
+            "sidingTypes": []
+          },
+          {
+            "sidesToPaint": [],
+            "type": "exteriorDoor",
+            "sidingTypes": []
+          }
+        ]
+      },
+      {
+        "photos": [
+          {
+            "createdAt": "2020-05-26T19:29:29.273+00:00",
+            "url": "https://us-east-1.linodeobjects.com/homepainter-images-development/example6.JPG",
+            "originalName": "example6.JPG",
+            "size": 1567249
+          },
+          {
+            "createdAt": "2020-05-26T19:29:29.273+00:00",
+            "url": "https://us-east-1.linodeobjects.com/homepainter-images-development/example7.JPG",
+            "originalName": "example7.JPG",
+            "size": 1567249
+          }
+        ],
+        "defaultName": "Deck",
+        "type": "deck",
+        "numberOfStories": 0,
+        "paintCondition": "someFlaking",
+        "deckElevation": "groundFloor",
+        "deckTreatment": "stain",
+        "deckSize": {
+          "name": "medium",
+          "squareFootage": 400,
+          "label": "15x20 or 300-400 sq. ft"
+        },
+        "items": []
+      }
+    ],
+    "_id": "5df008b23768611aed8905c9",
+    "address": {
+      "streetAddress": "6565 Wistful Vista Dr",
+      "city": "West Des Moines",
+      "state": "IA",
+      "zipCode": 50014
+    },
+    "jobType": "house",
+    "decorType": "both",
+    "paintSupplier": "painter",
+    "paintBrand": "Sherwin-Williams",
+    "paintProduct": "Duration",
+    "timeFrameStart": "flexibleStartDate",
+    "timeFrameEnd": "flexibleEndDate",
+    "expectedEndDate": "Aug 21, 2020",
+    "occupancy": "emptyOfFurnishingsAndUnoccupied",
+    "interior": [
+      {
+        "_id": "5df008b23768611aed8905cd",
+        "defaultName": "Bedroom 1",
+        "type": "bedRoom",
+        "size": {
+          "name": "medium",
+          "length": 15,
+          "width": 15,
+          "label": "10'x10' to 15'x15'"
+        },
+        "height": {
+          "name": "aboveAverage",
+          "height": 14,
+          "label": "11' to 14'"
+        },
+        "items": [
+          {
+            "additionalDetails": {
+              "conditions": [],
+              "amount": 1,
+              "ceilingType": "",
+              "cabinetGrainType": "",
+              "cabinetTreatment": "",
+              "numberOfCabinetDrawers": 0,
+              "numberOfCabinetDoors": 0,
+              "cabinetCondition": ""
+            },
+            "_id": "5df008b23768611aed8905d7",
+            "type": "accentWall"
+          },
+          {
+            "additionalDetails": {
+              "conditions": [],
+              "amount": 0,
+              "ceilingType": "",
+              "cabinetGrainType": "",
+              "cabinetTreatment": "",
+              "numberOfCabinetDrawers": 0,
+              "numberOfCabinetDoors": 0,
+              "cabinetCondition": ""
+            },
+            "_id": "5df008b23768611aed8905d6",
+            "type": "baseboard"
+          },
+          {
+            "additionalDetails": {
+              "conditions": [],
+              "amount": 0,
+              "ceilingType": "",
+              "cabinetGrainType": "smooth",
+              "cabinetTreatment": "paint",
+              "numberOfCabinetDrawers": 3,
+              "numberOfCabinetDoors": 5,
+              "cabinetCondition": "bare"
+            },
+            "_id": "5df008b23768611aed8905d5",
+            "type": "cabinets"
+          },
+          {
+            "additionalDetails": {
+              "conditions": [],
+              "amount": 0,
+              "ceilingType": "conventional",
+              "cabinetGrainType": "",
+              "cabinetTreatment": "",
+              "numberOfCabinetDrawers": 0,
+              "numberOfCabinetDoors": 0,
+              "cabinetCondition": ""
+            },
+            "_id": "5df008b23768611aed8905d4",
+            "type": "ceiling"
+          },
+          {
+            "additionalDetails": {
+              "conditions": [],
+              "amount": 0,
+              "ceilingType": "",
+              "cabinetGrainType": "",
+              "cabinetTreatment": "",
+              "numberOfCabinetDrawers": 0,
+              "numberOfCabinetDoors": 0,
+              "cabinetCondition": ""
+            },
+            "_id": "5df008b23768611aed8905d3",
+            "type": "crownMolding"
+          },
+          {
+            "additionalDetails": {
+              "conditions": [],
+              "amount": 2,
+              "ceilingType": "",
+              "cabinetGrainType": "",
+              "cabinetTreatment": "",
+              "numberOfCabinetDrawers": 0,
+              "numberOfCabinetDoors": 0,
+              "cabinetCondition": ""
+            },
+            "_id": "5df008b23768611aed8905d2",
+            "type": "door"
+          },
+          {
+            "additionalDetails": {
+              "conditions": [],
+              "amount": 2,
+              "ceilingType": "",
+              "cabinetGrainType": "",
+              "cabinetTreatment": "",
+              "numberOfCabinetDrawers": 0,
+              "numberOfCabinetDoors": 0,
+              "cabinetCondition": ""
+            },
+            "_id": "5df008b23768611aed8905d1",
+            "type": "doorFrame"
+          },
+          {
+            "additionalDetails": {
+              "conditions": [],
+              "amount": 0,
+              "ceilingType": "",
+              "cabinetGrainType": "",
+              "cabinetTreatment": "",
+              "numberOfCabinetDrawers": 0,
+              "numberOfCabinetDoors": 0,
+              "cabinetCondition": ""
+            },
+            "_id": "5df008b23768611aed8905d0",
+            "type": "fireplaceMantel"
+          },
+          {
+            "additionalDetails": {
+              "conditions": ["drywallRepair"],
+              "amount": 3,
+              "ceilingType": "",
+              "cabinetGrainType": "",
+              "cabinetTreatment": "",
+              "numberOfCabinetDrawers": 0,
+              "numberOfCabinetDoors": 0,
+              "cabinetCondition": ""
+            },
+            "_id": "5df008b23768611aed8905cf",
+            "type": "wall"
+          },
+          {
+            "additionalDetails": {
+              "conditions": [],
+              "amount": 0,
+              "ceilingType": "",
+              "cabinetGrainType": "",
+              "cabinetTreatment": "",
+              "numberOfCabinetDrawers": 0,
+              "numberOfCabinetDoors": 0,
+              "cabinetCondition": ""
+            },
+            "_id": "5df008b23768611aed8905ce",
+            "type": "window"
+          }
+        ],
+        "photos": [
+          {
+            "createdAt": "2020-05-26T19:29:29.273+00:00",
+            "url": "https://us-east-1.linodeobjects.com/homepainter-images-development/example1.JPG",
+            "originalName": "example1.JPG",
+            "size": 1567249
+          },
+          {
+            "createdAt": "2020-05-26T19:29:29.273+00:00",
+            "url": "https://us-east-1.linodeobjects.com/homepainter-images-development/example2.JPG",
+            "originalName": "example2.JPG",
+            "size": 1567249
+          }
+        ]
+      },
+      {
+        "_id": "5df008b23768611aed8905ca",
+        "defaultName": "Living Room 1",
+        "type": "livingRoom",
+        "size": {
+          "name": "medium",
+          "length": 15,
+          "width": 15,
+          "label": "10'x10' to 15'x15'"
+        },
+        "height": {
+          "name": "aboveAverage",
+          "height": 14,
+          "label": "11' to 14'"
+        },
+        "items": [
+          {
+            "additionalDetails": {
+              "conditions": [],
+              "amount": 0,
+              "ceilingType": "conventional",
+              "cabinetGrainType": "",
+              "cabinetTreatment": "",
+              "numberOfCabinetDrawers": 0,
+              "numberOfCabinetDoors": 0,
+              "cabinetCondition": ""
+            },
+            "_id": "5df008b23768611aed8905cc",
+            "type": "ceiling"
+          },
+          {
+            "additionalDetails": {
+              "conditions": [],
+              "amount": 4,
+              "ceilingType": "",
+              "cabinetGrainType": "",
+              "cabinetTreatment": "",
+              "numberOfCabinetDrawers": 0,
+              "numberOfCabinetDoors": 0,
+              "cabinetCondition": ""
+            },
+            "_id": "5df008b23768611aed8905cb",
+            "type": "wall"
+          }
+        ],
+        "photos": [
+          {
+            "createdAt": "2020-05-26T19:29:29.273+00:00",
+            "url": "https://us-east-1.linodeobjects.com/homepainter-images-development/example3.JPG",
+            "originalName": "example3.JPG",
+            "size": 1567249
+          },
+          {
+            "createdAt": "2020-05-26T19:29:29.273+00:00",
+            "url": "https://us-east-1.linodeobjects.com/homepainter-images-development/example4.JPG",
+            "originalName": "example4.JPG",
+            "size": 1567249
+          },
+          {
+            "createdAt": "2020-05-26T19:29:29.273+00:00",
+            "url": "https://us-east-1.linodeobjects.com/homepainter-images-development/example5.JPG",
+            "originalName": "example5.JPG",
+            "size": 1567249
+          }
+        ]
+      }
+    ],
+    "additionalDetailsComment": "This would be a great painting experience"
+  },
+  "customer": "5deffb2e8698123a415ff5b8",
+  "createdAt": "2019-12-10T20:09:11.404Z",
+  "proposals": [
+    {
+      "_id": "5deffd3f233d14712ca56ca0",
+      "creationDate": "2019-12-10T20:17:03.992Z",
+      "contractor": "5dd7018a6b68e75930eb2250",
+      "price": 2000
+    },
+    {
+      "creationDate": "2019-12-10T20:13:11.963Z",
+      "_id": "5deffc57233d14712ca56c9c",
+      "contractor": "5dd70296cbf01f28e021d6bf",
+      "price": 2200,
+      "message": "Hi, my name is Jacob! I would be happy to help"
+    }
+  ],
+  "selectedProposal": {
+    "_id": "5df008b23768611aed8905d8",
+    "contractor": "5dd7018a6b68e75930eb2250",
+    "price": 2000,
+    "message": "",
+    "creationDate": "2019-12-10T21:05:54.600Z"
+  }
+}

@@ -1,0 +1,34 @@
+<div class="bg_imagecolor">
+  <div class="container">
+  <div class="row mb0">
+    <div class="col s3 dpnone">
+      <div id="pushpin" class="sidebar_account" [ngClass]="{'pushpin pin-top': responsiveService.isDesktop()}">
+        <ul class="section table-of-contents">
+          <li><a routerLinkActive="active" class="flexdisplay" routerLink="/account-settings/general">
+            <i class="fontcheckbox material-icons clr">stop_icon</i>
+            <span>General</span></a></li>
+          <li><a routerLinkActive="active" class="flexdisplay" routerLink="/account-settings/security-login">
+            <i class="fontcheckbox material-icons clr">stop_icon</i>
+            <span>Security & Login</span></a></li>
+          <li><a routerLinkActive="active" class="flexdisplay" routerLink="/account-settings/preferences">
+            <i class="fontcheckbox material-icons clr">stop_icon</i>
+            <span>Preferences</span></a></li>
+          <li><a routerLinkActive="active" class="flexdisplay" routerLink="/account-settings/payment-info">
+            <i class="fontcheckbox material-icons clr">stop_icon</i>
+            <span>Payments</span></a></li>
+          <li><a routerLinkActive="active" class="flexdisplay" routerLink="/account-settings/insurance-info">
+            <i class="fontcheckbox material-icons clr">stop_icon</i>
+            <span>Insurance Info</span></a></li>
+        </ul>
+        <hr class="taper show-on-medium-and-down hide-on-large-only hide-on-extra-large-only">
+      </div>
+    </div>
+    <div class="col s9 col9ipad">
+      <div class="whitebg mb2">
+      <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+

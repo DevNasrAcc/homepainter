@@ -1,0 +1,20 @@
+<div id="final_details_modal" class="modal">
+  <div class="modal-content">
+    <div class="row">
+      <div class="col s10">
+        <h4>Final Details</h4>
+      </div>
+      <div class="col s2 right-align">
+        <button class="btn-flat modal-close">
+          <i class="material-icons">close</i>
+        </button>
+      </div>
+    </div>
+    <app-final-details [editable]="false" [showEstimates]="false" [details]="details" *ngIf="open"></app-final-details>
+    <div class="row">
+      <div class="col s12 right-align">
+        <button class="btn-flat waves-effect waves-light modal-close">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

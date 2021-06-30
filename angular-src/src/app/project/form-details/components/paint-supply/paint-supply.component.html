@@ -1,0 +1,30 @@
+<h1 class="center-align">Paint Supply</h1>
+
+<div class="row" style="margin-top: 50px; margin-bottom: 50px;">
+  <div class="input-field col offset-l3 l6 offset-m2 m8 s12">
+    <select id="whoSuppliesPaint" class="no-autoinit" (change)="changeOption($event)">
+      <option value="painter" [selected]="details.paintSupplier === 'painter'">
+        I want the painter to supply the paint
+      </option>
+      <option value="customer" [selected]="details.paintSupplier === 'customer'">
+        I want to supply my own paint
+      </option>
+    </select>
+    <label for="whoSuppliesPaint">Paint Supplier</label>
+  </div>
+  <div [ngClass]="{'hide': details.paintSupplier === 'painter'}">
+    <div class="col offset-l3 l6 offset-m2 m8 s12 input-field">
+      <p class="center-align">Please leave blank if you haven't decided yet</p>
+    </div>
+    <div class="col offset-l3 l6 offset-m2 m8 s12 input-field">
+      <input [(ngModel)]="details.paintBrand" type="text" class="validate" id="paintBrand"
+             (change)="onSelectedPaintBrand($event)">
+      <label for="paintBrand">Paint Brand - Ex. Sherwin-Williams</label>
+    </div>
+    <div class="col offset-l3 l6 offset-m2 m8 s12 input-field">
+      <input [(ngModel)]="details.paintProduct" type="text" class="validate" id="paintProduct"
+             (change)="onSelectedPaintProduct($event)">
+      <label for="paintProduct">Paint Product - Ex. Duration</label>
+    </div>
+  </div>
+</div>

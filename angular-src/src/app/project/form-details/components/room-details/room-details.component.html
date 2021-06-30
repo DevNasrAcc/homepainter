@@ -1,0 +1,498 @@
+<h1 class="center">Room Details</h1>
+<div class="row mb0">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-title" *ngIf="details.interior.length > 0">
+        <div class="row mb0">
+          <div class="col s10">
+            What is the <strong>size</strong> of {{details.interior[selectedIndex].defaultName}}?
+          </div>
+          <div class="col s2 right-align">
+            <materialize-tooltip
+              [data]="'Choose the size option closest to this room. For open floor plans, estimate the separate spaces to the best of your ability.'"></materialize-tooltip>
+          </div>
+        </div>
+      </div>
+      <div class="card-content center">
+        <div class="row" *ngIf="this.roomSizes.length > 0 && !this.customDimensionInput">
+          <div *ngFor="let size of this.roomSizes;" class="col l4 m4 s12">
+            <button class="big-btn rectangle" *ngIf="details.interior.length > 0"
+                    [ngClass]="{'selected': details.interior[selectedIndex].size.name === size.name}"
+                    (click)="selectRoomSize(size)">{{size.name | storageName2DisplayName}}
+            </button>
+            <p class="desc-text">{{size.label}}</p>
+          </div>
+        </div>
+        <div class="row" *ngIf="this.roomSizes.length > 0 && this.customDimensionInput">
+          <div class="input-field col s6">
+            <input id="length" type="number" (keyup)="updateCustomLabel(customRoomSize)" (change)="updateCustomLabel(customRoomSize)"
+                   [(ngModel)]="customRoomSize.length" placeholder="Length" min="1" max="50"
+                   [ngClass]="(customRoomSize.length <= 50 && customRoomSize.length >= 1) && !(customRoomSize.length.toString().includes('.')) ? 'valid' : 'invalid'"/>
+            <label for= "length" class="active">Length (in feet)</label>
+            <span class="helper-text red-text"
+                  *ngIf="customRoomSize.length > 50 && customRoomSize.length != 0">Value must be less than or equal to 50</span>
+            <span class="helper-text red-text"
+                  *ngIf="customRoomSize.length < 1">Value must be greater than or equal to 1</span>
+            <span class="helper-text red-text"
+                  *ngIf="customRoomSize.length && customRoomSize.length.toString().includes('.')">Round to the nearest foot, removing any decimals.</span>
+          </div>
+          <div class="input-field col s6">
+            <input id="width" type="number" (keyup)="updateCustomLabel(customRoomSize)" (change)="updateCustomLabel(customRoomSize)"
+                   [(ngModel)]="customRoomSize.width" placeholder="Width" min="1" max="50"
+                   [ngClass]="(customRoomSize.width <= 50 && customRoomSize.width >= 1) && !(customRoomSize.width.toString().includes('.')) ? 'valid' : 'invalid'"/>
+            <label for="width" class="active">Width (in feet)</label>
+            <span class="helper-text red-text"
+                  *ngIf="customRoomSize.width > 50 && customRoomSize.width != 0">Value must be less than or equal to 50</span>
+            <span class="helper-text red-text"
+                  *ngIf="customRoomSize.width < 1">Value must be greater than or equal to 1</span>
+            <span class="helper-text red-text"
+                  *ngIf="customRoomSize.width && customRoomSize.width.toString().includes('.')">Round to the nearest foot, removing any decimals.</span>
+          </div>
+        </div>
+        <div class="center-align">
+          <button class="big-btn rectangle" *ngIf="details.interior.length > 0 && !this.customDimensionInput"
+                  (click)="selectRoomSize(customRoomSize)" [ngClass]="{'selected': details.interior[selectedIndex].size.name === customRoomSize.name}">
+            Custom
+          </button>
+          <div class="center-align">
+            <button class="big-btn rectangle" *ngIf="details.interior.length > 0 && this.customDimensionInput"
+                    (click)="customDimensionInput = false" >
+              Back to Presets
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mb0">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-title" *ngIf="details.interior.length > 0">
+        <div class="row mb0">
+          <div class="col s10">
+            How <strong>tall</strong> is {{details.interior[selectedIndex].defaultName}}?
+          </div>
+          <div class="col s2 right-align">
+            <materialize-tooltip
+              [data]="'Choose the height option closest to this room. For slanted ceilings, choose the highest point.'"></materialize-tooltip>
+          </div>
+        </div>
+      </div>
+      <div class="card-content center">
+        <div class="row" *ngIf="this.roomHeights.length > 0 && !this.customHeightInput">
+          <div *ngFor="let height of this.roomHeights;" class="col l4 m4 s12">
+            <button class="big-btn rectangle" *ngIf="details.interior.length > 0"
+                    [ngClass]="{'selected': (details.interior[selectedIndex].height.name === height.name)}"
+                    (click)="selectRoomHeight(height)">{{height.name | storageName2DisplayName}}</button>
+            <p class="desc-text">{{height.label}}</p>
+          </div>
+        </div>
+        <div class="row" *ngIf="this.customHeightInput">
+          <div class="input-field col offset-s3 s6">
+            <input id="height" type="number" (keyup)="updateCustomHeightLabel(customRoomHeight)" (change)="updateCustomHeightLabel(customRoomHeight)"
+                   [(ngModel)]="customRoomHeight.height" placeholder="Height" min="6" max="20"
+                   [ngClass]="(customRoomHeight.height >= 6 && customRoomHeight.height <= 20)  && !(customRoomHeight.height.toString().includes('.')) ? 'valid' : 'invalid'"/>
+            <label for="height" class="active">Height (in feet)</label>
+            <span class="helper-text red-text"
+                  *ngIf="customRoomHeight.height > 20 && customRoomHeight.height != 0">Value must be less than or equal to 20</span>
+            <span class="helper-text red-text"
+                  *ngIf="customRoomHeight.height < 6">Value must be greater than or equal to 6</span>
+            <span class="helper-text red-text"
+                  *ngIf="customRoomHeight.height && customRoomHeight.height.toString().includes('.')">Round to the nearest foot, removing any decimals.</span>
+          </div>
+        </div>
+        <div class="center-align">
+          <button class="big-btn rectangle" *ngIf="details.interior.length > 0 && !this.customHeightInput"
+                  (click)="selectRoomHeight(customRoomHeight)" [ngClass]="{'selected': details.interior[selectedIndex].height.name === customRoomHeight.name}">
+            Custom
+          </button>
+          <div class="center-align">
+            <button class="big-btn rectangle" *ngIf="details.interior.length > 0 && this.customHeightInput"
+                    (click)="customHeightInput = false" >
+              Back to Presets
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mb0">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-title" *ngIf="details.interior.length > 0">
+        What are you painting in {{details.interior[selectedIndex].defaultName}}?
+      </div>
+        <div class="card-content center">
+          <button class="big-btn square rectangle-on-mobile-only" [ngClass]="paintItem.selected ? 'selected' : ''"
+                  *ngFor="let paintItem of paintItems; let i = index;"
+                  (click)="selectPaintItem(i)">{{paintItem.title}}</button>
+          <!--<button class="big-btn square" [ngClass]="{'selected': paintItemsNone}" (click)="selectPaintItem(-1)">None of these</button>-->
+        </div>
+    </div>
+  </div>
+</div>
+<div class="row mb0" *ngIf="paintItems[0].selected || paintItems[2].selected">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-title">
+        <div class="row mb0">
+          <div class="col s10">
+            How many walls need to be painted?
+          </div>
+          <div class="col s2 right-align">
+            <materialize-tooltip
+              [data]="'Open floor plan? Let us know if this room opens up into another by selecting the number of walls in this space.'"></materialize-tooltip>
+          </div>
+        </div>
+      </div>
+      <div class="card-content center">
+        <div class="row" *ngIf="paintItems[0].selected">
+          <div class="col l4 m4 s12">
+            <p>Number of Walls</p>
+            <p style="color: #26a69a">{{numberOfWalls}}</p>
+          </div>
+          <div class="col l8 m8 s12">
+            <div class="row">
+              <div class="col offset-l2 l2 offset-m2 m2 s2 input-field">
+                <button class="btn-floating btn-small waves-effect waves-light red"
+                        (click)="decrement('Wall')">-
+                </button>
+              </div>
+              <div class="input-field col l6 m6 s8">
+                <materialize-select (change)="selectNumberOfWalls($event) " [data]="this.dataWall"
+                                    [id]="'numberOfWalls'" [selected]="this.numberOfWalls">
+                </materialize-select>
+              </div>
+              <div class="col l2 m2 s2 input-field">
+                <button class="btn-floating btn-small waves-effect waves-light red"
+                        (click)="increment('Wall')">+
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" *ngIf="paintItems[2].selected">
+          <div class="col l4 m4 s12">
+            <p>Number of Accent Walls</p>
+            <p style="color: #26a69a">{{numberOfAccentWalls}}</p>
+          </div>
+          <div class="col l8 m8 s12">
+            <div class="row">
+              <div class="col offset-l2 l2 offset-m2 m2 s2 input-field">
+                <button class="btn-floating btn-small waves-effect waves-light red"
+                        (click)="decrement('AccentWall')">-
+                </button>
+              </div>
+              <div class="input-field col l6 m6 s8">
+                <materialize-select (change)="selectNumberOfAccentWalls($event) " [data]="this.dataAccentWall"
+                                    [id]="'numberOfAccentWalls'" [selected]="this.numberOfAccentWalls">
+                </materialize-select>
+              </div>
+              <div class="col l2 m2 s2 input-field">
+                <button class="btn-floating btn-small waves-effect waves-light red"
+                        (click)="increment('AccentWall')">+
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" *ngIf="paintItems[0].selected">
+          <div class="col s12" style="margin-bottom: 10px;">
+            <p class="left">Conditions:</p>
+          </div>
+          <div class="col l4 m12 s12" *ngFor="let conditionItem of wallConditionItems; let i = index;">
+            <button class="big-btn rectangle"
+                    [ngClass]="{'selected': conditionItem.selected, 'condition-margins': i != 0, 'large': i > 2}"
+                    (click)="selectWallConditionItem(i)">{{conditionItem.title}}</button>
+            <p class="desc-text">{{conditionItem.desc}}</p>
+          </div>
+        </div>
+        <div class="row" *ngIf="paintItems[0].selected && wallConditionItems[2].selected">
+          <p class="mb20"><b>Please upload a photo of the damaged area below.</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mb0" *ngIf="paintItems[1].selected">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-title">
+
+        <div class="row mb0">
+          <div class="col s10">
+            What is the ceiling shaped like?
+          </div>
+          <div class="col s2 right-align">
+            <materialize-tooltip
+              [data]="'For rooms that are entirely flat, select conventional. For vaulted or sloped ceilings, select vaulted.'"></materialize-tooltip>
+          </div>
+        </div>
+      </div>
+      <div class="card-content center">
+        <div class="row">
+          <div class="col l6 m12 s12" *ngFor="let ceilingType of ceilingTypes; let i = index;">
+            <button class="big-btn rectangle"
+                    [ngClass]="{'selected': ceilingType.selected, 'condition-margins': i != 0}"
+                    (click)="selectCeilingType(i)">{{ceilingType.title}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mb0" *ngIf="paintItems[3].selected">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-title">
+        <div class="row mb0">
+          <div class="col s10">
+            How many <strong>cabinets</strong> need to be painted?
+          </div>
+          <div class="col s2 right-align">
+            <materialize-tooltip
+              [data]="'Select the number of cabinet doors and cabinet drawers you need painted. The frames are included in the price.'"></materialize-tooltip>
+          </div>
+        </div>
+      </div>
+      <div class="card-content">
+        <div class="row center">
+          <div class="col l4 m4 s12">
+            <p>Number of Cabinet Doors</p>
+            <p style="color: #26a69a">{{numberOfCabinetDoors}}</p>
+          </div>
+          <div class="col l8 m8 s12">
+            <div class="row">
+              <div class="col offset-l2 l2 offset-m2 m2 s2 input-field">
+                <button class="btn-floating btn-small waves-effect waves-light red"
+                        (click)="decrement('CabinetDoors')">-
+                </button>
+              </div>
+              <div class="input-field col l6 m6 s8">
+                <materialize-select (change)="selectNumberOfCabinetDoors($event) " [data]="this.data30"
+                                    [id]="'numberOfCabinetDoors'" [selected]="this.numberOfCabinetDoors">
+                </materialize-select>
+              </div>
+              <div class="col l2 m2 s2 input-field">
+                <button class="btn-floating btn-small waves-effect waves-light red"
+                        (click)="increment('CabinetDoors')">+
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row center">
+          <div class="col l4 m4 s12">
+            <p>Number of Cabinet Drawers</p>
+            <p style="color: #26a69a">{{numberOfCabinetDrawers}}</p>
+          </div>
+          <div class="col l8 m8 s12">
+            <div class="row">
+              <div class="col offset-l2 l2 offset-m2 m2 s2 input-field">
+                <button class="btn-floating btn-small waves-effect waves-light red"
+                        (click)="decrement('CabinetDrawers')">-
+                </button>
+              </div>
+              <div class="input-field col l6 m6 s8">
+                <materialize-select (change)="selectNumberOfCabinetDrawers($event) " [data]="this.data30"
+                                    [id]="'numberOfCabinetDrawers'" [selected]="this.numberOfCabinetDrawers">
+                </materialize-select>
+              </div>
+              <div class="col l2 m2 s2 input-field">
+                <button class="btn-floating btn-small waves-effect waves-light red"
+                        (click)="increment('CabinetDrawers')">+
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row pl10">
+          <div class="col s12">
+            <p>My cabinets are textured:</p>
+            <p>
+              <label>
+                <input [(ngModel)]="cabinetGrainType" [value]="'smooth'" (click)="selectCabinetGrain('smooth')"
+                       name="cabinetTexture" type="radio"/>
+                <span>Smooth</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input [(ngModel)]="cabinetGrainType" [value]="'grainy'" (click)="selectCabinetGrain('grainy')"
+                       name="cabinetTexture" type="radio"/>
+                <span>Grainy (feels rough)</span>
+              </label>
+            </p>
+          </div>
+        </div>
+        <div class="row pl10">
+          <div class="col s12">
+            <p>My cabinets are:</p>
+            <p>
+              <label>
+                <input [(ngModel)]="cabinetCondition" [value]="'bare'" (click)="selectCabinetCondition('bare')"
+                       name="cabinetCondition" type="radio"/>
+                <span>Bare (new)</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input [(ngModel)]="cabinetCondition" [value]="'painted'" (click)="selectCabinetCondition('painted')"
+                       name="cabinetCondition" type="radio"/>
+                <span>Painted</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input [(ngModel)]="cabinetCondition" [value]="'stained'" (click)="selectCabinetCondition('stained')"
+                       name="cabinetCondition" type="radio"/>
+                <span>Stained</span>
+              </label>
+            </p>
+          </div>
+        </div>
+        <!--
+          <div class="row pl10">
+            <div class="col s12">
+              <p>I would like my cabinets to be:</p>
+              <p>
+                <input [(ngModel)]="cabinetTreatment" [value]="'paint'" (click)="selectCabinetTreatment('paint')" name="cabinetTreatment" type="radio" id="paint" />
+                <label for="paint">Painted</label>
+              </p>
+              <p>
+                <input [(ngModel)]="cabinetTreatment" [disabled]="cabinetCondition==='painted'" [value]="'stain'" (click)="selectCabinetTreatment('stain')" name="cabinetTreatment" type="radio" id="stain" />
+                <label for="stain">Stained</label>
+              </p>
+            </div>
+          </div>
+        -->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mb0" *ngIf="paintItems[5].selected">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-title">
+        <div class="row mb0">
+          <div class="col s10">
+            How many <strong>door frames</strong> need to be painted?
+          </div>
+          <div class="col s2 right-align">
+            <materialize-tooltip
+              [data]="'Let us know how many individual door frames will be painted in this room.'"></materialize-tooltip>
+          </div>
+        </div>
+      </div>
+      <div class="card-content center">
+        <div class="row">
+          <div class="col l4 m4 s12">
+            <p>Number of Door Frames</p>
+            <p style="color: #26a69a">{{numberOfDoorFrames}}</p>
+          </div>
+          <div class="col l8 m8 s12">
+            <div class="row">
+              <div class="col offset-l2 l2 offset-m2 m2 s2 input-field">
+                <button class="btn-floating btn-small waves-effect waves-light red"
+                        (click)="decrement('DoorFrames')">-
+                </button>
+              </div>
+              <div class="input-field col l6 m6 s8">
+                <materialize-select (change)="selectNumberOfDoorFrames($event) " [data]="this.data4"
+                                    [id]="'numberOfDoorFrames'" [selected]="this.numberOfDoorFrames">
+                </materialize-select>
+              </div>
+              <div class="col l2 m2 s2 input-field">
+                <button class="btn-floating btn-small waves-effect waves-light red"
+                        (click)="increment('DoorFrames')">+
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mb0" *ngIf="paintItems[7].selected">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-title">
+        <div class="row mb0">
+          <div class="col s10">
+            How many <strong>doors</strong> need to be painted?
+          </div>
+          <div class="col s2 right-align">
+            <materialize-tooltip
+              [data]="'Select each individual door as 1. Double doors and sliding doors count as 2.'"></materialize-tooltip>
+          </div>
+        </div>
+      </div>
+      <div class="card-content center">
+        <div class="row">
+          <div class="col l4 m4 s12">
+            <p>Number of Doors</p>
+            <p style="color: #26a69a">{{numberOfDoors}}</p>
+          </div>
+          <div class="col l8 m8 s12">
+            <div class="row">
+              <div class="col offset-l2 l2 offset-m2 m2 s2 input-field">
+                <button class="btn-floating btn-small waves-effect waves-light red"
+                        (click)="decrement('Doors')">-
+                </button>
+              </div>
+              <div class="input-field col l6 m6 s8">
+                <materialize-select (change)="selectNumberOfDoors($event) " [data]="this.data4"
+                                    [id]="'numberOfDoors'" [selected]="this.numberOfDoors">
+                </materialize-select>
+              </div>
+              <div class="col l2 m2 s2 input-field">
+                <button class="btn-floating btn-small waves-effect waves-light red"
+                        (click)="increment('Doors')">+
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mb0">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-title">
+        <div class="row mb0">
+          <div class="col s10 l4">Photos</div>
+          <div class="col l4 center hide-on-med-and-down">
+            <a class="tooltipped" data-position="top"
+               data-tooltip="Save your progress and switch to mobile for easier uploads" (click)="onSwitchToMobile()">
+              <i class="material-icons">computer</i>
+              <i class="material-icons">compare_arrows</i>
+              <i class="material-icons">smartphone</i>
+            </a>
+          </div>
+          <div class="col s2 l4 right-align">
+            <materialize-tooltip
+              [data]="'Photos help painters make a more accurate bid.'">
+            </materialize-tooltip>
+          </div>
+        </div>
+        <div class="center row mb0" *ngIf="paintItems[0].selected && wallConditionItems[2].selected">
+          <p class="small" [ngClass]="details.interior[selectedIndex].photos.length > 0 ? 'green-text' : 'red-text'">
+            Please include photos of the damaged drywall. Photos for this room are required, but can be uploaded later.
+            <i *ngIf="details.interior[selectedIndex].photos.length > 0" class="material-icons left">check</i>
+          </p>
+        </div>
+      </div>
+      <div class="card-content center">
+        <upload-photo-element [id]="'photos'" [existingPhotos]="details.interior[selectedIndex].photos"
+                              (photosChanged)="onFileListChange($event)"
+                              (uploadingFiles)="onUploadingFilesChanged($event)"></upload-photo-element>
+      </div>
+    </div>
+  </div>
+</div>

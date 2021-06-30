@@ -1,0 +1,368 @@
+{
+    "_id": "mongoId",
+    "status": {
+        "type": "string",
+        "required": false,
+        "enum": ["", "creating", "invitingPainters", "expired", "awaitingDownPaymentConfirmation", "booked"]
+    },
+    "details": {
+        "type": "object",
+        "required": true,
+        "fields": {
+            "address": {
+                "type": "object",
+                "required": true,
+                "fields": {
+                    "streetAddress": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "city": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "state": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "zipCode": {
+                        "type": "postalCode",
+                        "required": true
+                    }
+                }
+            },
+            "jobType": {
+                "type": "string",
+                "required": true,
+                "enum": ["", "house", "townhouse"]
+            },
+            "decorType": {
+                "type": "string",
+                "required": true,
+                "enum": ["", "interior", "exterior"]
+            },
+            "paintSupplier": {
+                "type": "string",
+                "required": true,
+                "enum": ["", "painter", "customer"]
+            },
+            "paintBrand": {
+                "type": "string"
+            },
+            "paintProduct": {
+                "type": "string"
+            },
+            "timeFrameStart": {
+                "type": "string",
+                "required": true,
+                "enum": ["", "flexibleStartDate", "startWithinNextWeek", "startWithinNextMonth"]
+            },
+            "timeFrameEnd": {
+                "type": "string",
+                "required": true,
+                "enum": ["", "flexibleEndDate", "endDateInMind", "finishWithinAMonth", "finishWithinThreeMonths"]
+            },
+            "expectedEndDate": {
+                "type": "date",
+                "required": ["obj", "return obj.timeFrameEnd === 'endDateInMind'"]
+            },
+            "occupancy": {
+                "type": "string",
+                "required": true,
+                "enum": ["", "furnishedAndOccupied", "furnishedAndUnoccupied", "emptyOfFurnishingsAndUnoccupied"]
+            },
+            "interior": {
+                "type": "array",
+                "required": ["obj", "return obj.decorType === 'interior'"],
+                "fields": {
+                    "defaultName": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "type": {
+                        "type": "string",
+                        "required": true,
+                        "enum": [
+                            "",
+                            "livingRoom",
+                            "bedRoom",
+                            "bathroom",
+                            "diningRoom",
+                            "kitchen",
+                            "laundryRoom",
+                            "entryway",
+                            "hallway",
+                            "stairway",
+                            "sunRoom",
+                            "garage",
+                            "other"
+                        ]
+                    },
+                    "size": {
+                        "type": "object",
+                        "required": true,
+                        "fields": {
+                            "name": {
+                                "type": "string",
+                                "required": true,
+                                "enum": ["", "small", "medium", "large", "custom"]
+                            },
+                            "length": {
+                                "type": "number",
+                                "required": true,
+                                "min": 1,
+                                "max": 50
+                            },
+                            "width": {
+                                "type": "number",
+                                "required": true,
+                                "min": 1,
+                                "max": 50
+                            },
+                            "label": {
+                                "type": "string",
+                                "required": true,
+                                "regexp": "^([0-9]{1,2}'x[0-9]{1,2}' (to|or) ([0-9]{1,2}'x[0-9]{1,2}'|less))|([0-9]{1,2}'x[0-9]{1,2}')$"
+                            }
+                        }
+                    },
+                    "height": {
+                        "type": "object",
+                        "required": true,
+                        "fields": {
+                            "name": {
+                                "type": "string",
+                                "required": true,
+                                "enum": ["", "average", "aboveAverage", "vaulted", "custom"]
+                            },
+                            "height": {
+                                "type": "number",
+                                "required": true,
+                                "min": 6,
+                                "max": 20
+                            },
+                            "label": {
+                                "type": "string",
+                                "required": true,
+                                "regexp": "^([0-9]{1,2}' (to|or) ([0-9]{1,2}'|less))|([0-9]{1,2}')$"
+                            }
+                        }
+                    },
+                    "items": {
+                        "type": "array",
+                        "required": true,
+                        "fields": {
+                            "type": {
+                                "type": "string",
+                                "required": true,
+                                "enum": [
+                                    "",
+                                    "cabinets",
+                                    "ceiling",
+                                    "crownMolding",
+                                    "wall",
+                                    "accentWall",
+                                    "door",
+                                    "doorFrame",
+                                    "baseboard",
+                                    "window",
+                                    "fireplaceMantel"
+                                ]
+                            },
+                            "additionalDetails": {
+                                "type": "object",
+                                "required": true,
+                                "fields": {
+                                    "amount": {
+                                        "type": "number",
+                                        "required": true,
+                                        "min": 0,
+                                        "max": 4
+                                    },
+                                    "conditions": {
+                                        "type": "array",
+                                        "required": true,
+                                        "fields": {
+                                            "type": "string",
+                                            "required": true,
+                                            "enum": ["", "unpaintedDrywall", "darkWalls", "drywallRepair"]
+                                        }
+                                    },
+                                    "ceilingType": {
+                                        "type": "string",
+                                        "required": true,
+                                        "enum": ["", "conventional", "vaulted"]
+                                    },
+                                    "cabinetGrainType": {
+                                        "type": "string",
+                                        "required": true,
+                                        "enum": ["", "grainy", "smooth"]
+                                    },
+                                    "cabinetTreatment": {
+                                        "type": "string",
+                                        "required": true,
+                                        "enum": ["", "paint"]
+                                    },
+                                    "numberOfCabinetDrawers": {
+                                        "type": "number",
+                                        "required": true,
+                                        "min": 0,
+                                        "max": 30
+                                    },
+                                    "numberOfCabinetDoors": {
+                                        "type": "number",
+                                        "required": true,
+                                        "min": 0,
+                                        "max": 30
+                                    },
+                                    "cabinetCondition": {
+                                        "type": "string",
+                                        "required": true,
+                                        "enum": ["", "bare", "painted", "stained"]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "photos": {
+                        "type": "array",
+                        "required": true,
+                        "file": "./files/file.json"
+                    }
+                }
+            },
+            "exterior": {
+                "type": "array",
+                "required": ["obj", "return obj.decorType === 'exterior'"],
+                "fields": {
+                    "defaultName": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "type": {
+                        "type": "string",
+                        "required": true,
+                        "enum": ["", "house", "detachedGarage", "shed", "deck"]
+                    },
+                    "numberOfStories": {
+                        "type": "number",
+                        "required": ["obj", "return obj.type !== 'deck'"],
+                        "min": 0,
+                        "max": 5
+                    },
+                    "squareFootage": {
+                        "type": "number",
+                        "required": ["obj", "return obj.type === 'house'"],
+                        "min": 1,
+                        "max": 10000
+                    },
+                    "paintCondition": {
+                        "type": "string",
+                        "required": true,
+                        "enum": ["", "unknown", "good", "someFlaking", "aLotOfFlaking"]
+                    },
+                    "deckElevation": {
+                        "type": "string",
+                        "required": ["obj", "return obj.type === 'deck'"],
+                        "enum": ["", "unknown", "groundFloor", "elevated"]
+                    },
+                    "deckTreatment": {
+                        "type": "string",
+                        "required": ["obj", "return obj.type === 'deck'"],
+                        "enum": ["", "unknown", "paint", "stain"]
+                    },
+                    "deckSize": {
+                        "type": "object",
+                        "required": ["obj", "return obj.type === 'deck'"],
+                        "fields": {
+                            "name": "string",
+                            "squareFootage": {
+                                "type": "number",
+                                "min": 0,
+                                "max": 1000
+                            },
+                            "label": "string"
+                        }
+                    },
+                    "garageSize": {
+                        "type": "object",
+                        "required": ["obj", "return obj.type === 'detachedGarage'"],
+                        "fields": {
+                            "label": {
+                                "type": "string",
+                                "enum": ["1 Car", "2 Car", "3 Car", "4 Car"],
+                                "required": true
+                            },
+                            "size": {
+                                "type": "number",
+                                "min": 1,
+                                "max": 4,
+                                "required": true
+                            }
+                        }
+                    },
+                    "items": {
+                        "type": "array",
+                        "required": ["obj", "return obj.type !== 'deck'"],
+                        "fields": {
+                            "type": {
+                                "type": "string",
+                                "required": true,
+                                "enum": [
+                                    "",
+                                    "unknown",
+                                    "siding",
+                                    "trim",
+                                    "soffit",
+                                    "facia",
+                                    "garageDoor",
+                                    "windowTrim",
+                                    "gutters",
+                                    "exteriorDoor"
+                                ]
+                            },
+                            "sidingTypes": {
+                                "type": "array",
+                                "required": ["obj", "return obj.type === 'siding'"],
+                                "fields": {
+                                    "type": "string",
+                                    "required": true,
+                                    "enum": ["", "unknown", "brick", "wood", "vinyl", "stucco", "other"]
+                                }
+                            },
+                            "sidesToPaint": {
+                                "type": "array",
+                                "required": ["obj", "return obj.type === 'siding'"],
+                                "fields": {
+                                    "type": "string",
+                                    "required": true,
+                                    "enum": ["", "unknown", "front", "back", "left", "right"]
+                                }
+                            }
+                        }
+                    },
+                    "photos": {
+                        "type": "array",
+                        "required": true,
+                        "minLength": 1,
+                        "file": "./files/file.json"
+                    }
+                }
+            },
+            "additionalDetailsComment": {
+                "type": "string",
+                "required": true,
+                "minLength": 0,
+                "maxLength": 2000
+            }
+        }
+    },
+    "proposals": {
+        "type": "array",
+        "file": "./files/project.proposal.frontEnd.json"
+    },
+    "selectedProposal": {
+        "type": "object",
+        "file": "./files/project.proposal.frontEnd.json"
+    }
+}

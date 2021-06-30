@@ -1,0 +1,111 @@
+@import "../../../variables";
+
+.progress{
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.indeterminate{
+  background-color: white;
+}
+.determinate{
+  background-color: white;
+}
+
+.dropzone {
+  text-align: center;
+  width: 100%;
+  padding: 20px;
+  border: gray 1px dashed;
+  border-radius: 4px;
+
+  & * {
+    pointer-events: none;
+  }
+
+  & .btn, & img {
+    pointer-events: all;
+  }
+
+  .displayed-image {
+    background-color: @primary;
+    position: relative;
+    cursor: pointer;
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      transition: all .4s ease-out;
+
+      &:hover, &.mobile-touch {
+        opacity: 0.1;
+
+        & ~ .photo-name {
+          visibility: visible;
+        }
+        & ~ .photo-size {
+          visibility: visible;
+        }
+        & ~ .delete {
+          visibility: visible;
+        }
+      }
+
+      &.uploading {
+        opacity: 0.1;
+
+        & ~ .photo-name {
+          visibility: visible;
+        }
+
+        & ~ .photo-size {
+          visibility: visible;
+        }
+      }
+    }
+
+    .photo-name {
+      font-size: 12px;
+      position: absolute;
+      top: 4px;
+      left: 10px;
+      max-width: 100px;
+      visibility: hidden;
+
+      p {
+        font-size: 12px;
+      }
+    }
+
+    .photo-upload-state {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50%;
+    }
+
+    .photo-size {
+      position: absolute;
+      bottom: 6px;
+      left: 10px;
+      visibility: hidden;
+
+      p {
+        font-size: 12px;
+        display: inline-block;
+      }
+
+      i {
+        transform: translateY(3px);
+        margin-right: 6px;
+      }
+    }
+
+    .delete {
+      position: absolute;
+      bottom: 2px;
+      right: 6px;
+      visibility: hidden;
+    }
+  }
+}

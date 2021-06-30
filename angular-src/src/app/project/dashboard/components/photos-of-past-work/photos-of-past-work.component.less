@@ -1,0 +1,42 @@
+p {
+  font-size: 14px !important;
+}
+
+.past-work-photos-outer-wrapper {
+  overflow-x: auto;
+  width: 100%;
+  display: inline-block;
+
+  &::-webkit-scrollbar {
+    height: 3px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f5f5f5;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+
+    &:hover {
+      background: #555;
+    }
+  }
+
+  .past-work-photos-inner-wrapper {
+    position: relative;
+    right: 0;
+
+    .past-work-photos {
+      max-height: 200px;
+      max-width: 200px;
+      display: inline;
+      border-radius: 3px;
+      margin-right: 4px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+<h1>Homepainter has a job available in your area!</h1>
+
+<div class="center-align">
+    <a href="{{url}}/quote-project/{{this.project._id}}">
+    <button class="btn">View Project</button>
+    </a>
+    <br>
+    <small>
+        <a href="{{url}}/decline-project/{{this.project._id}}">Not interested? Decline project</a>
+    </small>
+    <br>
+    <small>You are not contracting with homepainter at this time. A confirmation will be sent later if you choose to accept
+        this job. <b>This invite will expire in 48 hours.</b></small>
+</div>
+
+<hr style="margin-top: 50px">
+
+{{>project-details this.project.details}}

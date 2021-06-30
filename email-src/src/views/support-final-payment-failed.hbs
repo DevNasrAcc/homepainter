@@ -1,0 +1,43 @@
+<h1>Payment Failed Notice</h1>
+<p>A customer's final payment was unable to be processed. Contact the customer to resolve this problem and notify
+    the contractor of the delay.</p>
+</br>
+<p class="center">Order ID: {{this.order._id}}</p>
+<br>
+{{#with customer}}
+    <p><b>Customer:</b></p>
+    <p><b>Name:</b> {{this.firstName}} {{this.lastName}}</p>
+    <p><b>Email:</b> {{this.email.address}}</p>
+    <p><b>Phone:</b> {{this.mobile.number}}</p>
+{{/with}}
+{{#with project.details.address}}
+    <p><b>Address:</b> {{this.streetAddress}}, {{this.city}}, {{this.street}}
+        , {{this.zipCode}}</p>
+{{/with}}
+{{#with customer}}
+    <p><b>_id:</b> {{this._id}}</p>
+{{/with}}
+</br>
+{{#with contractor}}
+    <p><b>Contractor:</b></p>
+    <p><b>Company Name</b> {{this.organizationName}}</p>
+    <p><b>Name:</b> {{this.firstName}} {{this.lastName}}</p>
+    <p><b>Email:</b> {{this.email.address}}</p>
+    <p><b>Phone:</b> {{this.mobile.number}}</p>
+    <p><b>_id:</b> {{this._id}}</p>
+{{/with}}
+</br>
+{{>receipt-of-charges this.order}}
+<table>
+    <tbody>
+    <tr>
+        <td style="padding: 5px">
+            <p style="font-weight: 600; color: darkred">Missing Final Payment</p>
+            <small>Charge Failed on {{formatDate date}}</small>
+        </td>
+        <td style="padding: 5px" class="right-align">
+            <p>{{subtract this.order.chargeDetails.total this.order.chargeDetails.downPaymentAmount}}</p>
+        </td>
+    </tr>
+    </tbody>
+</table>

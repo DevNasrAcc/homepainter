@@ -1,0 +1,50 @@
+{
+  "_id": "5dd7018a6b68e75930eb2250",
+  "__t": "contractor",
+  "email": {
+    "address": "ahouse@thehomepainter.com",
+    "sendPromotional": true,
+    "sendProductNews": true,
+    "sendBlog": true,
+    "sendProjectNotices": true,
+    "sendMessageNotices": true,
+    "events": []
+  },
+  "__v": 0,
+  "address": {
+    "streetAddress": "2710 South Loop Dr",
+    "city": "Ames",
+    "state": "IA",
+    "zipCode": 50014
+  },
+  "firstName": "contractor_fname",
+  "lastName": "contractor_lname",
+  "mobile": {
+    "number": "5157058449",
+    "sendProjectNotices": true,
+    "sendMessageNotices": true
+  },
+  "createdAt": "2019-11-21T21:28:42.859Z",
+  "timezone": "chicago",
+  "title": "cto",
+  "organizationName": "Painter Company xyz",
+  "picture": "https://thehomepainter.com/assets/images/logo.webp",
+  "website": "https://thehomepainter.com",
+  "numberOfEmployees": 5,
+  "founded": 2018,
+  "rating": 5,
+  "services": [
+    "interiorPainting",
+    "exteriorPainting",
+    "deckStaining",
+    "drywallRepair",
+    "wallpaperRemoval",
+    "cabinets",
+    "additionalService1"
+  ],
+  "insurance": {
+    "effectiveDate": "2019-08-19T05:00:00.000Z",
+    "expirationDate": "2019-08-19T05:00:00.000Z",
+    "fileLocation": "/foo/bar"
+  }
+}

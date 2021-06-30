@@ -1,0 +1,16 @@
+<div class="col s12 m4 l2">
+  <div class="card mb0">
+    <div class="card-content center-align noselect">
+      <div class="row">
+        <div class="col l12 m12 s5 mt15">
+          <p>{{title}}</p>
+        </div>
+        <div class="col l12 m12 s7">
+          <i class="material-icons value-btn pr10 secondary" (click)="decrease()">remove_circle_outline</i>
+          <input class="center-align" type="number" [(ngModel)]="numberCount" (keyup)="inputBoxChanged()">
+          <i class="material-icons value-btn pl10 primary" (click)="increase()">add_circle_outline</i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

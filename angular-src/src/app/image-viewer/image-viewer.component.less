@@ -1,0 +1,109 @@
+@import "../../variables";
+
+@padding: 35px;
+
+.image-viewer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1004;
+  background-color: black;
+  padding: @padding;
+
+  &.open {
+    display: block;
+  }
+}
+
+.a {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  .b {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+
+    .c {
+      width: 100vw;
+      height: 100vh;
+      overflow: auto;
+      text-align: center;
+      vertical-align: middle;
+      white-space: nowrap;
+
+      .d1 {
+        cursor: pointer;
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+        transform: none
+      }
+
+      .d2 {
+        height: 100%;
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+button:hover {
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2) !important;
+}
+
+.image-name-and-close {
+  position: absolute;
+  z-index: 1;
+
+  button {
+    position: fixed;
+    right: @padding;
+    top: @padding;
+  }
+}
+
+.prev {
+  position: absolute;
+  top: 50%;
+  left: @padding;
+}
+
+.next {
+  position: absolute;
+  top: 50%;
+  right: @padding;
+}
+
+.number-of-images {
+  z-index: 1;
+  position: fixed;
+  bottom: @padding;
+  left: @padding;
+}
+
+.zoom-buttons {
+  position: absolute;
+  bottom: @padding;
+  left: calc(50% - (95px / 2));
+  right: calc(50% - (95px / 2));
+}
+
+.zoom {
+  z-index: 1;
+  position: fixed;
+  bottom: @padding;
+  right: @padding;
+  text-align: right;
+}

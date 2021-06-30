@@ -1,0 +1,16 @@
+<h1 class="center-align">What type of home are you painting?</h1>
+
+<div class="center-align row" style="margin-top: 90px; margin-bottom: 90px;">
+  <div class="col l4 offset-l2 m4 offset-m2 s6 type-of-home-selection"
+       [ngClass]="this.details.jobType === 'house' ? 'selected' : ''"
+       (click)="changeTypeOfHome('house')">
+    <img class="lazyload" data-src="/assets/images/type-of-home/home.svg">
+    <p>House</p>
+  </div>
+  <div class="col l4 m4 s6 type-of-home-selection"
+       [ngClass]="this.details.jobType === 'townhouse' ? 'selected' : ''"
+       (click)="changeTypeOfHome('townhouse')">
+    <img class="lazyload" data-src="/assets/images/type-of-home/condominium_1.svg">
+    <p>Townhouse / Condo</p>
+  </div>
+</div>

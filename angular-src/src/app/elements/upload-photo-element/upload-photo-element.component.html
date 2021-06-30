@@ -1,0 +1,78 @@
+<div class="row">
+  <div class="col s12">
+    <div class="dropzone" [ngClass]="{'display-shake': displayShake}" draggable="true"
+         (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" (drop)="onDrop($event)">
+      <!--suppress TypeScriptUnresolvedVariable -->
+      <input [id]="this.id" class="hide" type="file" accept='image/*' multiple (change)="displayFiles($event.target.files, true)">
+      <div *ngIf="notUploadedFiles.length === 0 && existingPhotos.length === 0">
+        <i class="material-icons medium">cloud_upload</i>
+        <p class="mt5">Drag and drop your files here</p>
+        <p class="mt5">or</p>
+        <button class="btn blue white-text waves-effect waves-light mt5" (click)="triggerPhotosClick()">Browse for files</button>
+      </div>
+      <div *ngIf="notUploadedFiles.length > 0 || existingPhotos.length > 0">
+        <div class="row">
+          <div class="col s12 m6 l6 xl4 valign-wrapper" *ngFor="let file of notUploadedFiles">
+            <div class="displayed-image" *ngIf="file.url">
+              <img [ngClass]="{'uploading': !file.uploaded}" [src]="file.url" (load)="setElementHeights()" alt="photo url">
+              <div class="photo-name">
+                <p class="white-text truncate">{{file.originalName}}</p>
+              </div>
+              <div class="photo-upload-state progress" *ngIf="!file.uploaded">
+                <div class="indeterminate" *ngIf="!file.uploading"></div>
+                <div class="determinate" *ngIf="file.uploading" [ngStyle]="{'width': file.progress + '%'}"></div>
+              </div>
+              <div class="photo-size">
+                <i class="material-icons orange-text tiny">image</i>
+                <p class="white-text">{{file.size | fileSize}}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col s12 m6 l6 xl4 pl5 pr5 pt5 pb5 valign-wrapper" *ngFor="let photo of existingPhotos">
+            <div class="displayed-image">
+              <img [id]="photo.url" [src]="photo.url" [ngClass]="{'mobile-touch': mobileTouchingPhoto === photo}" alt="photo url"
+                   (click)="openModal(photo)" (load)="addMobileTouchEvent(photo)">
+              <div class="photo-name">
+                <p class="white-text truncate">{{photo.originalName}}</p>
+              </div>
+              <div class="photo-size">
+                <i class="material-icons orange-text tiny">image</i>
+                <p class="white-text">{{photo.size | fileSize}}</p>
+              </div>
+              <div class="delete">
+                <i class="material-icons white-text tiny-small">delete_forever</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="btn blue white-text waves-effect waves-light" [ngClass]="{'disabled': this.uploadInProgress}" (click)="triggerPhotosClick()"><i class="material-icons left">add_to_photos</i>Add Files</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div [id]="'verify_' + id.replace(' ', '_')" class="modal no-autoinit">
+  <div class="modal-content">
+    <div class="row">
+      <div class="col s10">
+        <h4>Delete Photo</h4>
+      </div>
+      <div class="col s2 right-align">
+        <button class="btn-flat modal-close no-padding">
+          <i class="material-icons">close</i>
+        </button>
+      </div>
+    </div>
+    <p>Are you sure you want to delete {{removeFile.originalName}}?</p>
+    <div class="row">
+      <div class="col s12 offset-xl3 xl6">
+        <img class="responsive-img" [src]="removeFile.url" alt="image to be removed" style="max-height: 200px;">
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="modal-close btn-flat red white-text" (click)="removeImage()">DELETE</button>
+    <button class="modal-close btn-flat">CANCEL</button>
+  </div>
+</div>

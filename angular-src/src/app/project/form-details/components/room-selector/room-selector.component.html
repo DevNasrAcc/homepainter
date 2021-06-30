@@ -1,0 +1,13 @@
+<h1 class="center-align">What rooms do you want to paint?
+  <materialize-tooltip class="right"
+     [data]="'For open floor plans and connected rooms, please separate the different spaces to the best of your ability.'">
+  </materialize-tooltip>
+</h1>
+
+<div class="row">
+  <div *ngFor="let roomObject of roomObjects; let i = index">
+    <form-details-square-incrementer [id]="i" [title]="roomObject.title" [numberCount]="roomObject.roomCount" [autoIncrease]="roomObject.autoIncrease"
+                                (incremented)="onChildIncreased($event)" (decremented)="onChildDecreased($event)">
+    </form-details-square-incrementer>
+  </div>
+</div>

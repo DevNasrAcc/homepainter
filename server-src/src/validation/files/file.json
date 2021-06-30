@@ -1,0 +1,18 @@
+{
+    "createdAt": {
+        "type": "string",
+        "required": true
+    },
+    "url": {
+        "type": "url",
+        "required": true
+    },
+    "originalName": {
+        "type": "string",
+        "required": true
+    },
+    "size": {
+        "type": "number",
+        "required": true
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "orderId": {
+        "type": "mongoId",
+        "required": true
+    },
+    "projectRating": {
+        "type": "number",
+        "required": true,
+        "min": 1,
+        "max": 5
+    },
+    "projectComment": {
+        "type": "string",
+        "required": ["obj", "return obj.projectRating < 4"],
+        "minLength": 1
+    },
+    "homepainterRating": {
+        "type": "number",
+        "required": true,
+        "min": 1,
+        "max": 5
+    },
+    "homepainterComment": {
+        "type": "string",
+        "required": ["obj", "return obj.homepainterRating < 4"],
+        "minLength": 1
+    },
+    "additionalComment": "string"
+}

@@ -1,0 +1,29 @@
+@import "../../../variables";
+
+.row .col.no-padding {
+  padding: 0;
+}
+
+.content-margins {
+  margin-top: 120px;
+  margin-bottom: 90px;
+
+  @media @desktop-sm {
+    margin-top: 50px;
+  }
+
+  @media @tablet {
+    margin-top: 0;
+  }
+
+  @media @mobile {
+    margin-top: 0;
+    margin-bottom: 100px;
+  }
+}
+
+.mobile-margins {
+  @media @mobile, @tablet {
+    margin-top: 30px;
+  }
+}

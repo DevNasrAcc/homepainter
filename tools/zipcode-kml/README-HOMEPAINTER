@@ -1,0 +1,15 @@
+I found this program initally in this stackoverflow
+https://stackoverflow.com/questions/23297117/zip-code-boundaries-using-google-maps-api
+
+Which lead me to here
+https://github.com/tomeralmog/zipcode-kml
+
+The link he references https://www.census.gov/geo/maps-data/data/kml/kml_zcta.html no longer works.
+But, it had a key piece of information "kml_zcta"
+
+Google "kml_zcta" and you'll find something along the lines of "Cartographic Boundary Files - KML"
+For instances this website https://www.census.gov/geographies/mapping-files/time-series/geo/kml-cartographic-boundary-files.html is the government website for gis data.
+
+Look for "ZIP Code Tabulation Areas (ZCTAs)" and download the zip. It has an kml file that has all of the information needed.
+The tags "<SimpleData name="ZCTA5CE10">00601</SimpleData>" inside cb_2018_us_zcta510_500k.kml correspond to the zip codes.
+Then the coordinates are listed for the boundaries.

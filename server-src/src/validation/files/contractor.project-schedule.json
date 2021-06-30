@@ -1,0 +1,14 @@
+{
+    "orderId": {
+        "type": "mongoId",
+        "required": true
+    },
+    "startDate": {
+        "type": "date",
+        "required": true
+    },
+    "endDate": {
+        "type": "date",
+        "required": true
+    }
+}

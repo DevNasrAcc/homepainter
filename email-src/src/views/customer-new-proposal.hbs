@@ -1,0 +1,10 @@
+<h1>You received a new quote!</h1>
+
+<p>{{storageName2DisplayName this.customer.firstName}},</p>
+<br>
+<p>A new painter has provided a quote for your project. Use the link below to view it.</p>
+<div class="center">
+    <a href="{{url}}/project/view-quotes?projectId={{this.project._id}}">
+    <button class="btn">View Quote</button>
+    </a>
+</div>

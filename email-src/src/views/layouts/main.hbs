@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>homepainter email</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+        body {
+            font-size: 100% !important;
+            background-color: #f2f2f2;
+        }
+
+        body, caption, th, td, input, textarea, select, option, legend, fieldset, h1, h2, h3, h4, h5, h6 {
+            font-size-adjust: 0.5 !important;
+        }
+
+        h1 {
+            font-size: 2em !important;
+            line-height: 1.25 !important;
+        }
+        h2 {
+            font-size: 1.625em !important;
+            line-height: 1.15384615 !important;
+        }
+        h3 {
+            font-size: 1.375em !important;
+            line-height: 1.13636364 !important;
+        }
+        h4 {
+            font-size: 1.125em !important;
+            line-height: 1.11111111 !important;
+        }
+
+        .btn {
+            width: 55% !important;
+            margin: 55px 0 60px 0 !important;
+            background-color: #ef6c00 !important;
+        }
+
+        .rating {
+            user-select: none !important;
+        }
+
+        span.star{
+            font-size: 2em !important;
+        }
+
+    </style>
+</head>
+<body>
+
+<table>
+    <tbody>
+    <tr style="border-bottom: none">
+        <td class="center">
+            <table style="max-width: 580px; margin: 0 auto">
+                <tbody>
+                <tr style="border-bottom: none">
+                    <td>
+                        <div class="card">
+                            <div class="card-content">
+                                <img src="https://thehomepainter.com/assets/images/logo.png" alt="homepainter logo" width="200px"/>
+
+                                {{{body}}}
+
+                                <hr style="margin-top: 20px;">
+                                <div class="center-align">
+                                    <img class="center-align" src="https://thehomepainter.com/assets/images/logo.png" alt="homepainter logo" width="200px"/>
+                                    <address>
+                                        © homepainter inc.<br>
+                                        2710 South Loop Drive<br>
+                                        Ames, Iowa, 50010
+                                    </address>
+                                    <div style="margin-top: 30px;"></div>
+                                    {{#if this.emailUnsubscribe.transactional}}
+                                        <p>You are receiving this transactional email because of an action taken on your account.</p>
+                                    {{else}}
+                                        <p>You are receiving this email because you are signed up with homepainter.</p>
+                                        <a style="font-size: 12px;" href="{{url}}/notification-settings?jwt={{this.emailUnsubscribe.token}}">UPDATE NOTIFICATION PREFERENCES</a>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

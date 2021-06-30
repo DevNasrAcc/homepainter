@@ -1,0 +1,28 @@
+<h1 class="center">Project Summary</h1>
+<p class="center">Please provide a brief summary of your project and include any additional details that the painter will need to know.</p>
+
+<div class="row mt25">
+  <div class="col offset-l1 l10 m12 s12">
+    <div class="card">
+      <div class="card-title">
+        <div class="row mb0">
+          <div class="col s10">
+            Additional Details
+          </div>
+        </div>
+      </div>
+      <div class="card-content">
+        <div class="card-action">
+          <div class="row">
+            <div class="input-field col s12">
+              <label for="comment">{{charLen}}/2000 {{wordLen}}/5</label>
+              <textarea id="comment" class="materialize-textarea" maxlength="2000" placeholder="I would like to paint my living room and kitchen walls a new color and freshen up the white trim/baseboard. There are a few minor nail holes that need to be patched."
+                        [(ngModel)]="details.additionalDetailsComment"
+                        (keyup)="updateCharsRemaining();" (blur)="trackPageAction()"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

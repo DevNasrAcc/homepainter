@@ -1,0 +1,11 @@
+<div class="row mb10">
+  <div class="col offset-s1 s3">
+    <button class="btn white blue-text waves-effect waves-light waves-blue" (click)="back()">BACK</button>
+  </div>
+  <div class="col s4 center mt10">
+    <a (click)="saveAndReturnLater()">Save & Return</a>
+  </div>
+  <div class="col s3 right-align">
+    <button class="btn blue white-text waves-effect waves-light" [ngClass]="enabled ? '' : 'disabled'" (click)="next()">{{ btnTxt | uppercase }}</button>
+  </div>
+</div>

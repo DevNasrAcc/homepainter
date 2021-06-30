@@ -1,0 +1,98 @@
+<div class="row">
+  <div class="col s12 offset-l1 l10">
+    <div class="white br2 z-depth-1">
+      <a [routerLink]="'/u/' + painter._id" [target]="responsiveService.isDesktop() ? '_blank' : '_self'"
+         *ngFor="let painter of painters">
+        <div class="card z-depth-0" [ngClass]="{'horizontal': !responsiveService.isMobile()}">
+          <div class="card-image pr15 pb15 hide-on-med-and-down">
+            <div class="desktop-image br2 gray-border">
+              <img [src]="painter.picture" alt="user supplied image">
+            </div>
+          </div>
+          <div [ngClass]="{'card-stacked': !responsiveService.isMobile()}">
+            <div class="card-content no-padding">
+              <div class="right right-align hide-on-small-only">
+                <button class="btn-floating white waves-effect waves-light waves-blue"
+                        [disabled]="!canClickMessages()" (click)="onClickMessages($event, painter)">
+                  <i class="material-icons" [ngClass]="{'blue-text': canClickMessages()}">chat</i>
+                </button>
+                <div class="badge-wrapper" *ngIf="getNumberOfUnreadMessagesForPainter(painter) > 0">
+                  <span class="new badge red" data-badge-caption="">{{getNumberOfUnreadMessagesForPainter(painter)}}</span>
+                </div>
+<!--                <button class="btn blue white-text waves-effect waves-light ml15" (click)="onInvitePainter($event, painter)"-->
+<!--                        [disabled]="!canInvitePainter(painter)">-->
+<!--                  <i class="material-icons left" *ngIf="pendingOperationFor === painter">more_horiz</i>-->
+<!--                  <i class="material-icons left" *ngIf="project.invitedContractors.includes(painter._id)">check</i>-->
+<!--                  {{pendingOperationFor === painter ? 'Inviting' : project.invitedContractors.includes(painter._id) ? 'Invited' : 'Invite Painter'}}-->
+<!--                </button>-->
+                <button class="btn blue white-text waves-effect waves-light ml15">
+                  View Profile
+                </button>
+              </div>
+              <div class="left hide-on-large-only">
+                <img [src]="painter.picture" style="width: 75px; max-height: 180px;" class="mr10" alt="user supplied image">
+              </div>
+              <span class="card-title truncate">{{painter.organizationName}}</span>
+              <p class="mt0 mb0">
+            <span style="position: relative; top: 3px;">
+              <app-star-rating [value]="painter.rating"></app-star-rating>
+            </span>
+                ({{painter.rating | number:'1.1-1'}}) - {{painter.completedJobCount}} job{{painter.completedJobCount === 1 ? '' : 's'}} done
+              </p>
+              <p>{{painter.address.city}}, {{painter.address.state}}</p>
+              <p class="mt10">{{painter.bio || 'This painter does not have a bio.'}}</p>
+            </div>
+            <div class="card-action no-border no-padding">
+              <div class="chip blue lighten-3 hide-on-small-only">Background Checked</div>
+              <div class="chip blue lighten-3 hide-on-small-only">Licensed & Insured</div>
+              <div class="chip blue lighten-3 hide-on-small-only">{{painter.numberOfEmployees}} Employee{{painter.numberOfEmployees === 1 ? '' : 's'}}</div>
+              <div class="chip blue lighten-3 hide-on-small-only">{{year - painter.founded}} Year{{year - painter.founded === 1 ? '' : 's'}} in Business</div>
+              <div class="right-align hide-on-med-and-up mt15">
+                <div class="center-on-small-only">
+                  <button class="btn-floating white waves-effect waves-light waves-blue"
+                          [disabled]="!canClickMessages()" (click)="onClickMessages($event, painter)">
+                    <i class="material-icons" [ngClass]="{'blue-text': canClickMessages()}">chat</i>
+                  </button>
+                  <div class="badge-wrapper" *ngIf="getNumberOfUnreadMessagesForPainter(painter) > 0">
+                    <span class="new badge red" data-badge-caption="">{{getNumberOfUnreadMessagesForPainter(painter)}}</span>
+                  </div>
+<!--                  <button class="btn ml10 blue white-text waves-effect waves-light ml15" (click)="onInvitePainter($event, painter)"-->
+<!--                          [disabled]="!canInvitePainter(painter)">-->
+<!--                    <i class="material-icons left" *ngIf="pendingOperationFor === painter">more_horiz</i>-->
+<!--                    <i class="material-icons left" *ngIf="project.invitedContractors.includes(painter._id)">check</i>-->
+<!--                    {{pendingOperationFor === painter ? 'Inviting' : project.invitedContractors.includes(painter._id) ? 'Invited' : 'Invite Painter'}}-->
+<!--                  </button>-->
+                  <button class="btn ml10 blue white-text waves-effect waves-light ml15">View Profile</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div id="send_message_modal" class="modal">
+  <div class="modal-content">
+    <div class="row">
+      <div class="col s12">
+        <button class="btn-flat blue-text modal-close right">
+          <i class="material-icons">close</i>
+        </button>
+        <p class="truncate mt0 mr0" style="font-size: 1.3rem !important;">Message to {{modalPainter.organizationName}}</p>
+      </div>
+    </div>
+    <div class="row mb0">
+      <form class="col s12" [formGroup]="sendMessageModalForm" (submit)="onInvitePainter($event, modalPainter)">
+        <div class="input-field">
+          <textarea id="message" class="materialize-textarea" formControlName="message" #messageToPainter></textarea>
+          <label for="message" class="active">Message</label>
+        </div>
+        <button type="submit" class="right btn blue white-text waves-effect waves-light"
+                [disabled]="sendMessageModalForm.invalid || pendingOperation">Send Message</button>
+        <button type="button" class="right btn-flat modal-close mr15">cancel</button>
+      </form>
+    </div>
+  </div>
+</div>

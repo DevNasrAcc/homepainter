@@ -1,0 +1,129 @@
+<div class="card" [ngClass]="{'horizontal': !responsiveService.isMobile()}">
+  <div class="card-image displayed-image">
+    <i class="material-icons large transformed-img" *ngIf="!project.getDisplayPhoto()">landscape</i>
+    <img [ngClass]="{'transformed-img': !responsiveService.isMobile()}" style="max-height: 210px" [src]="project.getDisplayPhoto()" alt="user supplied image" *ngIf="project.getDisplayPhoto()">
+  </div>
+  <div [ngClass]="{'card-stacked': !responsiveService.isMobile()}">
+    <div class="card-content">
+      <span class="new badge red" data-badge-caption="" *ngIf="!pendingOperation && !showCheckMark && !showErrorMark && project.details.getProgress() < 1">project details incomplete</span>
+      <span class="new badge red" data-badge-caption="" *ngIf="!pendingOperation && !showCheckMark && !showErrorMark && project.details.getProgress() === 1 && project.status === 'creating'">search not started</span>
+      <span class="new badge blue" data-badge-caption="" *ngIf="project.isCheckedOut()">Booked</span>
+      <span class="right" *ngIf="pendingOperation"><app-preloader-spinner [size]="'small'"></app-preloader-spinner></span>
+      <span class="right green-text" *ngIf="showCheckMark"><i class="material-icons left">check</i>success!</span>
+      <span class="right red-text" *ngIf="showErrorMark"><i class="material-icons left">close</i>error</span>
+      <span class="card-title truncate">{{getTitle()}} Project</span>
+
+      <p>Created by {{project.owner.firstName | storageName2DisplayName}} {{project.owner.lastName | storageName2DisplayName}}</p>
+      <p>{{project.createdAt | date:'mediumDate'}}</p>
+      <p>{{project.proposals ? project.proposals.length : 0}} Proposal{{project.proposals && project.proposals.length === 1 ? '': 's'}}</p>
+    </div>
+    <div class="card-action right-align">
+      <button class="btn-flat mr5" *ngIf="project.details.getProgress() < 1" (click)="continueProject()" [disabled]="pendingOperation">
+        <i class="material-icons left">play_arrow</i>
+        Continue
+      </button>
+      <button class="btn-flat mr5" *ngIf="project.details.getProgress() === 1" (click)="goToDashboard()" [disabled]="pendingOperation">
+        <i class="material-icons left" style="transform: scaleX(-1)">view_quilt</i>
+        View Project
+      </button>
+
+      <button class="dropdown-trigger btn-flat" [attr.data-target]="'more_options' + randID" *ngIf="project.details.getProgress() !== 0.1" [disabled]="pendingOperation">
+        <i class="material-icons">more_vert</i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<ul [id]="'more_options' + randID" class='dropdown-content'>
+  <li *ngIf="project.status === 'creating'">
+    <a class="modal-trigger" [href]="'#delete_project' + randID"><i class="material-icons">delete</i>delete project</a>
+  </li>
+  <li *ngIf="project.status === 'creating' && project.details.getProgress() === 1">
+    <a (click)="startRequestingProposals()"><i class="material-icons">search</i>request proposals</a>
+  </li>
+  <li *ngIf="project.status === 'invitingPainters'">
+    <a class="modal-trigger" [href]="'#share_project' + randID"><i class="material-icons">share</i>share</a>
+  </li>
+  <!-- TODO: link to project management center / order page (not yet built) -->
+<!--  <li>-->
+<!--    <a>view order</a>-->
+<!--  </li>-->
+</ul>
+
+<div [id]="'delete_project' + randID" class="modal">
+  <div class="modal-content">
+    <div class="row">
+      <div class="col s10">
+        <h4>Delete Project</h4>
+      </div>
+      <div class="col s2 right-align">
+        <button class="btn-flat modal-close"><i class="material-icons">close</i></button>
+      </div>
+      <div class="col s12">
+        <p>Are you sure you want to delete this project?</p>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn red modal-close mr5" (click)="deleteProject()">Delete</button>
+    <button class="btn-flat modal-close">Cancel</button>
+  </div>
+</div>
+
+<form [id]="'share_project' + randID" class="modal" [formGroup]="shareProjectFormGroup" (submit)="shareProject()">
+  <div class="modal-content">
+    <div class="row">
+      <div class="col s10">
+        <h4>Share Project</h4>
+      </div>
+      <div class="col s2 right-align">
+        <button type="button" class="btn-flat modal-close"><i class="material-icons">close</i></button>
+      </div>
+      <div class="col s12">
+        <p>Send a personalized message to a friend or family member.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 input-field">
+        <input [id]="'firstName' + randID" type="text" formControlName="firstName"
+               [ngClass]="shareProjectFormGroup.get('firstName').touched ? shareProjectFormGroup.get('firstName').valid ? 'valid': 'invalid' : ''">
+        <label [for]="'firstName' + randID">First Name</label>
+        <span class="helper-text red-text"
+              *ngIf="shareProjectFormGroup.get('firstName').touched && !shareProjectFormGroup.get('firstName').valid">
+          Name must be greater than 2 characters long
+        </span>
+      </div>
+      <div class="col s12 input-field">
+        <input [id]="'lastName' + randID" type="text" formControlName="lastName"
+               [ngClass]="shareProjectFormGroup.get('lastName').touched ? shareProjectFormGroup.get('lastName').valid ? 'valid': 'invalid' : ''">
+        <label [for]="'lastName' + randID">Last Name</label>
+        <span class="helper-text red-text"
+              *ngIf="shareProjectFormGroup.get('lastName').touched && !shareProjectFormGroup.get('lastName').valid">
+          Name must be greater than 2 characters long
+        </span>
+      </div>
+      <div class="col s12 input-field">
+        <input [id]="'email' + randID" type="email" formControlName="email"
+               [ngClass]="shareProjectFormGroup.get('email').touched ? shareProjectFormGroup.get('email').valid ? 'valid': 'invalid' : ''">
+        <label [for]="'email' + randID">Email Address</label>
+        <span class="helper-text red-text"
+              *ngIf="shareProjectFormGroup.get('email').touched && !shareProjectFormGroup.get('email').valid">
+          Must be a valid email address
+        </span>
+      </div>
+      <div class="col s12 input-field">
+        <textarea [id]="'message' + randID" class="materialize-textarea" formControlName="message" data-length="200"
+                  [ngClass]="shareProjectFormGroup.get('message').touched ? shareProjectFormGroup.get('message').valid ? 'valid': 'invalid' : ''"></textarea>
+        <label [for]="'message' + randID">Message to Invitee</label>
+        <span class="helper-text red-text"
+              *ngIf="shareProjectFormGroup.get('message').touched && shareProjectFormGroup.get('message').value && shareProjectFormGroup.get('message').value.length > 200">
+          Message cannot be greater than 200 characters.
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn-flat modal-close mr5" type="button">Cancel</button>
+    <button class="btn blue white-text waves-effect waves-light" type="submit" [disabled]="!shareProjectFormGroup.valid">Send</button>
+  </div>
+</form>

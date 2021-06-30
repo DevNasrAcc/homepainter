@@ -1,0 +1,59 @@
+{
+    "signature": {
+        "type": "object",
+        "required": true,
+        "fields": {
+            "timestamp": {
+                "type": "string",
+                "minLength": 10,
+                "maxLength": 10,
+                "required": true
+            },
+            "token": {
+                "type": "string",
+                "required": true,
+                "minLength": 40
+            },
+            "signature": {
+                "type": "string",
+                "required": true,
+                "minLength": 60
+            }
+        }
+    },
+    "event-data": {
+        "type": "object",
+        "required": true,
+        "fields": {
+            "timestamp": {
+                "type": "number",
+                "required": true
+            },
+            "message": {
+                "type": "object",
+                "required": true,
+                "fields": {
+                    "headers": {
+                        "type": "object",
+                        "required": true,
+                        "fields": {
+                            "message-id": {
+                                "type": "string",
+                                "required": true
+                            }
+                        }
+                    }
+                }
+            },
+            "recipient": {
+                "type": "email",
+                "required": true
+            },
+            "event": {
+                "type": "string",
+                "required": true,
+                "enum": ["delivered", "opened"]
+            }
+        }
+    }
+}

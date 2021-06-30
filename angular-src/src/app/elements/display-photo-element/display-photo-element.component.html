@@ -1,0 +1,6 @@
+<div class="row mb0">
+  <div class="col s6 m4 valign-wrapper" style="margin-bottom: 10px" *ngFor="let photo of photos; let i = index">
+      <img class="responsive-img materialboxed lazyload" alt="user uploaded image"
+           [id]="photo.url" [attr.data-src]="photo.url" (click)="imageViewerService.openImageViewer(photos, i)">
+  </div>
+</div>

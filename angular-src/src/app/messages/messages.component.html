@@ -1,0 +1,156 @@
+<div class="container">
+  <div class="section">
+    <div class="row">
+      <div class="col s12 l5 xl4" [ngClass]="{'hide': responsiveService.isMobileOrTablet() && selectedView === 'single-conversation'}">
+        <div class="white pb15 pt15 pl15 pr15 br2">
+          <div class="mt0 pl20 grey lighten-3 br2 valign-wrapper input-field" style="margin-bottom: 30px">
+            <i class="material-icons left">search</i>
+            <input id="search-box" class="autocomplete browser-default" type="text" placeholder="Search"/>
+          </div>
+          <div class="pt15 pb15 pr20 pl20 grey lighten-3 br2" style="margin-bottom: 30px">
+            <p class="mar0">All conversations ({{conversations.length}})</p>
+          </div>
+          <div id="all-conversations">
+            <div class="single-conversation valign-wrapper waves-effect"
+                 [ngClass]="{'selected': conversation.equals(selectedConversation)}"
+                 *ngFor="let conversation of conversations" (click)="setSelectedConversation(conversation)">
+              <img [src]="conversation.otherPerson.picture" alt="user img" class="responsive-img circle"
+                   *ngIf="conversation.otherPerson.picture">
+              <app-display-name-to-picture [displayName]="conversation.otherPerson.displayName" [width]="50" [height]="50"
+                                           *ngIf="!conversation.otherPerson.picture"></app-display-name-to-picture>
+              <div><div class="online-status" [ngClass]="conversation.otherPerson.onlineStatus"></div></div>
+              <div class="name-message-time">
+                <p class="mt0 truncate name-time">
+                  <span class="right">
+                    {{conversation.messages[conversation.messages.length - 1].createdAt | date:getDateFormat(conversation.messages[conversation.messages.length - 1].createdAt)}}
+                  </span>
+                  <span [ngClass]="{'heavy': conversation.getNumberOfUnreadMessages() > 0}">
+                    {{conversation.otherPerson.displayName}}
+                  </span>
+                  <span [ngClass]="{'heavy': conversation.getNumberOfUnreadMessages() > 0}" *ngIf="conversation.getNumberOfUnreadMessages() > 0">
+                    ({{conversation.getNumberOfUnreadMessages()}})
+                  </span>
+                </p>
+                <p class="mar0 truncate">
+                  <ng-container *ngFor="let markdown of conversation.messages[conversation.messages.length - 1].markdown">{{markdown.text}}</ng-container>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 l7 xl8" [ngClass]="{'hide': responsiveService.isMobileOrTablet() && selectedView === 'all-conversations'}">
+        <div id="selected-conversation" class="white pb15 pt15 pl15 pr15 br2">
+          <div class="user-info-actions">
+            <div class="valign-wrapper">
+              <button class="btn-floating btn-small blue white-text mr15 hide-on-large-only waves-effect waves-light"
+                      (click)="selectedView = 'all-conversations'">
+                <i class="material-icons">arrow_back</i>
+              </button>
+              <p class="mt0 mb0 mr15 truncate">{{selectedConversation.otherPerson.displayName}}</p>
+              <p class="mar0"
+                 [ngClass]="selectedConversation.otherPerson.onlineStatus === 'online' ? 'green white-text'
+                            : selectedConversation.otherPerson.onlineStatus === 'away' ? 'yellow white-text'
+                            : 'grey lighten-3'">{{selectedConversation.otherPerson.onlineStatus}}</p>
+            </div>
+          </div>
+          <div class="divider mt15 mb15"></div>
+          <div class="new-message-chip-wrapper" [ngClass]="{'hide': !showNewMessagesChip}">
+            <div class="chip new-message-chip" (click)="onClickSeeNewMessages($event)">
+              New Messages<i class="material-icons new-message-chip-icon">arrow_downward</i>
+            </div>
+          </div>
+          <div class="message-history-container mb15" #messageHistoryContainer (scroll)="onMessageContainerScroll()">
+            <div class="single-message-wrapper" *ngFor="let message of selectedConversation.messages">
+              <img [src]="getTopLevelInfo(message, 'picture')" alt="user img" class="responsive-img circle"
+                   [ngClass]="message.isFromUser(user) ? 'right': 'left'"
+                   *ngIf="getTopLevelInfo(message, 'picture')">
+              <app-display-name-to-picture [displayName]="getTopLevelInfo(message, 'displayName')"
+                                           [width]="responsiveService.isMobileOrTablet() ? 30 : 50"
+                                           [height]="responsiveService.isMobileOrTablet() ? 30 : 50"
+                                           [ngClass]="message.isFromUser(user) ? 'right' : 'left'"
+                                           *ngIf="!getTopLevelInfo(message, 'picture')"></app-display-name-to-picture>
+              <div class="message-content" (click)="message.viewTime = !message.viewTime"
+                   [ngClass]="message.isFromUser(user) ? 'top-left-rounded right blue accent-1': 'top-right-rounded left grey lighten-3'">
+                <p class="mt0 mb10">{{getTopLevelInfo(message, 'name')}}</p>
+                <p class="mt0 mb0" style="word-wrap: break-word;">
+                  <ng-container *ngFor="let markdown of message.markdown" [ngSwitch]="markdown.type">
+                    <ng-container *ngSwitchCase="'p'">
+                      {{markdown.text}}
+                    </ng-container>
+                    <ng-container *ngSwitchDefault>
+                      <a class="underline-text" [href]="markdown.link" target="_blank" (click)="$event.stopPropagation()">{{markdown.text}}</a>
+                    </ng-container>
+                  </ng-container>
+                </p>
+                <ng-container *ngFor="let markdown of message.markdown">
+                  <img #image class="materialboxed lazyload" [attr.data-src]="markdown.link" *ngIf="markdown.type === 'img'"
+                       alt="user supplied image" (click)="openImage(image)">
+                </ng-container>
+              </div>
+              <p class="message-timestamp"
+                 [ngClass]="{'hide': !message.viewTime, 'right-align': message.isFromUser(user), 'left-align': message.isToUser(user)}">
+                {{message.createdAt | date:getDateFormat(message.createdAt)}}
+              </p>
+            </div>
+          </div>
+          <div style="margin-top: -18px" *ngIf="!uploadInProgress && selectedConversation.otherPersonTyping">
+            <p class="mar0" style="font-size: 12px">{{selectedConversation.otherPerson.firstName}} is typing...</p>
+          </div>
+          <div class="progress" style="margin-bottom: 0; margin-top: -4px;" *ngIf="uploadInProgress">
+            <div class="determinate blue" [ngStyle]="{'width': getTotalUploaded() + '%'}"></div>
+          </div>
+          <form [formGroup]="messageForm" class="gray-border br2 pt20 pb20 pr20 pl20" draggable="true"
+                (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" (drop)="onDrop($event)"
+                (submit)="sendMessage()" [ngClass]="{'display-shake': displayShake}">
+            <!--suppress TypeScriptUnresolvedVariable -->
+            <input class="hide" type="file" accept='image/*' multiple formControlName="hiddenFileInput"
+                   (change)="uploadPhotos($event.target.files)" #hiddenFileInput>
+            <textarea class="browser-default hp-textarea" placeholder="Send a message" formControlName="message"
+                      (keyup)="onStartTyping()" (keyup.enter)="sendMessage();" #messageTextArea></textarea>
+            <div class="mt10">
+              <div class="left" *ngFor="let file of notUploadedFiles">
+                <div class="uploading-image" *ngIf="file.url">
+                  <img [src]="file.url" alt="user supplied photo">
+                  <div class="photo-upload-state progress" *ngIf="!file.uploaded">
+                    <div class="indeterminate blue" *ngIf="!file.uploading"></div>
+                    <div class="determinate blue" *ngIf="file.uploading" [ngStyle]="{'width': file.progress + '%'}"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="right-align">
+                <div class="left-align" *ngIf="emojis.lazyLoadedYet" [ngClass]="{'hide': !emojis.open}"
+                     [ngStyle]="{position: 'absolute', top: emojis.top, left: emojis.left, 'z-index': 996, 'overflow-x': 'hidden'}">
+                  <emoji-mart [darkMode]="false" [title]="'Pick your emoji...'" [color]="'#3d85c6'" [isNative]="true"
+                              [emoji]="'point_up'" (emojiSelect)="onSelectEmoji($event)"></emoji-mart>
+                </div>
+                <button type="button" class="btn-flat hide-on-med-and-down" (click)="openCloseEmojiMart()" #tagFaces>
+                  <i class="material-icons grey-text text-darken-2">tag_faces</i>
+                </button>
+                <button type="button" class="btn-flat mr10" [disabled]="uploadInProgress" (click)="hiddenFileInput.click()">
+                  <i class="material-icons grey-text text-darken-2" style="transform: rotate(45deg)">attach_file</i>
+                </button>
+                <button type="submit" class="btn waves-effect waves-light">send</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="resp500" class="banner">
+  <div class="banner-content">
+    <div class="icon white-text orange circle">
+      <i class="material-icons">error_outline</i>
+    </div>
+    <p>Oops, there was a problem!<br>Please email us at support@thehomepainter.com or refresh the page and try again.</p>
+  </div>
+  <div class="banner-action">
+    <button class="btn-flat banner-close">dismiss</button>
+    <a href="mailto:support@thehomepainter.com">
+      <button class="btn-flat">Send Email</button>
+    </a>
+  </div>
+</div>

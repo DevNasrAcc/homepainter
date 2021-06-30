@@ -1,0 +1,133 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12 offset-l2 l8">
+      <div class="card">
+        <div class="card-content">
+          <div class="row">
+            <form class="col offset-s1 s10" [formGroup]="projectCompleteFormGroup" (submit)="onSubmit()">
+              <div class="section">
+                <div class="row">
+                  <div class="col s12 center">
+                    <h2>Project Status & Feedback</h2>
+                    <p>Please fill out the following survey to mark this project complete.</p>
+                  </div>
+                </div>
+              </div>
+              <project-feedback [id]="'project'"
+                                [question]="'How satisfied are you with this project? (profitability, scope of work, etc)'"
+                                [inputLabel]="'How can we do better next time?'"
+                                [rating]="projectCompleteFormGroup.get('projectRating')"
+                                [comment]="projectCompleteFormGroup.get('projectComment')"
+                                (keyup)="trackPageAction('project')"
+                                (click)="trackPageAction('project')"></project-feedback>
+              <project-feedback [id]="'homepainter'"
+                                [question]="'How satisfied are you with homepainter?'"
+                                [inputLabel]="'How can we improve?'"
+                                [rating]="projectCompleteFormGroup.get('homepainterRating')"
+                                [comment]="projectCompleteFormGroup.get('homepainterComment')"
+                                (keyup)="trackPageAction('homepainter')"
+                                (click)="trackPageAction('homepainter')"></project-feedback>
+              <div class="row">
+                <div class="col s12">
+                  <p>Additional Comments</p>
+                  <div class="divider"></div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col offset-s1 s10 input-field">
+                  <textarea id="additionalComment" class="materialize-textarea" formControlName="additionalComment"
+                            (blur)="trackPageAction('additionalComment')">
+                  </textarea>
+                  <label for="additionalComment">Optional</label>
+                </div>
+              </div>
+              <div class="section">
+                <div class="row">
+                  <div class="col s12" *ngIf="submitting">
+                    <div class="preloader-wrapper small active">
+                      <div class="spinner-layer spinner-blue">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                      <div class="spinner-layer spinner-red">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                      <div class="spinner-layer spinner-yellow">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                      <div class="spinner-layer spinner-green">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col s12">
+                    <button type="submit" class="btn full-width waves-effect waves-light"
+                            [disabled]="submitting || !projectCompleteFormGroup.valid">This project is complete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="resp200" class="banner">
+  <div class="banner-content">
+    <div class="icon white-text blue circle">
+      <i class="material-icons">check</i>
+    </div>
+    <p>We have received your response! The customer will be notified you have marked the job complete. If the
+      customer does not flag any issues, you should receive your payment in 3-5 business days.</p>
+  </div>
+  <div class="banner-action">
+    <button class="btn-flat banner-close">dismiss</button>
+  </div>
+</div>
+<div id="resp500" class="banner">
+  <div class="banner-content">
+    <div class="icon white-text orange circle">
+      <i class="material-icons">error_outline</i>
+    </div>
+    <p>There was an error marking this job complete. This may be because your link has expired, or you have tried to
+      mark it complete more than once. If you feel there is an error, please email us at support@thehomepainter.com</p>
+  </div>
+  <div class="banner-action">
+    <button class="btn-flat banner-close">dismiss</button>
+    <a href="mailto:support@thehomepainter.com"><button class="btn-flat">Send Email</button></a>
+  </div>
+</div>

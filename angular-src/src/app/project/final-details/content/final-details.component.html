@@ -1,0 +1,376 @@
+<!-- Customer Comment -->
+<div class="row mt25">
+  <div class="col offset-l1 l10 m12 s12">
+    <div class="card">
+      <div class="card-title grey lighten-4">
+        <div class="row mb0">
+          <div class="col" [ngClass]="editable ? 's10' : 's12'">
+            Customer Comment
+          </div>
+        </div>
+      </div>
+      <div class="card-content">
+        <div class="card-action">
+          <div class="row">
+            <div class="input-field col s12">
+              <p>{{details.additionalDetailsComment || 'No additional details'}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Location -->
+<div class="row">
+  <div class="col offset-l1 l10 m12 s12">
+    <div class="card">
+      <div class="card-title grey lighten-4">
+        Location - {{details.address.zipCode}}
+        <a class="right secondary mar0" (click)="toggleMap()">{{mapVisible ? 'Hide Map' : 'Show Map'}}</a>
+      </div>
+      <div class="card-content">
+        <agm-map *ngIf="mapVisible"
+                 [zoomControl]="false"
+                 [streetViewControl]="false"
+                 [panControl]="false"
+                 [mapDraggable]="false"
+                 (mapReady)="onMapLoad($event)">
+        </agm-map>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Main Details -->
+<div class="row">
+  <div class="col offset-l1 l10 m12 s12">
+    <div class="card">
+      <div class="card-title grey lighten-4">Main Details</div>
+      <div class="card-content">
+        <div class="card-action">
+          <table>
+            <tbody>
+            <tr>
+              <td>Type of home</td>
+              <td>{{details.jobType | storageName2DisplayName}}</td>
+              <td *ngIf="editable">
+                <a class="secondary mar0" (click)="clickedEdit('/details/type-of-home', 'type_of_home')">
+                  <i class="material-icons" style="font-size: 15px;">edit</i>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>Type of project</td>
+              <td>{{details.decorType | storageName2DisplayName}}</td>
+              <td *ngIf="editable">
+                <a class="secondary mar0" (click)="clickedEdit('/details/project-selector', 'project_selector')">
+                  <i class="material-icons" style="font-size: 15px;">edit</i>
+                </a>
+              </td>
+            </tr>
+            <tr *ngIf="details.isInteriorProject()">
+              <td>Number of rooms</td>
+              <td>{{details.interior.length.toString()}}</td>
+              <td *ngIf="editable">
+                <a class="secondary mar0" (click)="clickedEdit('/details/room-selector', 'room')">
+                  <i class="material-icons" style="font-size: 15px;">edit</i>
+                </a>
+              </td>
+            </tr>
+            <tr *ngIf="details.isExteriorProject()">
+              <td>Exterior</td>
+              <td><span *ngFor="let structure of details.exterior; let i = index">
+                {{structure.defaultName}}{{i !== details.exterior.length - 1 ? ', ' : ''}}
+              </span></td>
+              <td *ngIf="editable">
+                <a class="secondary mar0" (click)="clickedEdit('/details/exterior-selector', 'exterior_selector')">
+                  <i class="material-icons" style="font-size: 15px;">edit</i>
+                </a>
+              </td>
+            </tr>
+            <tr *ngIf="details.isExteriorProject() && details.exterior[0].type === 'house'">
+              <td>Square footage of home</td>
+              <td><span>{{details.exterior[0].squareFootage}}</span></td>
+              <td *ngIf="editable">
+                <a class="secondary mar0" (click)="clickedEdit('/details/exterior-details/0', 'square-footage')">
+                  <i class="material-icons" style="font-size: 15px;">edit</i>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>Who will supply the paint</td>
+              <td>{{details.paintSupplier | storageName2DisplayName}}
+                <div *ngIf="details.paintSupplier === 'customer'">Brand: {{details.paintBrand || 'TBD'}}</div>
+                <div *ngIf="details.paintSupplier === 'customer'">Product type: {{details.paintProduct || 'TBD'}}</div>
+              </td>
+              <td *ngIf="editable">
+                <a class="secondary mar0" (click)="clickedEdit('/details/paint-supply','paint_supply')">
+                  <i class="material-icons" style="font-size: 15px;">edit</i>
+                </a>
+              </td>
+            </tr>
+            <tr *ngIf="details.isInteriorProject()">
+              <td>Occupancy</td>
+              <td>{{details.occupancy | storageName2DisplayName}}</td>
+              <td *ngIf="editable">
+                <a class="secondary mar0" (click)="clickedEdit('/details/occupancy', 'occupancy')">
+                  <i class="material-icons" style="font-size: 15px;">edit</i>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>Project time frame</td>
+              <td>
+                {{details.timeFrameStart | storageName2DisplayName}}<br>
+                {{details.timeFrameEnd | storageName2DisplayName}}
+                <span *ngIf="details.timeFrameEnd == 'endDateInMind'"> (by {{details.expectedEndDate}})</span>
+              </td>
+              <td *ngIf="editable">
+                <a class="secondary mar0" (click)="clickedEdit('/details/scheduler', 'scheduler')">
+                  <i class="material-icons" style="font-size: 15px;">edit</i>
+                </a>
+              </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div *ngIf="showEstimates && details.interior.length > 0" class="card-action grey lighten-4">
+          <table>
+            <thead>
+            <tr>
+              <th colspan="2" class="center-align">homepainter Estimates
+                <span *ngIf="details.exterior.length > 0"> (Interior Only)</span>
+              </th>
+              <th>
+                <materialize-tooltip
+                  [data]="'These values are estimated according to the details submitted by the customer.'">
+                </materialize-tooltip>
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td width="50%">Price Range:</td>
+              <td width="50%">{{details.estimates.totalCost * 0.88 | currency: 'USD'}}
+                - {{details.estimates.totalCost * 1.12 | currency: 'USD'}}</td>
+            </tr>
+            <tr>
+              <td>Labor Hours:</td>
+              <td>{{details.estimates.laborHours | number: '1.1-2'}}</td>
+            </tr>
+            <tr>
+              <td>Gallons:</td>
+              <td>{{details.estimates.totalGallons * 1.5 | number: '0.0-2'}}</td>
+              <td>
+                <materialize-tooltip
+                  [data]="'The number of gallons it would take to paint everything with one coat. Plan to paint walls with one to two coats as needed.'">
+                </materialize-tooltip>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Rooms -->
+<div *ngFor="let room of details.interior; let i = index;">
+  <div class="row">
+    <div class="col offset-l1 l10 m12 s12">
+      <div class="card">
+        <div class="card-title grey lighten-4">
+          <div class="row mb0">
+            <div class="col" [ngClass]="editable ? 's8' : 's12'">
+              {{room.defaultName}}
+            </div>
+            <div class="col s4 right-align" *ngIf="editable">
+              <a class="secondary" (click)="clickedEdit('/details/room-details/' + i, room.type)">
+                <i class="material-icons" style="font-size: 14px;">edit</i>
+                EDIT
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-action no-padding hazy-blue">
+            <div class="row center-align">
+              <div class="col m6 s12 pt10 pb10 sectional">
+                <p>Room Size:</p>
+                <p>{{room.size.label}}</p>
+              </div>
+              <div class="col m6 s12 pt10 pb10 sectional">
+                <p>Room Height:</p>
+                <p>{{room.height.label}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-action">
+            <table>
+              <thead>
+              <tr>
+                <th>Item</th>
+                <th>Details</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of details.interior[i].items">
+                <td><strong>{{item.type | storageName2DisplayName}}</strong></td>
+                <td>
+                  <ul class="mar0">
+                    <li *ngIf="item.additionalDetails.ceilingType">
+                      Ceiling Type: {{item.additionalDetails.ceilingType | storageName2DisplayName}}
+                    </li>
+                    <li *ngIf="item.additionalDetails.amount > 0">
+                      Amount: {{item.additionalDetails.amount}}
+                    </li>
+                    <li *ngIf="item.additionalDetails.conditions.length > 0">
+                      Conditions: {{item.additionalDetails.conditions.join(', ') | storageName2DisplayName}}
+                    </li>
+                    <li *ngIf="item.additionalDetails.cabinetGrainType">
+                      Cabinet Grain: {{item.additionalDetails.cabinetGrainType | storageName2DisplayName}}
+                    </li>
+                    <li *ngIf="item.additionalDetails.cabinetCondition">
+                      Cabinet Condition: {{item.additionalDetails.cabinetCondition | storageName2DisplayName}}
+                    </li>
+                    <li *ngIf="item.additionalDetails.cabinetTreatment">
+                      Cabinet Treatment: {{item.additionalDetails.cabinetTreatment | storageName2DisplayName}}
+                    </li>
+                    <li *ngIf="item.additionalDetails.numberOfCabinetDrawers">
+                      Number of Drawers: {{item.additionalDetails.numberOfCabinetDrawers}}
+                    </li>
+                    <li *ngIf="item.additionalDetails.numberOfCabinetDoors">
+                      Number of Doors: {{item.additionalDetails.numberOfCabinetDoors}}
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-action" *ngIf="room.photos.length">
+            <display-photo-element [photos]="room.photos"></display-photo-element>
+          </div>
+          <div *ngIf="showEstimates" class="card-action grey lighten-4">
+            <table>
+              <thead>
+              <th colspan="3" class="center-align">homepainter Estimates</th>
+              <tr>
+                <th width="60%">Number of Coats</th>
+                <th width="20%">1</th>
+                <th width="20%">2</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>Labor Hours:</td>
+                <td>{{room.estimates.laborHours | number: '1.1-2'}}</td>
+                <td>{{room.estimates.laborHours + room.estimates.paintingHours | number: '1.1-2'}}</td>
+              </tr>
+              <tr>
+                <td>Gallons:</td>
+                <td>{{room.estimates.totalGallons | number: '0.0-2'}}</td>
+                <td>{{room.estimates.totalGallons * 2 | number: '0.0-2'}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Structures -->
+<div *ngFor="let structure of details.exterior; let i = index">
+  <div class="row">
+    <div class="col offset-l1 l10 m12 s12">
+      <div class="card">
+        <div class="card-title grey lighten-4">
+          <div class="row mb0">
+            <div class="col" [ngClass]="editable ? 's10' : 's12'">
+              {{structure.defaultName}}
+            </div>
+            <div class="col s2 right-align" *ngIf="editable">
+              <a class="secondary" (click)="clickedEdit('/details/exterior-details/' + i, 'exterior')">
+                <i class="material-icons" style="font-size: 14px;">edit</i>
+                EDIT
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-action no-padding hazy-blue">
+            <div class="row center-align">
+              <div *ngIf="structure.type !== 'deck'" class="col m6 s12 pt10 pb10 sectional">
+                <p>Number of stories:</p>
+                <p>{{structure.numberOfStories}}</p>
+              </div>
+              <div *ngIf="structure.type === 'deck'" class="col m6 s12 pt10 pb10 sectional">
+                <p>Elevation:</p>
+                <p>{{structure.deckElevation | storageName2DisplayName}}</p>
+              </div>
+              <div class="col m6 s12 pt10 pb10 sectional">
+                <p>Paint Condition:</p>
+                <p>{{structure.paintCondition | storageName2DisplayName}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-action">
+            <table *ngIf="structure.type === 'deck'">
+              <tr>
+                <td>Deck Treatment:</td>
+                <td>{{structure.deckTreatment | storageName2DisplayName}}</td>
+              </tr>
+              <tr>
+                <td>Deck Size:</td>
+                <td>{{structure.deckSize.label}}</td>
+              </tr>
+            </table>
+            <table *ngIf="structure.type !== 'deck'">
+              <thead>
+              <tr>
+                <th>Items</th>
+                <th>Details</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of structure.items">
+                <td><strong>{{item.type | storageName2DisplayName}}</strong></td>
+                <td>
+                  <ul class="mar0">
+                    <li *ngIf="item.sidingTypes?.length > 0">
+                      Siding Type:
+                      <ul>
+                        <li *ngFor="let sidingType of item.sidingTypes">{{sidingType | storageName2DisplayName}}</li>
+                      </ul>
+                    </li>
+                    <li *ngIf="item.sidesToPaint?.length > 0">
+                      Sides to Paint:
+                      <ul>
+                        <li *ngFor="let side of item.sidesToPaint">{{side | storageName2DisplayName}}</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+              <tr *ngIf="structure.garageSize.label">
+                <td><strong>Garage Size:</strong></td>
+                <td>
+                  <ul class="mar0">
+                    <li >
+                      {{structure.garageSize.label | storageName2DisplayName}}
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-action" *ngIf="structure.photos.length">
+            <display-photo-element [photos]="structure.photos"></display-photo-element>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

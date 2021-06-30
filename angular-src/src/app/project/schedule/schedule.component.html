@@ -1,0 +1,141 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12 offset-l3 l6">
+      <div class="card" *ngIf="contractor.accountStatus === 'approved'">
+        <div class="card-content">
+          <div class="row">
+            <div class="col offset offset-s1 s10 offset-m2 m8 center">
+              <div class="section">
+                <h3>Once you submit your project dates, we'll transfer you the down payment. But first, we need to
+                  know how to pay you.</h3>
+              </div>
+              <div class="section">
+                <button routerLink="/complete-setup" class="btn full-width waves-effect waves-light">
+                  Setup Payouts
+                </button>
+                <p class="desc-text grey-text mt5">Takes 3 minutes to complete</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card" [ngClass]="contractor.accountStatus === 'approved' ? 'grey lighten-3 disabled' : ''">
+        <div class="card-content">
+          <div class="row">
+            <form class="col offset offset-s1 s10 offset-m2 m8" [formGroup]="projectScheduleFormGroup" (submit)="onSubmit()">
+              <div class="section">
+                <div class="row">
+                  <div class="col s12 center">
+                    <p>Enter the start date and approximate end date for the job.</p>
+                    <p class="mt20">This information will be used to bill the customer and for sending out project
+                      related emails.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="section">
+                <div class="row mb0">
+                  <div class="col s12 input-field">
+                    <input id="startDate" type="text" class="datepicker" formControlName="startDate">
+                    <label for="startDate">Start Date</label>
+                  </div>
+                </div>
+                <div class="row mb0">
+                  <div class="col s12 input-field">
+                    <input id="endDate" type="text" class="datepicker" formControlName="endDate">
+                    <label for="endDate">Approximate End Date</label>
+                    <span class="helper-text red-text"
+                          *ngIf="projectScheduleFormGroup.get('endDate').touched && projectScheduleFormGroup.get('endDate').invalid">The end date must be greater than the start date.</span>
+                  </div>
+                </div>
+              </div>
+              <div class="section">
+                <div class="row">
+                  <div class="col s12" *ngIf="submitting">
+                    <div class="preloader-wrapper small active">
+                      <div class="spinner-layer spinner-blue">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                      <div class="spinner-layer spinner-red">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                      <div class="spinner-layer spinner-yellow">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                      <div class="spinner-layer spinner-green">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col s12">
+                    <button type="submit" class="btn full-width waves-effect waves-light"
+                            [disabled]="submitting || !projectScheduleFormGroup.valid">Submit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="resp200" class="banner">
+  <div class="banner-content">
+    <div class="icon white-text blue circle">
+      <i class="material-icons">check</i>
+    </div>
+    <p>Your response has been submitted!</p>
+  </div>
+  <div class="banner-action">
+    <button class="btn-flat banner-close">dismiss</button>
+  </div>
+</div>
+<div id="resp500" class="banner">
+  <div class="banner-content">
+    <div class="icon white-text orange circle">
+      <i class="material-icons">error_outline</i>
+    </div>
+    <p>There was an error submitting this schedule. This may be because your link has expired, or you have tried to
+      enter a schedule more than once. If you feel there is an error, please contact us at support@thehomepainter.com</p>
+  </div>
+  <div class="banner-action">
+    <button class="btn-flat banner-close">dismiss</button>
+    <a href="mailto:support@thehomepainter.com">
+      <button class="btn-flat">Send Email</button>
+    </a>
+  </div>
+</div>

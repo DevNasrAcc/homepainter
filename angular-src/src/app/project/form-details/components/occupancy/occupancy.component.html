@@ -1,0 +1,13 @@
+<h1 class="center-align">Occupancy Status</h1>
+
+<div class="row" style="margin-top: 50px; margin-bottom: 50px;">
+  <div class="input-field col offset-l3 l6 offset-m2 m8 s12">
+    <select id="occupancy-select" class="no-autoinit" (change)="changeOption($event)">
+      <option value="furnishedAndOccupied" [selected]="details.occupancy === 'furnishedAndOccupied'">Furnished & Occupied</option>
+      <option value="furnishedAndUnoccupied" [selected]="details.occupancy === 'furnishedAndUnoccupied'">Furnished & Unoccupied</option>
+      <option value="emptyOfFurnishingsAndUnoccupied" [selected]="details.occupancy === 'emptyOfFurnishingsAndUnoccupied'">Empty of furnishings & Unoccupied</option>
+    </select>
+    <label for="occupancy-select">Occupancy Status</label>
+  </div>
+</div>
+

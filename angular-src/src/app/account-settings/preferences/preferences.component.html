@@ -1,0 +1,124 @@
+<div class="section mb30">
+  <h5 class="generalheading">Preferences</h5>
+  <hr/>
+  <h6 class="mb15">How would you like to recieve notifications?</h6>
+  <br/>
+  <form [formGroup]="preferencesForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col s7 m6">
+        <p>Text Message</p>
+      </div>
+      <div class="col s5 m6 right-align">
+        <div class="switch">
+          <!-- <label class="switches">
+            Off
+            <input type="checkbox" formControlName="projectNoticesText">
+            <span class="lever"></span>
+            On
+          </label> -->
+          <div class="some-class">
+            <input type="radio" class="radio" value="true" name="text"/>
+            <label>Yes</label>
+            <input type="radio" class="radio" value="false" name="text"/>
+            <label>No</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s7 m6">
+        <p>Email</p>
+      </div>
+      <div class="col s5 m6 right-align">
+        <div class="switch">
+          <!-- <label class="switches">
+            Off
+            <input type="checkbox" formControlName="projectNoticesEmail">
+            <span class="lever"></span>
+            On
+          </label> -->
+          <div class="some-class">
+            <input type="radio" class="radio" value="true" name="email"/>
+            <label>Yes</label>
+            <input type="radio" class="radio" value="false" name="email"/>
+            <label>No</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr/>
+    <h6 class="mb15" style="margin-top: 20px;font-weight: 500;">Email Preferences</h6>
+    <div class="row bgcolor">
+      <div class="col s7 m6">
+        <p>Product Updates
+        <br>Get the latest features and product updates from homepainter.</p>
+      </div>
+      <div class="col s5 m6 right-align">
+        <div class="switch">
+          <!-- <label class="switches">
+            Off
+            <input type="checkbox" formControlName="marketing">
+            <span class="lever"></span>
+            On
+          </label> -->
+          <div class="some-class some-class2">
+            <input type="radio" class="radio" value="true" name="product"/>
+            <label>Yes</label>
+            <input type="radio" class="radio" value="false" name="product"/>
+            <label>No</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s7 m6">
+        <p>Homepainter news and offers
+        <br>Company news, promotions, discounts and events.</p>
+      </div>
+      <div class="col s5 m6 right-align">
+        <div class="switch">
+          <!-- <label class="switches">
+            Off
+            <input type="checkbox" formControlName="promotional">
+            <span class="lever"></span>
+            On
+          </label> -->
+          <div class="some-class some-class2">
+            <input type="radio" class="radio" value="true" name="promotion"/>
+            <label>Yes</label>
+            <input type="radio" class="radio" value="false" name="promotion"/>
+            <label>No</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row bgcolor">
+      <div class="col s7 m6">
+        <p>Homepainter Blog<br>
+        Get the latest home improvement topics and articles sent directly to you.</p>
+      </div>
+      <div class="col s5 m6 right-align">
+        <div class="switch">
+          <div class="some-class some-class2">
+            <input type="radio" class="radio" value="true" name="blog"/>
+            <label>Yes</label>
+            <input type="radio" class="radio" value="false" name="blog"/>
+            <label>No</label>
+          </div>
+          <!-- <label class="switches">
+            Off
+            <input type="checkbox" formControlName="marketing">
+            <span class="lever"></span>
+            On
+          </label> -->
+        </div>
+      </div>
+    </div>
+    <br>
+    <!-- <div class="row">
+      <div class="col s12 right-align">
+        <button type="submit" class="btn waves-effect waves-light blue white-text w150 btnletter">update</button>
+      </div>
+    </div> -->
+  </form>
+</div>

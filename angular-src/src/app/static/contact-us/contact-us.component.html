@@ -1,0 +1,80 @@
+<!-- Jumbo header -->
+<div class="section blue lighten-3">
+  <div class="container m-headers center">
+    <div class="row">
+      <div class="col offset-xl3 xl6 offset-l2 l8 offset-m1 m10 s12">
+        <h1 class="style-1">Contact Us</h1>
+        <p>Shoot us a message and someone from our company will get back to you shortly.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="container center">
+    <!-- mimic h1 -->
+    <div class="row">
+      <div class="col s12">
+        <div style="margin-top: 2.8rem;"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col offset-l3 l6 s12">
+        <form class="mt35" #contactUsForm="ngForm" (ngSubmit)="onSubmit(contactUsForm)" novalidate>
+          <div class="row">
+            <div class="input-field col l6 s12">
+              <input class="validate" id="name" name="name" autocomplete="name" type="text" ngModel #name="ngModel" required>
+              <label for="name" data-error="Enter a name">Name</label>
+            </div>
+            <div class="input-field col l6 s12">
+              <input class="validate" id="email" name="email" type="email" autocomplete="email" ngModel #email="ngModel" email="true" required>
+              <label for="email" data-error="Enter a valid email">Email</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <select id="subject" class="validate no-autoinit" name="subject" ngModel #subject="ngModel" required>
+                <option value="" disabled selected>Choose a subject</option>
+                <option *ngFor="let subject of subjects;" [value]="subject">{{subject}}</option>
+              </select>
+              <label for="subject" data-error="Select a subject">Subject</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="message" name="message" class="materialize-textarea validate" ngModel #message="ngModel" required></textarea>
+              <label for="message" data-error="Enter a message">Message</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12 right-align">
+              <button class="btn waves-effect" [disabled]="!contactUsForm.form.valid">Get In Touch</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="resp200" class="banner">
+  <div class="banner-content">
+    <div class="icon white-text blue circle">
+      <i class="material-icons">check</i>
+    </div>
+    <p>Thank you! Your message is on its way!<br></p>
+  </div>
+  <div class="banner-action">
+    <button class="btn-flat banner-close">dismiss</button>
+  </div>
+</div>
+<div id="resp500" class="banner">
+  <div class="banner-content">
+    <div class="icon white-text orange circle">
+      <i class="material-icons">error_outline</i>
+    </div>
+    <p>Opps, there was a problem!<br>Please email us at support@thehomepainter.com</p>
+  </div>
+  <div class="banner-action">
+    <button class="btn-flat banner-close">dismiss</button>
+    <a href="mailto:support@thehomepainter.com"><button class="btn-flat">Send Email</button></a>
+  </div>
+</div>

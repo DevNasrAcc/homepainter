@@ -1,0 +1,17 @@
+{
+    "overallRating": {
+        "type": "number",
+        "required": true,
+        "min": 1,
+        "max": 5
+    },
+    "feedbackAround": {
+        "type": "string",
+        "required": true,
+        "enum": ["bugs", "lookAndFeel", "features", "value", "other"]
+    },
+    "additionalComment": {
+        "type": "string",
+        "minLength": 5
+    }
+}

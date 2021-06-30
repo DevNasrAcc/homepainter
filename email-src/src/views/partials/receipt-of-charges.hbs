@@ -1,0 +1,60 @@
+<style>
+
+</style>
+
+<div class="section">
+    <table>
+        <thead>
+        <tr style="border-bottom: none">
+            <th colspan="2"><p>Price Breakdown</p></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr style="border-bottom: none">
+            <td style="padding: 5px"><p>Contract Price</p></td>
+            <td style="padding: 5px" class="right-align"><p>{{formatCurrency this.chargeDetails.contractPrice}}</p></td>
+        </tr>
+        {{#if this.chargeDetails.discount}}
+            <tr style="border-bottom: none">
+                <td style="padding: 5px"><p>Service Fee</p></td>
+                <td style="padding: 5px" class="right-align"><p>{{formatCurrency this.chargeDetails.serviceFee}}</p></td>
+            </tr>
+            <tr>
+                <td style="padding: 5px"><p>Discounts</p></td>
+                <td style="padding: 5px" class="right-align"><p>({{formatCurrency this.chargeDetails.discount}})</p></td>
+            </tr>
+        {{else}}
+            <tr>
+                <td style="padding: 5px"><p>Service Fee</p></td>
+                <td style="padding: 5px" class="right-align"><p>{{formatCurrency this.chargeDetails.serviceFee}}</p></td>
+            </tr>
+        {{/if}}
+        <tr style="border-bottom: none">
+            <td style="padding: 5px" class="right-align"><p>Subtotal</p></td>
+            <td style="padding: 5px" class="right-align"><p>{{formatCurrency this.chargeDetails.subtotal}}</p></td>
+        </tr>
+        <tr style="border-bottom: none">
+            <td style="padding: 5px" class="right-align"><p>Sales Tax {{formatPercent this.chargeDetails.taxRate}}</p></td>
+            <td style="padding: 5px" class="right-align"><p>{{formatCurrency this.chargeDetails.tax}}</p></td>
+        </tr>
+        <tr>
+            <td style="padding: 5px" class="right-align"><p>Total</p></td>
+            <td style="padding: 5px" class="right-align"><p>{{formatCurrency this.chargeDetails.total}}</p></td>
+        </tr>
+        <tr style="border-bottom: none">
+            <th colspan="2"><p>Payments</p></th>
+        </tr>
+        {{#each this.payments}}
+            <tr>
+                <td style="padding: 5px">
+                    <p style="font-weight: 600">{{storageName2DisplayName this.description}}</p>
+                    <small>{{formatDate this.stripeSuccessDate}}</small>
+                </td>
+                <td style="padding: 5px" class="right-align">
+                    <p>{{formatCurrency this.amount}}</p>
+                </td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</div>

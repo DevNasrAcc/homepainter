@@ -1,0 +1,95 @@
+@import "../../../variables";
+
+#project-content {
+  padding: 15px 0 40px;
+}
+
+.tab-wrapper {
+  background: white;
+  border-radius: 5px;
+
+  &.blue-first-half {
+    background: linear-gradient(to right, @primary 0%, @primary 30%, white 30%, white 100%);
+  }
+
+  &.blue-second-half {
+    background: linear-gradient(to right, white 0%, white 70%, @primary 70%, @primary 100%);
+  }
+}
+
+.tab {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  width: 25%;
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background: white;
+    border-left: 1px solid lightgray;
+    z-index: 1;
+  }
+
+  &::before {
+    top: 0;
+    height: calc(50% + 1px);
+    transform: skew(25deg);
+  }
+
+  &::after {
+    top: 50%;
+    height: 50%;
+    transform: skew(-25deg);
+  }
+
+  & > span {
+    display: inline-block;
+    position: relative;
+    padding: 20px 0;
+    z-index: 2;
+    color: black;
+  }
+
+  &:first-child, &:last-child {
+    z-index: 0;
+    &::before, &::after {
+      border-left: none;
+      transform: none;
+    }
+  }
+
+  &:first-child::before {
+    border-top-left-radius: 2px;
+  }
+
+  &:first-child::after {
+    border-bottom-left-radius: 2px;
+  }
+
+  &:last-child::before {
+    border-top-right-radius: 2px;
+  }
+
+  &:last-child::after {
+    border-bottom-right-radius: 2px;
+  }
+
+  &:nth-child(3)::before, &:nth-child(3)::after {
+    border-right: 1px solid lightgray;
+  }
+
+  &.active {
+    &::before, &::after {
+      background-color: @primary;
+      border-left: none;
+      border-right: none;
+    }
+
+    & span {
+      color: white;
+    }
+  }
+}

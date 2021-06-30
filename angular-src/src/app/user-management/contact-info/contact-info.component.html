@@ -1,0 +1,93 @@
+<div id="contactInfoModal" class="modal no-autoinit">
+  <div class="modal-content">
+    <div class="row">
+      <div class="col s10">
+        <h4 class="mb0">Contact Info</h4>
+      </div>
+      <div class="col s2 right-align">
+        <button class="waves-effect waves-light btn-flat modal-close">
+          <i class="material-icons">close</i>
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col offset-m1 m9 s10">
+        <p *ngIf="!showStartInvitingPainters" class="mb0">
+          Please provide your contact information so we can email you a link to continue.
+        </p>
+        <p *ngIf="showStartInvitingPainters" class="mb0">
+          Please provide your contact information so we can notify you when your quotes arrive.
+        </p>
+      </div>
+      <div class="col m1 s2 right-align">
+        <p><i class="material-icons tooltipped" data-position="top" data-tooltip="Homepainter does not distribute your information without your permission.">help_outline</i></p>
+      </div>
+    </div>
+    <div class="row mb0">
+      <form class="col offset-l2 offset-m2 l8 m8 s12 mb0" [formGroup]="contactInfo" (ngSubmit)="onSubmit()">
+        <div class="input-field">
+          <input id="firstName" type="text" formControlName="firstName" autocomplete="given-name"
+                 [ngClass]="this.contactInfo.get('firstName').touched && this.contactInfo.get('firstName').enabled ? this.contactInfo.get('firstName').valid ? 'valid' : 'invalid' : ''"
+                 (blur)="trackPageAction('first_name')"/>
+          <label for="firstName">First Name</label>
+          <span class="helper-text red-text"
+                *ngIf="contactInfo.get('firstName').touched && contactInfo.get('firstName').invalid">Enter your first name</span>
+        </div>
+        <div class="input-field">
+          <input id="lastName" type="text" formControlName="lastName" autocomplete="family-name"
+                 [ngClass]="this.contactInfo.get('lastName').touched && this.contactInfo.get('lastName').enabled ? this.contactInfo.get('lastName').valid ? 'valid' : 'invalid' : ''"
+                 (blur)="trackPageAction('last_name')"/>
+          <label for="lastName">Last Name</label>
+          <span class="helper-text red-text"
+                *ngIf="contactInfo.get('lastName').touched && contactInfo.get('lastName').invalid">Enter your last name</span>
+        </div>
+        <div class="input-field">
+          <input id="email" type="email" formControlName="email" autocomplete="email"
+                 [ngClass]="this.contactInfo.get('email').touched && this.contactInfo.get('email').enabled ? this.contactInfo.get('email').valid ? 'valid' : 'invalid' : ''"
+                 (blur)="trackPageAction('email')"/>
+          <label for="email">Email</label>
+          <span class="helper-text red-text"
+                *ngIf="contactInfo.get('email').touched && contactInfo.get('email').invalid">Enter a valid email</span>
+        </div>
+        <div class="input-field">
+          <input id="phone" type="text" formControlName="phoneNumber" autocomplete="tel"
+                 [ngClass]="this.contactInfo.get('phoneNumber').touched && this.contactInfo.get('phoneNumber').enabled ? this.contactInfo.get('phoneNumber').valid ? 'valid' : 'invalid' : ''"
+                 (blur)="trackPageAction('phoneNumber')"/>
+          <label for="phone">Phone</label>
+          <span class="helper-text red-text"
+                *ngIf="contactInfo.get('phoneNumber').touched && contactInfo.get('phoneNumber').invalid">Enter a valid phone number</span>
+        </div>
+        <div class="mt5 mb5">
+          <label>
+            <input type="checkbox" class="filled-in" formControlName="sendPromotional"
+                   (blur)="trackPageAction('promotional_emails')"/>
+            <span>I want to receive news, promos, discounts from homepainter.</span>
+          </label>
+        </div>
+        <div class="mt5 mb5">
+          <div [ngStyle]="{'border': contactInfo.get('acceptedTermsAndPrivacy').touched && this.contactInfo.get('acceptedTermsAndPrivacy').enabled && contactInfo.get('acceptedTermsAndPrivacy').invalid ? 'red solid 1px' : ''}">
+            <label>
+              <input type="checkbox" class="filled-in" formControlName="acceptedTermsAndPrivacy"
+                     (blur)="trackPageAction('terms_and_privacy')">
+              <span>I understand that I have read and agree to the
+              <a routerLink="/terms-and-conditions" target="_blank">HP Terms of Use</a> and
+              <a routerLink="/privacy-policy" target="_blank">Privacy Policy</a>.
+            </span>
+            </label>
+          </div>
+          <span class="helper-text red-text" *ngIf="contactInfo.get('acceptedTermsAndPrivacy').touched && contactInfo.get('acceptedTermsAndPrivacy').invalid">
+            Please agree to the terms of service and privacy policy.
+          </span>
+        </div>
+        <app-preloader-spinner [size]="'small'" *ngIf="contactInfo.disabled"></app-preloader-spinner>
+        <button type="submit" class="btn waves-effect waves-light mt5 full-width" [disabled]="contactInfo.disabled">
+          {{
+          showStartInvitingPainters
+            ? 'Start Inviting Painters'
+            : 'Save & Return Later'
+          }}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

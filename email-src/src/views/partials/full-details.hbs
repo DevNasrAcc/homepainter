@@ -1,0 +1,55 @@
+<table>
+    <thead>
+    <tr>
+        <th style="width: 50%">Customer</th>
+        <th style="width: 50%">Contractor</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style="border-bottom: none">
+        <td>
+            <p style="margin: 0">
+                {{storageName2DisplayName this.customer.firstName}} {{storageName2DisplayName this.customer.lastName}}
+            </p>
+            <a href="mailto:{{this.customer.email.address}}">{{this.customer.email.address}}</a>
+            <p style="margin: 0">{{this.customer.mobile.number}}</p>
+            <br>
+            <br>
+            <address>
+                {{#with this.project.details.address}}
+                    {{this.streetAddress}}<br>
+                    {{this.city}}, {{this.state}}, {{this.zipCode}}
+                {{/with}}
+            </address>
+        </td>
+        <td>
+            {{#with this.contractor}}
+                <p style="margin: 0">{{this.organizationName}}</p>
+                <p style="margin: 0">
+                    {{storageName2DisplayName this.firstName}} {{storageName2DisplayName this.lastName}}
+                </p>
+                <a href="mailto:{{this.email.address}}">{{this.email.address}}</a><br>
+                <p style="margin: 0">{{this.mobile.number}}</p>
+                <br>
+                <address>
+                    {{#with this.address}}
+                        {{this.streetAddress}}<br>
+                        {{this.city}}, {{this.state}}, {{this.zipCode}}
+                    {{/with}}
+                </address>
+            {{/with}}
+        </td>
+    </tr>
+    </tbody>
+</table>
+<hr>
+
+{{#if this.project.selectedProposal.message}}
+    <div class="section">
+        <h2>Contractor Comment</h2>
+        <p>{{this.project.selectedProposal.message}}</p>
+    </div>
+    <div class="divider"></div>
+{{/if}}
+
+{{>project-details this.project.details}}

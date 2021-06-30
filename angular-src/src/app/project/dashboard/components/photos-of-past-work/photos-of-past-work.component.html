@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col s12">
+    <div class="past-work-photos-outer-wrapper" #outerWrapper (scroll)="updateArrows()">
+      <div class="past-work-photos-inner-wrapper valign-wrapper" [ngStyle]="{'width': (photosOfPastWork.length * 204 - 4) + 'px'}">
+        <img class="past-work-photos materialboxed" *ngFor="let photo of photosOfPastWork; let i = index"
+             [id]="photo.url" [src]="photo.url" [alt]="photo.originalName" (load)="updateArrows()"
+             (click)="imageViewerService.openImageViewer(photosOfPastWork, i)">
+      </div>
+    </div>
+  </div>
+  <div class="col s12 center-align" *ngIf="photosOfPastWork.length > 0">
+    <button class="btn-flat" style="user-select: none" (click)="move(-204)" [disabled]="!canMoveLeft">
+      <i class="material-icons">arrow_back_ios</i>
+    </button>
+    <button class="btn-flat" style="user-select: none" (click)="move(204)" [disabled]="!canMoveRight">
+      <i class="material-icons">arrow_forward_ios</i>
+    </button>
+  </div>
+</div>

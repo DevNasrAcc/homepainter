@@ -1,0 +1,12 @@
+{{#if this.customer.firstName}}
+    <p>Name: {{this.customer.firstName}}</p>
+{{/if}}
+{{#if this.customer.email}}
+    <p>Email: {{this.customer.email.address}}</p>
+{{/if}}
+
+<p>Overall rating: {{this.feedback.overallRating}}</p>
+<p>Feedback around: {{this.feedback.feedbackAround}}</p>
+{{#if this.feedback.additionalComment}}
+    <p>Additional Comment: {{this.feedback.additionalComment}}</p>
+{{/if}}

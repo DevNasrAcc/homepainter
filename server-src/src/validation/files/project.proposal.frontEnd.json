@@ -1,0 +1,17 @@
+{
+    "contractor": {
+        "type": "object",
+        "required": true,
+        "file": "./files/contractor.frontEnd.json"
+    },
+    "price": {
+        "type": "number",
+        "required": true,
+        "min": 1
+    },
+    "message": {
+        "type": "string",
+        "minLength": 0,
+        "maxLength": 2000
+    }
+}

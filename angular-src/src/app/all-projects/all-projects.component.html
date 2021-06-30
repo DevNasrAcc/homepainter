@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="section" *ngIf="activeProject.isCheckedOut()">
+    <div class="card horizontal">
+      <div class="card-image blue valign-wrapper">
+        <i class="material-icons white-text pl25 pr25">check</i>
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <h3 class="mt10">Your Project is Booked</h3>
+          <p>Check your email for a booking confirmation. Your painter will reach out to you soon.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <h2>New Projects</h2>
+    <div class="divider mb10"></div>
+    <div class="row">
+      <div class="col s12">
+        <button class="btn blue white-text waves-effect waves-light"
+                *ngIf="unfinishedProject.details.getProgress() === 0.1" (click)="startNewProject()">
+          <i class="material-icons left">add</i>
+          Create New Project
+        </button>
+        <project-card [project]="unfinishedProject" *ngIf="unfinishedProject.details.getProgress() !== 0.1"
+                      (deleteProjectClicked)="onDeleteProjectClicked()"></project-card>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <h2>Existing Projects</h2>
+    <div class="divider"></div>
+    <div class="row">
+      <div class="col s12" *ngIf="projects.length === 0">
+        <p>No existing projects yet!</p>
+      </div>
+      <div class="col s12" *ngFor="let project of projects">
+        <project-card [project]="project"></project-card>
+      </div>
+    </div>
+  </div>
+</div>

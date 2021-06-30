@@ -1,0 +1,5 @@
+<h1>We will be automatically billing your account soon</h1>
+<p>Hi {{storageName2DisplayName this.customer.firstName}}, {{this.contractor.organizationName}} has marked your project as complete. You will be billed the remaining amount soon.</p>
+<br>
+<p><b>Amount to be billed:</b> ${{subtract this.order.chargeDetails.total this.order.chargeDetails.downPaymentAmount}}</p>
+{{>feedback-and-referral this.promoCode}}

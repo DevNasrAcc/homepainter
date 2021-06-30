@@ -1,0 +1,33 @@
+<h1 class="center-align">What type of project is it?</h1>
+<div class="row center-align" style="margin-top: 50px; margin-bottom: 50px;">
+  <div class="col l4 m4 s4 type-of-project-selector"
+       [ngClass]="details.isInteriorProject() ? 'selected': ''"
+       (click)="changeProjectSelection('interior')">
+    <picture>
+      <source data-srcset="/assets/images/project-selector/interioricon.webp" type="image/webp">
+      <source data-srcset="/assets/images/project-selector/interioricon.png" type="image/png">
+      <img class="responsive-img lazyload iconImg" data-src="/assets/images/project-selector/interioricon.png" alt="picture of interior">
+    </picture>
+    <p>Interior</p>
+  </div>
+  <div class="col l4 m4 s4 type-of-project-selector"
+       [ngClass]="details.isExteriorProject() ? 'selected': ''"
+       (click)="changeProjectSelection('exterior')">
+    <picture>
+      <source data-srcset="/assets/images/project-selector/exterioricon.webp" type="image/webp">
+      <source data-srcset="/assets/images/project-selector/exterioricon.png" type="image/png">
+      <img class="responsive-img lazyload iconImg" data-src="/assets/images/project-selector/exterioricon.svg" alt="picture of exterior">
+    </picture>
+    <p>Exterior</p>
+  </div>
+  <div class="col l4 m4 s4 type-of-project-selector"
+       [ngClass]="details.isDeckProject() ? 'selected' : ''"
+       (click)="changeProjectSelection('deck')">
+    <picture>
+      <source data-srcset="/assets/images/project-selector/deckicon.webp" type="image/webp">
+      <source data-srcset="/assets/images/project-selector/deckicon.png" type="image/png">
+      <img class="responsive-img lazyload iconImg" data-src="/assets/images/project-selector/deckicon.png" alt="picture of deck">
+    </picture>
+    <p>Deck Stain</p>
+  </div>
+</div>

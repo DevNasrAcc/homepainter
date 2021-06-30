@@ -1,0 +1,29 @@
+@import "../../../../variables";
+
+p, a {
+  @media @mobile, @tablet {
+    margin: 0;
+  }
+}
+
+.material-icons {
+  display: inline-flex;
+  vertical-align: top;
+}
+
+.row {
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.promo-btn-align {
+  text-align: right;
+
+  @media @desktop-sm {
+    margin-top: 7px;
+    text-align: center;
+  }
+}

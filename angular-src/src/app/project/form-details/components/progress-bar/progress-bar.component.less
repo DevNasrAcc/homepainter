@@ -1,0 +1,45 @@
+@import "../../../../../variables";
+
+.progress-indicator {
+  @media @desktop {
+    position: fixed !important;
+    max-width: 240px;
+    width: 13%;
+  }
+
+  @media @desktop-sm {
+    position: fixed !important;
+    width: 13%;
+  }
+}
+
+.progress-indicator-fonts {
+  p {
+    font-family: "Fira Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+
+    &:first-child {
+      font-family: "Fira Sans", sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
+}
+
+.fixed-top {
+  position: fixed;
+  z-index: 1;
+  padding-left: .75rem;
+  padding-right: .75rem;
+
+  width: 66.66666666664%;
+  left: 16.66666666664%;
+}
+
+@media @mobile {
+  .fixed-top {
+    width: 100%;
+    left: 0;
+  }
+}

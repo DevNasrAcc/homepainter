@@ -1,0 +1,106 @@
+<div class="row">
+  <div class="col s12 offset-l1 l10">
+    <div class="white br2 z-depth-1">
+      <div class="page-content" *ngIf="project.proposals.length === 0">
+        <div class="row">
+          <div class="col s12 center-align">
+            <picture>
+              <source data-srcset="/assets/images/custom-icons/reviewing.webp" type="image/webp">
+              <source data-srcset="/assets/images/custom-icons/reviewing.png" type="image/png">
+              <img class="responsive-img lazyload mb10 mt25" data-src="/assets/images/custom-icons/reviewing.png"
+                   alt="reviewing image">
+            </picture>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12 center-align" *ngIf="this.project.status === 'creating'">
+            <h3>No quotes yet!</h3>
+            <p>Explore painters and create a project to start requesting quotes.
+              <a routerLink="/project/explore-painters">Explore painters</a>
+            </p>
+          </div>
+          <div class="col s12 center-align" *ngIf="this.project.status === 'invitingPainters'">
+            <h3>No quotes yet!</h3>
+            <p>Painters are reviewing your project and will submit proposals soon.
+              <a routerLink="/project/explore-painters">Invite more painters</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <a [routerLink]="'/u/' + proposal.contractor._id" [target]="responsiveService.isDesktop() ? '_blank' : '_self'"
+         *ngFor="let proposal of project.proposals">
+        <div class="card z-depth-0"
+             [ngClass]="{'horizontal': !responsiveService.isMobile()}">
+          <div class="card-image pr15 pb15 hide-on-med-and-down">
+            <div class="desktop-image br2 gray-border">
+              <img [src]="proposal.contractor.picture" alt="user supplied image">
+            </div>
+          </div>
+          <div [ngClass]="{'card-stacked': !responsiveService.isMobile()}">
+            <div class="card-content no-padding">
+              <div class="right right-align hide-on-small-only">
+                <p class="mb10" style="font-size: 20px !important;">Price <b>{{proposal.price | currency}}</b></p>
+                <button class="btn-floating white waves-effect waves-light waves-blue" (click)="onClickMessages($event, proposal)">
+                  <i class="material-icons blue-text">chat</i>
+                </button>
+                <div class="badge-wrapper" *ngIf="getNumberOfUnreadMessagesForPainter(proposal.contractor) > 0">
+                  <span class="new badge red" data-badge-caption="">{{getNumberOfUnreadMessagesForPainter(proposal.contractor)}}</span>
+                </div>
+                <button class="btn blue white-text waves-effect waves-light ml15" (click)="onSelectProposal($event, proposal)"
+                        [disabled]="project.selectedProposal !== undefined
+                      && project.selectedProposal.contractor._id === proposal.contractor._id
+                      && !project.isCheckedOut()"
+                >
+                  {{
+                  project.selectedProposal && project.selectedProposal.contractor._id === proposal.contractor._id
+                    ? 'Painter Selected'
+                    : 'Select Painter'
+                  }}
+                </button>
+              </div>
+              <div class="left hide-on-large-only">
+                <img [src]="proposal.contractor.picture" style="width: 75px; max-height: 180px;" class="mr10" alt="user supplied image">
+              </div>
+              <span class="card-title truncate">{{proposal.contractor.organizationName}}</span>
+
+              <p class="mt0 mb0">
+            <span style="position: relative; top: 3px;">
+              <app-star-rating [value]="proposal.contractor.rating"></app-star-rating>
+            </span>
+                ({{proposal.contractor.rating | number:'1.1-1'}}) - {{proposal.contractor.completedJobCount}}
+                job{{proposal.contractor.completedJobCount === 1 ? '' : 's'}} done
+              </p>
+              <p class="mt10">Available: {{proposal.earliestStartDate}}</p>
+              <p class="mb10 hide-on-med-and-up mt10" style="font-size: 18px !important;">Price <b>{{proposal.price | currency}}</b></p>
+              <p class="mt10">{{proposal.message || 'This painter did not leave a message.'}}</p>
+            </div>
+            <div class="card-action no-border no-padding">
+              <div class="chip blue lighten-3 hide-on-small-only">Background Checked</div>
+              <div class="chip blue lighten-3 hide-on-small-only">Licensed & Insured</div>
+              <div class="chip blue lighten-3 hide-on-small-only">{{proposal.contractor.numberOfEmployees}} Employee{{proposal.contractor.numberOfEmployees === 1 ? '' : 's'}}</div>
+              <div class="chip blue lighten-3 hide-on-small-only">{{year - proposal.contractor.founded}} Year{{year - proposal.contractor.founded === 1 ? '' : 's'}} in Business</div>
+              <div class="right-align hide-on-med-and-up">
+                <div class="center-on-small-only">
+                  <button class="btn-floating white waves-effect waves-light waves-blue" (click)="onClickMessages($event, proposal)">
+                    <i class="material-icons blue-text">chat</i>
+                  </button>
+                  <div class="badge-wrapper" *ngIf="getNumberOfUnreadMessagesForPainter(proposal.contractor) > 0">
+                    <span class="new badge red" data-badge-caption="">{{getNumberOfUnreadMessagesForPainter(proposal.contractor)}}</span>
+                  </div>
+                  <button class="btn ml10 blue white-text waves-effect waves-light ml15" (click)="onSelectProposal($event, proposal)"
+                          [disabled]="project.selectedProposal !== undefined && project.selectedProposal.contractor._id === proposal.contractor._id">
+                    {{
+                    project.selectedProposal && project.selectedProposal.contractor._id === proposal.contractor._id
+                      ? 'Painter Selected'
+                      : 'Select Painter'
+                    }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

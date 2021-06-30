@@ -1,0 +1,34 @@
+.fill-star {
+  .star-border {
+    display: none;
+  }
+
+  .star-full {
+    display: inline-block;
+  }
+}
+
+.star-button {
+  cursor: pointer;
+
+  &.selected {
+    .fill-star;
+
+    .star-full {
+      color: goldenrod;
+    }
+  }
+
+  .star-full {
+    display: none;
+    color: darkgoldenrod;
+  }
+
+  &:hover {
+    .fill-star;
+
+    ~ .star-button {
+      .fill-star;
+    }
+  }
+}

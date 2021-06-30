@@ -1,0 +1,80 @@
+{
+    "password": {
+        "type": "string",
+        "required": true,
+        "enum": ["ao9ngpa09bnapr09gbpq98n35vpq9nba;9fghnapwb8n"]
+    },
+    "contractorEmail": {
+        "type": "email",
+        "required": true
+    },
+    "approved": {
+        "type": "boolean",
+        "required": true
+    },
+    "picture": {
+        "type": "url",
+        "required": ["obj", "return obj.approved"]
+    },
+    "insurance": {
+        "type": "object",
+        "required": ["obj", "return obj.approved"],
+        "fields": {
+            "insured": {
+                "type": "boolean",
+                "required": true
+            },
+            "effectiveDate": {
+                "type": "date",
+                "required": true
+            },
+            "expirationDate": {
+                "type": "date",
+                "required": true
+            }
+        }
+    },
+    "numberOfEmployees": {
+        "type": "number",
+        "required": true,
+        "min": 1
+    },
+    "organizationName": {
+        "type": "string",
+        "required": true
+    },
+    "founded": {
+        "type": "number",
+        "required": true,
+        "min": 1900
+    },
+    "services": {
+        "type": "array",
+        "required": false,
+        "fields": "string"
+    },
+    "address": {
+        "type": "object",
+        "fields": {
+            "streetAddress": {
+                "required": false,
+                "type": "string",
+                "minLength": 1
+            },
+            "city": {
+                "required": false,
+                "type": "string",
+                "minLength": 1
+            },
+            "state": {
+                "required": false,
+                "type": "string",
+                "minLength": 1
+            },
+            "zipCode": {
+                "required": false,
+                "type": "postalCode"
+            }
+        }
+    }
+}

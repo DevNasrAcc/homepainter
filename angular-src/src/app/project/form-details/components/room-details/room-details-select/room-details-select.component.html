@@ -1,0 +1,10 @@
+<select [id]="id" class="validate no-autoinit" (change)="this.change.emit($event)">
+  <option value="" disabled selected>Choose a sheen type</option>
+  <option value="HighGloss">High Gloss</option>
+  <option value="SemiGloss">Semi-Gloss</option>
+  <option value="Satin">Satin</option>
+  <option value="Eggshell">Eggshell</option>
+  <option value="Flat">Flat</option>
+  <option value="Matte">Matte</option>
+</select>
+<label [for]="id" data-error="Select a sheen type">Sheen</label>

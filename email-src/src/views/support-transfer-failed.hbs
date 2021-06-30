@@ -1,0 +1,25 @@
+<h1>A transfer to a contractor has failed</h1>
+<p><b>Contractor Info</b></p>
+{{#with this.contractor}}
+    <p style="margin: 0">{{this.organizationName}}</p>
+    <p style="margin: 0">
+        {{storageName2DisplayName this.firstName}} {{storageName2DisplayName this.lastName}}
+    </p>
+    <a href="mailto:{{this.email.address}}">{{this.email.address}}</a><br>
+    <p style="margin: 0">{{this.mobile.number}}</p>
+{{/with}}
+<br>
+<p><b>Payout Details</b></p>
+{{#each this.order.payouts}}
+    <br>
+    <div class="divider"></div>
+    <br>
+    <p><b>Description:</b> {{storageName2DisplayName this.description}}</p>
+    <p><b>Amount:</b> {{formatCurrency this.amount}}</p>
+    <br>
+    <p><b>Errors: </b></p>
+    {{#each this.stripeErrors}}
+        <p>Date: {{formatDate this.date}}</p>
+        <p>Message: {{this.message}}</p>
+    {{/each}}
+{{/each}}

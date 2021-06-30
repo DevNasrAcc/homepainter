@@ -1,0 +1,104 @@
+<div class="navbar-fixed">
+  <nav [ngClass]="isNavbarTransparent ? 'transparent z-depth-0' : 'white z-depth-1'">
+    <div class="nav-wrapper container">
+      <a routerLink="/" class="brand-logo">
+        <picture>
+          <source data-srcset="/assets/images/logo-mobile.webp" type="image/webp">
+          <source data-srcset="/assets/images/logo-mobile.png" type="image/png">
+          <img class="hide-on-med-and-up lazyload" data-src="/assets/images/logo-mobile.png" alt="homepainter logo">
+        </picture>
+        <picture>
+          <source data-srcset="/assets/images/logo.webp" type="image/webp">
+          <source data-srcset="/assets/images/logo.png" type="image/png">
+          <img class="hide-on-small-and-down lazyload width250" data-src="/assets/images/logo.png" alt="homepainter logo"
+               >
+        </picture>
+      </a>
+      <a href="#" data-target="sidenav-menu" class="sidenav-trigger" [ngClass]="isNavbarTransparent ? 'black-text' : 'black-text'"><i class="material-icons">menu</i></a>
+      <ul class="right">
+        <li class="hide-on-med-and-down">
+          <a routerLink="/details" [ngClass]="isNavbarTransparent ? 'black-text' : 'black-text'" (click)="clearSelectedContractor()">Create a project</a>
+        </li>
+        <li class="hide-on-med-and-down">
+          <a href="https://thehomepainter.com/blog/get-to-know-homepainter" [ngClass]="isNavbarTransparent ? 'black-text' : 'black-text'">About us</a>
+        </li>
+        <li class="hide-on-med-and-down" routerLinkActive="active" *ngIf="!isLoggedIn">
+          <a routerLink="/painter-signup" [ngClass]="isNavbarTransparent ? 'black-text' : 'black-text'">Painter signup</a>
+        </li>
+        <li><a id="user-menu-trigger" class="dropdown-button dropdown-trigger no-autoinit" data-target="user-menu"
+               [ngClass]="{'z-depth-1': isDropdownOpen, 'show-border': !isNavbarTransparent}">
+          <i class="material-icons left" [ngClass]="isNavbarTransparent ? 'black-text' : 'black-text'">menu</i>
+          <img class="right img-signed-out" src="/assets/images/profile_image.svg" alt="profile image" *ngIf="!isLoggedIn"
+               [ngStyle]="{'filter': isNavbarTransparent ? 'contrast(0.5)' : 'none'}"
+               >
+          <img class="right circle img-signed-in" [src]="user.picture" alt="profile image" *ngIf="isLoggedIn && user.picture">
+          <app-display-name-to-picture class="right" [displayName]="user.displayName" [width]="28" [height]="28"
+                                       *ngIf="isLoggedIn && !user.picture"></app-display-name-to-picture>
+          <div class="online-status" [ngClass]="user.onlineStatus"></div>
+        </a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<ul id="user-menu" class="dropdown-content">
+  <li routerLinkActive="active" *ngIf="!isLoggedIn || user.__t === 'customer'"><a routerLink="/project" (click)="iosFixDropdown()">My Project</a></li>
+  <li routerLinkActive="active" *ngIf="user.__t !== 'contractor'"><a routerLink="/all-projects" (click)="iosFixDropdown()">All Projects</a></li>
+  <li routerLinkActive="active"><a routerLink="/messages" (click)="iosFixDropdown()">
+    Messages <span *ngIf="numberOfUnreadConversations > 0">({{numberOfUnreadConversations}})</span>
+  </a></li>
+<!--  <li routerLinkActive="active"><a routerLink="/account-settings">Account</a></li>-->
+  <li class="divider"></li>
+  <li routerLinkActive="active"><a routerLink="/contact-us" (click)="iosFixDropdown()">Contact Us</a></li>
+  <li><a href="/blog/faqs" target="_blank">FAQ's</a></li>
+  <!--  <li><a>Refer A Friend</a></li> &lt;!&ndash; &ndash;&gt;-->
+  <li class="divider"></li>
+  <li routerLinkActive="active" *ngIf="!isLoggedIn"><a routerLink="/login" (click)="iosFixDropdown()">Log In</a></li>
+  <li *ngIf="isLoggedIn"><a (click)="logout()">Log Out</a></li>
+</ul>
+
+<ul class="sidenav" id="sidenav-menu">
+  <li class="center-align" style="line-height: 0">
+    <picture>
+      <source data-srcset="/assets/images/logo.webp" type="image/webp">
+      <source data-srcset="/assets/images/logo.png" type="image/png">
+      <img data-src="/assets/images/logo.png" class="responsive-img sidenav-menu-img sidenav-close lazyload" alt="homepainter logo" (click)="navHome()">
+    </picture>
+  </li>
+  <li class="divider mt0"></li>
+  <li routerLinkActive="active" *ngIf="!isLoggedIn || user.__t === 'customer'"><a routerLink="/project">My Project</a></li>
+  <li routerLinkActive="active" *ngIf="user.__t !== 'contractor'"><a routerLink="/all-projects">All Projects</a></li>
+  <li routerLinkActive="active"><a routerLink="/messages">Messages</a></li>
+
+  <li><a routerLinkActive="active" class="flexdisplay" routerLink="/account-settings/general">
+    <i class="fontcheckbox material-icons clr">stop_icon</i>
+    <span>General Settings</span></a></li>
+  <li><a routerLinkActive="active" class="flexdisplay" routerLink="/account-settings/security-login">
+    <i class="fontcheckbox material-icons clr">stop_icon</i>
+    <span>Security & Login</span></a></li>
+  <li><a routerLinkActive="active" class="flexdisplay" routerLink="/account-settings/preferences">
+    <i class="fontcheckbox material-icons clr">stop_icon</i>
+    <span>Preferences</span></a></li>
+  <li><a routerLinkActive="active" class="flexdisplay" routerLink="/account-settings/payment-info">
+    <i class="fontcheckbox material-icons clr">stop_icon</i>
+    <span>Payment</span></a></li>
+  <li><a routerLinkActive="active" class="flexdisplay" routerLink="/account-settings/insurance-info">
+    <i class="fontcheckbox material-icons clr">stop_icon</i>
+    <span>Insurance Info</span></a></li>
+    
+  <!--  <li routerLinkActive="active"><a routerLink="/account-settings">Account</a></li>-->
+  <li class="divider mt0"></li>
+  <li routerLinkActive="active"><a routerLink="/details" class="sidenav-close" (click)="clearSelectedContractor()">Create a project</a></li>
+  <li class="divider mt0"></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/blog/get-to-know-homepainter">About us</a></li>
+  <li><a href="/blog/faqs">FAQ's</a></li>
+  <li class="divider mt0"></li>
+  <li routerLinkActive="active"><a routerLink="/painter-signup" class="sidenav-close" *ngIf="!isLoggedIn">Painter Signup</a></li>
+  <li routerLinkActive="active"><a routerLink="/realtor-signup" class="sidenav-close" *ngIf="!isLoggedIn">Agent Signup</a></li>
+  <li routerLinkActive="active" *ngIf="!isLoggedIn"><a routerLink="/login">Log In</a></li>
+  <li *ngIf="isLoggedIn"><a (click)="logout()">Log Out</a></li>
+  <li class="divider mt0"></li>
+  <li routerLinkActive="active"><a routerLink="/terms-and-conditions" class="sidenav-close">Terms And Conditions</a></li>
+  <li routerLinkActive="active"><a routerLink="/privacy-policy" class="sidenav-close">Privacy Policy</a></li>
+</ul>

@@ -1,0 +1,42 @@
+@import "../../../../../variables";
+
+.type-of-project-selector {
+  opacity: .50;
+
+  img {
+    max-width: 100%;
+    padding-bottom: 5px;
+    border-bottom: 3px transparent solid;
+  }
+
+  @media @desktop, @desktop-sm{
+    &:hover {
+      cursor: pointer;
+      opacity: .75;
+
+      img {
+        border-bottom: 3px rgba(237, 102, 63, 0.50) solid;
+      }
+    }
+  }
+
+  &.selected {
+    opacity: 1;
+
+    img {
+      border-bottom: 3px rgba(237, 102, 63, 1) solid;
+    }
+  }
+
+  &.disabled {
+    cursor: auto;
+    opacity: .25;
+
+    &:hover {
+      img {
+        border-bottom: 3px transparent solid;
+      }
+    }
+  }
+}
+

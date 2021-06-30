@@ -1,0 +1,64 @@
+@import "../../../../../variables";
+
+#page-content {
+  padding: 40px;
+
+  @media @tablet {
+    padding: 30px;
+  }
+
+  @media @mobile {
+    padding: 5px;
+  }
+}
+
+p {
+  font-size: 14px !important;
+}
+
+.card-title {
+  margin-bottom: 0 !important;
+}
+
+.card-action {
+  border-top: none;
+
+  @media @mobile {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+.chip {
+  height: 28px;
+  font-size: 12px;
+  line-height: 28px;
+  padding: 0 10px;
+
+  img {
+    width: 12px;
+    margin-top: 7px;
+    margin-right: 7px !important;
+  }
+
+  a {
+    font-size: 12px;
+  }
+}
+
+.desktop-image {
+  min-height: 180px;
+  width: 180px;
+  position: relative;
+
+  img {
+    max-height: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translateY(-50%) translateX(-50%);
+    transform: translateY(-50%) translateX(-50%);
+  }
+}

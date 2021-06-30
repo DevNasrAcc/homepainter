@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row content-margins">
+    <div class="col s12 l2">
+      <form-details-progress-bar [progress]="progress" (giveFeedbackClicked)="giveFeedbackClicked()"></form-details-progress-bar>
+    </div>
+    <div class="col l8 m10 offset-m1 s12">
+      <div class="card mobile-margins">
+        <div class="card-content">
+          <router-outlet></router-outlet>
+          <div class="show-on-medium-and-up hide-on-small-only">
+            <form-details-navigation [enabled]="nextBtn.enabled" [btnTxt]="nextBtn.text"
+                                (nextButtonClicked)="nextButtonClicked()"
+                                (saveAndReturnLaterClicked)="saveAndReturnLaterClicked()"
+                                (backButtonClicked)="backButtonClicked()"></form-details-navigation>
+          </div>
+        </div>
+      </div>
+      <div class="hide-on-large-only mt10 center-align">
+        <a (click)="giveFeedbackClicked()">Give Feedback</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="show-on-small hide-on-med-and-up">
+  <div class="navigation-at-foot">
+    <form-details-navigation [enabled]="nextBtn.enabled" [btnTxt]="nextBtn.text"
+                        (nextButtonClicked)="nextButtonClicked()"
+                        (saveAndReturnLaterClicked)="saveAndReturnLaterClicked()"
+                        (backButtonClicked)="backButtonClicked()"></form-details-navigation>
+  </div>
+</div>
+
+<user-management-contact-info [showStartInvitingPainters]="false" [openSubject]="modalOpenSubject">
+</user-management-contact-info>
+
+<general-feedback-element [asModal]="true" [open]="generalFeedbackModal.open" (close)="onCloseFeedback()"
+                          (fieldUpdated)="onUpdateGeneralFeedbackField($event)" (formSubmit)="onSubmitFeedback($event)">
+</general-feedback-element>

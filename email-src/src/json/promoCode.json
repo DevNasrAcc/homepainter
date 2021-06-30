@@ -1,0 +1,10 @@
+{
+  "_id": "someid",
+  "user": "someuser",
+  "createdAt": "2019-12-10T20:09:11.404Z",
+  "discount": 50,
+  "type": "amount",
+  "code": "anthonyhouse",
+  "starts": "2019-12-10T20:09:11.404Z",
+  "ends": "2019-12-10T20:09:11.404Z"
+}

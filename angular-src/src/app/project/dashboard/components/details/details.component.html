@@ -1,0 +1,362 @@
+<div class="row">
+  <div class="col offset-l1 l10 s12">
+    <div class="white br2 z-depth-1">
+      <div class="grey lighten-4" style="padding: 1rem">
+        <p class="ml15 mt0 mb0"><b>Your Project Details</b></p>
+      </div>
+      <div class="divider"></div>
+      <div class="pt25 pb25 center-align" *ngIf="projectProgress !== 1">
+        <button routerLink="/details/zip-code" class="btn btn-large blue white-text waves-effect waves-light">{{projectProgress <= .31 ? 'Start' : 'Continue'}} Project</button>
+      </div>
+      <div class="pt10 pb10 pl25 pr25" *ngIf="projectProgress === 1">
+        <!-- Location, Additional Details -->
+        <div class="row">
+          <div class="col s12 m6 push-m6 l7 push-l5">
+            <div class="card z-depth-0" >
+              <div class="card-title brtl2 brtr2 grey lighten-3">
+                <p class="pl15 pr15 pt5 pb5 mar0">Additional Details</p>
+              </div>
+              <div id="customer-commment" class="card-content gray-border border-top-none pt25 pb25 pl25 pr25 brbl2 brbr2">
+                <p>{{details.additionalDetailsComment}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m6 pull-m6 l5 pull-l7">
+            <div class="card z-depth-0" >
+              <div class="card-title brtl2 brtr2 grey lighten-3">
+                <p class="pl15 pr15 pt5 pb5 mar0">
+                  <a class="right black-text underline-text truncate" (click)="this.mapVisible = !this.mapVisible">{{mapVisible ? 'Hide' : 'Show'}} Map</a>
+                  Location - {{details.address.zipCode}}
+                </p>
+              </div>
+              <div class="card-content brbl2 brbr2 no-padding">
+                <agm-map *ngIf="mapVisible"
+                         [zoomControl]="false"
+                         [streetViewControl]="false"
+                         [panControl]="false"
+                         [mapDraggable]="false"
+                         (mapReady)="onMapLoad($event)">
+                </agm-map>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Main Details -->
+        <div class="row">
+          <div class="col s12">
+            <div class="card z-depth-0">
+              <div class="card-title brtl2 brtr2 grey lighten-3">
+                <p class="pl15 pr15 pt5 pb5 mar0">Main Details</p>
+              </div>
+              <div class="card-content gray-border border-top-none pt10 pb10 pl25 pr25 brbl2 brbr2">
+                <table>
+                  <tbody>
+                  <tr>
+                    <td>Type of home</td>
+                    <td>{{details.jobType | storageName2DisplayName}}</td>
+                  </tr>
+                  <tr>
+                    <td>Type of project</td>
+                    <td>{{details.decorType | storageName2DisplayName}}</td>
+                  </tr>
+                  <tr *ngIf="details.isInteriorProject()">
+                    <td>Number of rooms</td>
+                    <td>{{details.interior.length.toString()}}</td>
+                  </tr>
+                  <tr *ngIf="details.isExteriorProject()">
+                    <td>Exterior</td>
+                    <td>
+                      <span *ngFor="let structure of details.exterior; let i = index">
+                        {{structure.defaultName}}{{i !== details.exterior.length - 1 ? ', ' : ''}}
+                      </span>
+                    </td>
+                  </tr>
+                  <tr *ngIf="details.isExteriorProject() && details.exterior[0].type === 'house'">
+                    <td>Square footage of home</td>
+                    <td><span>{{details.exterior[0].squareFootage}}</span></td>
+                  </tr>
+                  <tr>
+                    <td>Who will supply the paint</td>
+                    <td>{{details.paintSupplier | storageName2DisplayName}}
+                      <div *ngIf="details.paintSupplier === 'customer'">Brand: {{details.paintBrand || 'TBD'}}</div>
+                      <div *ngIf="details.paintSupplier === 'customer'">Product type: {{details.paintProduct || 'TBD'}}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Occupancy</td>
+                    <td>{{details.occupancy | storageName2DisplayName}}</td>
+                  </tr>
+                  <tr>
+                    <td>Project time frame</td>
+                    <td>
+                      {{details.timeFrameStart | storageName2DisplayName}}<br>
+                      {{details.timeFrameEnd | storageName2DisplayName}}
+                      <span *ngIf="details.timeFrameEnd == 'endDateInMind'"> (by {{details.expectedEndDate}})</span>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Rooms -->
+        <div *ngFor="let room of details.interior; let i = index;">
+          <div class="row">
+            <div class="col s12">
+              <div class="card z-depth-0">
+                <div class="card-title brtl2 brtr2 grey lighten-3">
+                  <p class="pl15 pr15 pt5 pb5 mar0">{{room.defaultName}}</p>
+                </div>
+                <div class="card-content gray-border border-top-none pt10 pb10 pl25 pr25 brbl2 brbr2">
+                  <div class="row center-align">
+                    <div class="col m6 s12 pt10 pb10 blue lighten-3">
+                      <p>Room Size:</p>
+                      <p>{{room.size.label}}</p>
+                    </div>
+                    <div class="col m6 s12 pt10 pb10 blue lighten-3">
+                      <p>Room Height:</p>
+                      <p>{{room.height.label}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col s12">
+                      <table>
+                        <thead>
+                        <tr>
+                          <th style="width: 50%">Item</th>
+                          <th style="width: 50%">Details</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let item of details.interior[i].items">
+                          <td style="width: 50%"><strong>{{item.type | storageName2DisplayName}}</strong></td>
+                          <td style="width: 50%">
+                            <ul class="mar0">
+                              <li *ngIf="item.additionalDetails.ceilingType">
+                                Ceiling Type: {{item.additionalDetails.ceilingType | storageName2DisplayName}}
+                              </li>
+                              <li *ngIf="item.additionalDetails.amount > 0">
+                                Amount: {{item.additionalDetails.amount}}
+                              </li>
+                              <li *ngIf="item.additionalDetails.conditions.length > 0">
+                                Conditions: {{item.additionalDetails.conditions.join(', ') | storageName2DisplayName}}
+                              </li>
+                              <li *ngIf="item.additionalDetails.cabinetGrainType">
+                                Cabinet Grain: {{item.additionalDetails.cabinetGrainType | storageName2DisplayName}}
+                              </li>
+                              <li *ngIf="item.additionalDetails.cabinetCondition">
+                                Cabinet Condition: {{item.additionalDetails.cabinetCondition | storageName2DisplayName}}
+                              </li>
+                              <li *ngIf="item.additionalDetails.cabinetTreatment">
+                                Cabinet Treatment: {{item.additionalDetails.cabinetTreatment | storageName2DisplayName}}
+                              </li>
+                              <li *ngIf="item.additionalDetails.numberOfCabinetDrawers">
+                                Number of Drawers: {{item.additionalDetails.numberOfCabinetDrawers}}
+                              </li>
+                              <li *ngIf="item.additionalDetails.numberOfCabinetDoors">
+                                Number of Doors: {{item.additionalDetails.numberOfCabinetDoors}}
+                              </li>
+                            </ul>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="row" *ngIf="room.photos.length">
+                    <div class="col s12">
+                      <display-photo-element [photos]="room.photos"></display-photo-element>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Structures -->
+        <div *ngFor="let structure of details.exterior; let i = index">
+          <div class="row">
+            <div class="col s12">
+              <div class="card z-depth-0">
+                <div class="card-title brtl2 brtr2 grey lighten-3">
+                  <p class="pl15 pr15 pt5 pb5 mar0">{{structure.defaultName}}</p>
+                </div>
+                <div class="card-content gray-border border-top-none pt10 pb10 pl25 pr25 brbl2 brbr2">
+                  <div class="row center-align">
+                    <div *ngIf="structure.type !== 'deck'" class="col m6 s12 pt10 pb10 blue lighten-3">
+                      <p>Number of stories:</p>
+                      <p>{{structure.numberOfStories}}</p>
+                    </div>
+                    <div *ngIf="structure.type === 'deck'" class="col m6 s12 pt10 pb10 blue lighten-3">
+                      <p>Elevation:</p>
+                      <p>{{structure.deckElevation | storageName2DisplayName}}</p>
+                    </div>
+                    <div class="col m6 s12 pt10 pb10 blue lighten-3">
+                      <p>Paint Condition:</p>
+                      <p>{{structure.paintCondition | storageName2DisplayName}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col s12">
+                      <table *ngIf="structure.type === 'deck'">
+                        <tr>
+                          <td>Deck Treatment:</td>
+                          <td>{{structure.deckTreatment | storageName2DisplayName}}</td>
+                        </tr>
+                        <tr>
+                          <td>Deck Size:</td>
+                          <td>{{structure.deckSize.label}}</td>
+                        </tr>
+                      </table>
+                      <table *ngIf="structure.type !== 'deck'">
+                        <thead>
+                        <tr>
+                          <th>Items</th>
+                          <th>Details</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let item of structure.items">
+                          <td><strong>{{item.type | storageName2DisplayName}}</strong></td>
+                          <td>
+                            <ul class="mar0">
+                              <li *ngIf="item.sidingType">
+                                Siding Type: {{item.sidingType | storageName2DisplayName}}
+                              </li>
+                              <li *ngIf="item.sidesToPaint?.length > 0">
+                                Sides to Paint:
+                                <ul>
+                                  <li *ngFor="let side of item.sidesToPaint">{{side | storageName2DisplayName}}</li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </td>
+                        </tr>
+                        <tr *ngIf="structure.garageSize.label">
+                          <td><strong>Garage Size:</strong></td>
+                          <td>
+                            <ul class="mar0">
+                              <li >
+                                {{structure.garageSize.label | storageName2DisplayName}}
+                              </li>
+                            </ul>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="row" *ngIf="structure.photos.length">
+                    <div class="col s12">
+                      <display-photo-element [photos]="structure.photos"></display-photo-element>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Next Page -->
+        <div class="row">
+          <div class="col s12 right-align">
+            <div class="center-on-small-only">
+              <button class="btn blue white-text right waves-effect waves-light" routerLink="/project/explore-painters">
+                <i class="material-icons right">chevron_right</i>Next Step
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col offset-l1 l10 s12">
+    <ul id="howItWorks" class="collapsible mb0 no-border">
+      <li>
+        <div class="collapsible-header grey lighten-4 brtl2 brtr2" style="display: block" (click)="openCloseHowItWorks()">
+          <p class="ml15 mt0 mb0">
+            <i class="material-icons right animate-rotation blue-text" [ngClass]="{'rotate': isHowItWorksOpen}">expand_more</i>
+            <b>How it works</b>
+          </p>
+        </div>
+        <div class="collapsible-body white brbl2 brbr2 no-border">
+          <div class="row">
+            <div class="col s3 xl2 center step-1-same-height valign-wrapper">
+              <picture>
+                <source data-srcset="/assets/images/custom-icons/get-started.webp" type="image/webp">
+                <source data-srcset="/assets/images/custom-icons/get-started.png" type="image/png">
+                <img class="responsive-img lazyload" data-src="/assets/images/custom-icons/get-started.png"
+                     alt="get-started image">
+              </picture>
+            </div>
+            <div class="col s9 xl9 step-1-same-height">
+              <p class="mt0"><b>1. Create Your Project</b></p>
+              <p>Start by answering questions about your paint project and uploading photos for our painters to see.</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <div class="divider"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s3 xl2 center step-2-same-height valign-wrapper">
+              <picture>
+                <source data-srcset="/assets/images/custom-icons/fun.webp" type="image/webp">
+                <source data-srcset="/assets/images/custom-icons/fun.png" type="image/png">
+                <img class="responsive-img lazyload" data-src="/assets/images/custom-icons/fun.png"
+                     alt="painter image">
+              </picture>
+            </div>
+            <div class="col s9 xl9 step-2-same-height">
+              <p class="mt0"><b>2. Invite Painters</b></p>
+              <p>Explore and contact our pre-qualified painters. Invite your favorite painters to quote your project.</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <div class="divider"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s3 xl2 center step-3-same-height valign-wrapper">
+              <picture>
+                <source data-srcset="/assets/images/custom-icons/reviewing.webp" type="image/webp">
+                <source data-srcset="/assets/images/custom-icons/reviewing.png" type="image/png">
+                <img class="responsive-img lazyload" data-src="/assets/images/custom-icons/reviewing.png"
+                     alt="reviewing image">
+              </picture>
+            </div>
+            <div class="col s9 xl9 step-3-same-height">
+              <p class="mt0"><b>3. Review Quotes</b></p>
+              <p>Review your quotes and the companies information to decide who you want to hire. Sit back and relax
+                knowing you just saved 9 hours of time and weeks of stress!</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <div class="divider"></div>
+            </div>
+          </div>
+          <div class="row mb0">
+            <div class="col s3 xl2 center step-4-same-height valign-wrapper">
+              <picture>
+                <source data-srcset="/assets/images/custom-icons/value.webp" type="image/webp">
+                <source data-srcset="/assets/images/custom-icons/value.png" type="image/png">
+                <img class="responsive-img lazyload" data-src="/assets/images/custom-icons/value.png"
+                     alt="value image">
+              </picture>
+            </div>
+            <div class="col s9 xl9 step-4-same-height">
+              <p class="mt0"><b>4. Hire</b></p>
+              <p>Book your project by hiring the best painter for you. With only 10% upfront and payments managed
+                by us, you can kick back while your project gets complete.</p>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="section">
+    <h1>Thank you for booking with homepainter!</h1>
+
+    {{>feedback-and-referral this.promoCode}}
+
+    <p>The contractor will be contacting you to schedule your project.
+        <a href="{{url}}/contact-us">Having trouble?</a></p>
+    <br>
+    <p>Once your home is painted, you will receive a follow up email with an action required to complete your project.</p>
+    <br>
+    <p>Please reach out if you have any issues.</p>
+</div>
+
+<hr>
+{{>receipt-of-charges this.order}}
+
+<hr>
+{{>full-details this}}

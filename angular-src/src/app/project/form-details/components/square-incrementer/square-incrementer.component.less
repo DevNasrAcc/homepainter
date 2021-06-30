@@ -1,0 +1,59 @@
+@import "../../../../../variables";
+
+input[type='number'] {
+  -moz-appearance:textfield;
+  margin-bottom: 7px;
+  max-width: 25%;
+
+  @media @mobile {
+    max-width: 35%;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+p {
+  font-family: "Fira Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 40px 5px 20px;
+
+  @media @mobile {
+    padding: 0;
+  }
+}
+
+.card-content {
+  padding: 0;
+}
+
+.value-btn {
+  cursor: pointer;
+  opacity: .7;
+  margin-bottom: 15px;
+  vertical-align: bottom;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &.primary {
+    color: #23a9e1;
+  }
+
+  &.secondary {
+    color: #ed663f;
+  }
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently*/
+}

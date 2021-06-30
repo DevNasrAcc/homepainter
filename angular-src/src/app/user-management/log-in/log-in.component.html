@@ -1,0 +1,120 @@
+<div class="wrapper">
+  <div class="row mb0" *ngIf="clickedContinue">
+    <div class="col s12 offset-m2 m8 offset-l3 l6 offset-xl4 xl4">
+      <div class="card horizontal">
+        <div class="card-image blue valign-wrapper">
+          <i class="material-icons white-text pl25 pr25">check</i>
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <p>If you don't have a password, check your email for a one-time login link</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12 offset-m2 m8 offset-l3 l6 offset-xl4 xl4">
+      <div class="card">
+        <div class="section">
+          <div class="row">
+            <form class="col s10 offset-s1 m10 offset-m1 l8 offset-l2" [formGroup]="loginFormGroup" (submit)="onSubmit()">
+              <h1 class="center-align">Sign In</h1>
+              <div class="input-field" *ngIf="!submittingToken">
+                <input type="email" name="email" id="email" formControlName="email" autocomplete="email"
+                       [ngClass]="!loginFormGroup.disabled && loginFormGroup.get('email').touched && loginFormGroup.get('email').invalid  ? 'invalid' : ''"/>
+                <label for="email">Email address</label>
+                <span class="helper-text red-text" *ngIf="!loginFormGroup.disabled && loginFormGroup.get('email').touched && loginFormGroup.get('email').invalid">Please enter a valid email address</span>
+              </div>
+              <div class="input-field" *ngIf="clickedContinue">
+                <input type="password" name="password" id="password" formControlName="password" autocomplete="current-password"
+                       [ngClass]="!loginFormGroup.disabled && loginFormGroup.get('password').touched && loginFormGroup.get('password').invalid ? 'invalid' : ''"/>
+                <label for="password">Password</label>
+                <span class="helper-text red-text"
+                  *ngIf="!loginFormGroup.disabled && loginFormGroup.get('password').touched && loginFormGroup.get('password').invalid">
+                  Password should contain one lowercase character, one uppercase character, one number, and one special character (!, #, $, etc.).
+                </span>
+              </div>
+              <div class="center-align" *ngIf="loginFormGroup.disabled || submittingToken || startingLoginSequence">
+                <p *ngIf="!startingLoginSequence">We are logging you in. This may take up to 5 seconds.</p>
+                <div class="progress">
+                  <div class="indeterminate blue"></div>
+                </div>
+              </div>
+              <button class="btn full-width waves-effect waves-light" type="submit" [disabled]="loginFormGroup.disabled || submittingToken">{{clickedContinue ? 'login' : 'continue'}}</button>
+              <div class="mt15 center">
+<!--                  <a routerLink="/forgot-email" class="blue-text mr15 underline-text">Forgot Email</a>-->
+                  <a routerLink="/forgot-password"  class="blue-text underline-text">Forgot Password</a>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="section grey lighten-3 center">
+          <div class="row">
+            <div class="col offset-s2 s8">
+              <p class="separator">New to homepainter?</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <a routerLink="/become-a-pro"><button class="btn waves-effect waves-light waves-blue white blue-text">register as a painter</button></a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <a routerLink="/become-an-agent"><button class="btn waves-effect waves-light waves-blue white blue-text">register as an agent</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="invalidInputs" class="banner">
+  <div class="banner-content">
+    <div class="icon white-text orange circle">
+      <i class="material-icons">error_outline</i>
+    </div>
+    <p>The email or password you entered is invalid.</p>
+  </div>
+  <div class="banner-action">
+    <button class="btn-flat banner-close">dismiss</button>
+  </div>
+</div>
+<div id="invalidLoginLink" class="banner">
+  <div class="banner-content">
+    <div class="icon white-text orange circle">
+      <i class="material-icons">error_outline</i>
+    </div>
+    <p>The login link you clicked didn't work. It may be expired, invalid, or already used.</p>
+  </div>
+  <div class="banner-action">
+    <button class="btn-flat banner-close">dismiss</button>
+  </div>
+</div>
+<div id="resp401" class="banner">
+  <div class="banner-content">
+    <div class="icon white-text orange circle">
+      <i class="material-icons">error_outline</i>
+    </div>
+    <p>Sorry, we do not recognize these login credentials. Make sure you have entered the correct email and password. If
+      you haven't registered yet, please sign up.</p>
+  </div>
+  <div class="banner-action">
+    <button class="btn-flat banner-close">dismiss</button>
+  </div>
+</div>
+<div id="resp500" class="banner">
+  <div class="banner-content">
+    <div class="icon white-text orange circle">
+      <i class="material-icons">error_outline</i>
+    </div>
+    <p>Oops, there was a problem!<br>Please email us at support@thehomepainter.com or refresh the page and try again.</p>
+  </div>
+  <div class="banner-action">
+    <button class="btn-flat banner-close">dismiss</button>
+    <a href="mailto:support@thehomepainter.com">
+      <button class="btn-flat">Send Email</button>
+    </a>
+  </div>
+</div>

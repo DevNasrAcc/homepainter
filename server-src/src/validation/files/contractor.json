@@ -1,0 +1,142 @@
+{
+    "firstName": {
+        "type": "string",
+        "minLength": 3,
+        "required": true
+    },
+    "lastName": {
+        "type": "string",
+        "minLength": 3,
+        "required": true
+    },
+    "email": {
+        "type": "object",
+        "required": true,
+        "fields": {
+            "address": {
+                "type": "email",
+                "required": true
+            },
+            "sendPromotional": {
+                "type": "boolean",
+                "required": true
+            }
+        }
+    },
+    "mobile": {
+        "type": "object",
+        "fields": {
+            "number": {
+                "type": "mobilePhone",
+                "required": true
+            },
+            "sendProjectNotices": "boolean"
+        }
+    },
+    "title": "string",
+    "organizationName": {
+        "type": "string",
+        "required": false,
+        "minLength": 3
+    },
+    "picture": {
+        "type": "url",
+        "required": false
+    },
+    "website": {
+        "type": "string",
+        "required": false
+    },
+    "numberOfEmployees": {
+        "type": "number",
+        "required": false,
+        "min": 0
+    },
+    "founded": {
+        "type": "number",
+        "required": false,
+        "min": 1900
+    },
+    "services": {
+        "type": "array",
+        "required": false,
+        "fields": "string"
+    },
+    "address": {
+        "type": "object",
+        "fields": {
+            "streetAddress": {
+                "required": false,
+                "type": "string",
+                "minLength": 1
+            },
+            "city": {
+                "required": false,
+                "type": "string",
+                "minLength": 1
+            },
+            "state": {
+                "required": false,
+                "type": "string",
+                "minLength": 1
+            },
+            "zipCode": {
+                "required": false,
+                "type": "postalCode"
+            }
+        }
+    },
+    "timezone": "string",
+    "referral": {
+        "type": "string",
+        "enum": ["socialMedia", "wordOfMouth", "internetSearch", "printMedia", "other"]
+    },
+    "insurance": {
+        "type": "object",
+        "fields": {
+            "insured": {
+                "type": "boolean",
+                "required": false
+            },
+            "companyName": {
+                "type": "string",
+                "required": false
+            },
+            "agentName": {
+                "type": "string",
+                "required": false
+            }
+        }
+    },
+    "rating": {
+        "type": "number",
+        "required": false,
+        "min": 0,
+        "max": 5
+    },
+    "acceptedTermsAndPrivacy": {
+        "type": "boolean",
+        "required": true
+    },
+    "socialMedia": {
+        "type": "object",
+        "fields": {
+            "twitter": {
+                "required": false,
+                "type": "string"
+            },
+            "facebook": {
+                "required": false,
+                "type": "string"
+            },
+            "instagram": {
+                "required": false,
+                "type": "string"
+            },
+            "google": {
+                "required": false,
+                "type": "string"
+            }
+        }
+    }
+}

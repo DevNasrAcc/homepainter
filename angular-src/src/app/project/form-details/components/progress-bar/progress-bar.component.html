@@ -1,0 +1,24 @@
+<div class="fixed-top hide-on-large-only">
+  <div class="card mar0 mt5 no-padding">
+    <div class="card-content pt5 pb5 pl5 pr5">
+      <div class="progress mt0 mb0">
+        <div class="determinate mt0" [ngStyle]="{'width': (progress * 100) + '%'}"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="progress-indicator hide-on-med-and-down">
+  <div class="card">
+    <div class="card-content progress-indicator-fonts">
+      <div class="progress">
+        <div class="determinate" [ngStyle]="{'width': (progress * 100) + '%'}"></div>
+      </div>
+      <p>{{progress | percent}} Complete</p>
+    </div>
+  </div>
+  <div class="card mt10">
+    <div class="card-content center">
+      <a (click)="onGiveFeedbackClicked()">Give Feedback</a>
+    </div>
+  </div>
+</div>

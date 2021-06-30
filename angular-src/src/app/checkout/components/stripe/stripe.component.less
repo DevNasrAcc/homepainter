@@ -1,0 +1,198 @@
+@base-color: #9e9e9e;
+@focus-color: #26a69a;
+@error-color: #F44336;
+@success-color: #4CAF50;
+
+.stripe-styling {
+  * {
+    font-size: 16px;
+  }
+
+  .row {
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0 10px;
+  }
+
+  .field {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 1rem 5px;
+
+    &.half-width {
+      width: 50%;
+    }
+
+    &.extra-height-for-error {
+      height: 72px;
+      margin-bottom: 0;
+    }
+  }
+
+  .baseline {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    left: 0;
+    top: 49px;
+    background-color: @base-color;
+    transition: background-color 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .help-text {
+    position: absolute;
+    font-size: 12px;
+    width: 100%;
+    left: 0;
+    top: 58px;
+    height: 18px;
+    color: @error-color;
+  }
+
+  label {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 18px;
+    color: @base-color;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transform-origin: 0 50%;
+    cursor: text;
+    pointer-events: none;
+    transition-property: color, transform;
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .input {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 23px;
+    padding-bottom: 7px;
+    background-color: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    border-style: none;
+    -webkit-animation: 1ms void-animation-out;
+
+    &::-webkit-input-placeholder {
+      color: transparent;
+      transition: color 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    &::-moz-placeholder {
+      color: transparent;
+      transition: color 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    &:-ms-input-placeholder {
+      color: transparent;
+      transition: color 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    &.StripeElement {
+      opacity: 0;
+      transition: opacity 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+      will-change: opacity;
+    }
+
+    &.focused{
+      opacity: 1;
+
+      &::-webkit-input-placeholder {
+        color: @base-color;
+      }
+
+      &::-moz-placeholder {
+        color: @base-color;
+      }
+
+      &:-ms-input-placeholder {
+        color: @base-color;
+      }
+
+      & + label {
+        transform: scale(0.85) translateY(-25px);
+        cursor: default;
+        color: @focus-color;
+
+        & + .baseline {
+          background-color: @focus-color;
+        }
+      }
+
+      &.invalid {
+        & + label {
+          & + .baseline {
+            background-color: @error-color;
+            box-shadow: 0 1px 0 0 @error-color;
+          }
+        }
+      }
+
+      &.complete {
+        & + label {
+          color: @success-color;
+        }
+      }
+    }
+
+    &:not(.empty) {
+      opacity: 1;
+
+      &::-webkit-input-placeholder {
+        color: @base-color;
+      }
+
+      &::-moz-placeholder {
+        color: @base-color;
+      }
+
+      &:-ms-input-placeholder {
+        color: @base-color;
+      }
+
+      & + label {
+        color: @base-color;
+        transform: scale(0.85) translateY(-25px);
+        cursor: default;
+      }
+    }
+
+    &.invalid {
+      & + label {
+        color: @error-color;
+
+        & + .baseline {
+          background-color: @error-color;
+          box-shadow: 0 1px 0 0 @error-color;
+        }
+      }
+    }
+
+    &.complete {
+      & + label {
+        color: @base-color;
+
+        & + .baseline {
+          background-color: @success-color;
+          box-shadow: 0 1px 0 0 @success-color;
+        }
+      }
+    }
+  }
+
+  .helper-text {
+    font-size: 12px;
+    width: 100%;
+    margin-top: -10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}

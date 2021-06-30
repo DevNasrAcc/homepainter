@@ -1,0 +1,182 @@
+<div class="row">
+  <div class="col offset-l1 l7 s12">
+    <div class="card">
+      <div class="card-content">
+        <div class="card-title center">
+          <p>Final Information</p>
+        </div>
+        <div class="final-details row mb0">
+          <form class="col s12" [formGroup]="finalDetailsFormGroup" (submit)="onCheckoutButtonClick()">
+            <!-- contact info -->
+            <div class="row mb0">
+              <div class="col s12">
+                <p>Contact Info</p>
+              </div>
+              <div class="col s12">
+                <div class="row mt10 mb0 pl15 pr15">
+                  <div class="col s6 input-field">
+                    <input type="text" class="validate" id="firstName" autocomplete="given-name"
+                           formControlName="firstName" required (blur)="trackPageAction('first_name')">
+                    <label for="firstName">First Name</label>
+                    <span class="helper-text red-text"
+                          *ngIf="finalDetailsFormGroup.get('firstName').touched && !finalDetailsFormGroup.get('firstName').valid">Required</span>
+                  </div>
+                  <div class="col s6 input-field">
+                    <input type="text" class="validate" id="lastName" autocomplete="family-name"
+                           formControlName="lastName" required (blur)="trackPageAction('last_name')">
+                    <label for="lastName">Last Name</label>
+                    <span class="helper-text red-text"
+                          *ngIf="finalDetailsFormGroup.get('lastName').touched && !finalDetailsFormGroup.get('lastName').valid">Required</span>
+                  </div>
+                </div>
+                <div class="row pl15 pr15">
+                  <div class="col s6 input-field">
+                    <input type="email" id="emailAddress" autocomplete="email" (blur)="trackPageAction('email')"
+                           [ngClass]="!finalDetailsFormGroup.get('emailAddress').touched ? '' : finalDetailsFormGroup.get('emailAddress').valid ? 'valid': 'invalid'"
+                           formControlName="emailAddress" required>
+                    <label for="emailAddress">Email</label>
+                    <span class="helper-text red-text"
+                          *ngIf="finalDetailsFormGroup.get('emailAddress').touched && !finalDetailsFormGroup.get('emailAddress').valid">
+                  {{
+                        finalDetailsFormGroup.get('emailAddress').value === ''
+                            ? 'Required'
+                            : 'Please enter a valid email address'
+                      }}
+                </span>
+                  </div>
+                  <div class="col s6 input-field">
+                    <input type="text" class="validate" id="phoneNumber" autocomplete="tel"
+                           formControlName="phoneNumber" required (blur)="trackPageAction('mobile_number')">
+                    <label for="phoneNumber">Phone Number</label>
+                    <span class="helper-text red-text"
+                          *ngIf="finalDetailsFormGroup.get('phoneNumber').touched && !finalDetailsFormGroup.get('phoneNumber').valid">Required</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- property address -->
+            <div class="row mb0">
+              <div class="col s12">
+                <p>Property Address</p>
+              </div>
+              <div class="col s12" formGroupName="address">
+                <div class="row mt10 mb0 pl15 pr15">
+                  <div class="col s12 input-field">
+                    <input type="text" class="validate" id="propertyStreetAddress" autocomplete="street-address"
+                           formControlName="streetAddress" required (blur)="trackPageAction('street_address')">
+                    <label for="propertyStreetAddress">Street Address</label>
+                    <span class="helper-text red-text"
+                          *ngIf="finalDetailsFormGroup.get('address.streetAddress').touched && !finalDetailsFormGroup.get('address.streetAddress').valid">Required</span>
+                  </div>
+                </div>
+                <div class="row pl15 pr15">
+                  <div class="col s4 input-field">
+                    <input type="text" class="validate" id="propertyCity" autocomplete="address-level2"
+                           formControlName="city" required (blur)="trackPageAction('city')">
+                    <label for="propertyCity">City</label>
+                    <span class="helper-text red-text"
+                          *ngIf="finalDetailsFormGroup.get('address.city').touched && !finalDetailsFormGroup.get('address.city').valid">Required</span>
+                  </div>
+                  <div class="col s4 input-field">
+                    <input type="text" class="validate" id="propertyState" autocomplete="address-level1"
+                           formControlName="state" required (blur)="trackPageAction('state')">
+                    <label for="propertyState">State</label>
+                    <span class="helper-text red-text"
+                          *ngIf="finalDetailsFormGroup.get('address.state').touched && !finalDetailsFormGroup.get('address.state').valid">Required</span>
+                  </div>
+                  <div class="col s4 input-field">
+                    <input type="text" class="validate" id="propertyZipCode" autocomplete="postal-code"
+                           formControlName="zipCode" required (blur)="trackPageAction('zip_code')">
+                    <label for="propertyZipCode">Zip Code</label>
+                    <span class="helper-text red-text"
+                          *ngIf="finalDetailsFormGroup.get('address.zipCode').touched && !finalDetailsFormGroup.get('address.zipCode').valid">Required</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- credit card info -->
+            <div class="row">
+              <div class="col s8">
+                <p>Credit Card Info</p>
+              </div>
+              <div class="col s4 right-align">
+                <p style="font-size: 10px;">
+                  <i class="material-icons" style="font-size: 10px;">lock</i> Secured with Stripe
+                </p>
+              </div>
+              <div class="col s12">
+                <stripe-elements (infoUpdated)="onStripeInfoUpdatedEvent($event)"></stripe-elements>
+              </div>
+            </div>
+            <!-- billing address -->
+            <div class="row">
+              <div class="col s12">
+                <p>Billing Address</p>
+              </div>
+              <div class="col s12">
+                <p class="mt10 mb0 pl15 pr15">
+                  <label>
+                    <input type="checkbox" class="filled-in" (change)="onSameAddressCheckboxChange($event.target.checked)"
+                           formControlName="billingAddressSameAsProperty"/>
+                    <span>Same as property address</span>
+                  </label>
+                </p>
+              </div>
+              <div class="col s12" *ngIf="!finalDetailsFormGroup.get('billingAddressSameAsProperty').value">
+                <div formGroupName="billingAddress">
+                  <div class="row mt10 mb0 pl15 pr15">
+                    <div class="col s12 input-field">
+                      <input type="text" class="validate" id="billingStreetAddress" autocomplete="street-address"
+                             formControlName="streetAddress" (blur)="trackPageAction('street_address')">
+                      <label for="billingStreetAddress">Street Address</label>
+                      <span class="helper-text red-text"
+                            *ngIf="finalDetailsFormGroup.get('billingAddress.streetAddress').touched && !finalDetailsFormGroup.get('billingAddress.streetAddress').valid">Required</span>
+                    </div>
+                  </div>
+                  <div class="row pl15 pr15">
+                    <div class="col s4 input-field">
+                      <input type="text" class="validate" id="billingCity" autocomplete="address-level2"
+                             formControlName="city" (blur)="trackPageAction('city')">
+                      <label for="billingCity">City</label>
+                      <span class="helper-text red-text"
+                            *ngIf="finalDetailsFormGroup.get('billingAddress.city').touched && !finalDetailsFormGroup.get('billingAddress.city').valid">Required</span>
+                    </div>
+                    <div class="col s4 input-field">
+                      <input type="text" class="validate" id="billingState" autocomplete="address-level1"
+                             formControlName="state" (blur)="trackPageAction('state')">
+                      <label for="billingState">State</label>
+                      <span class="helper-text red-text"
+                            *ngIf="finalDetailsFormGroup.get('billingAddress.state').touched && !finalDetailsFormGroup.get('billingAddress.state').valid">Required</span>
+                    </div>
+                    <div class="col s4 input-field">
+                      <input type="text" class="validate" id="billingZipCode" autocomplete="postal-code"
+                             formControlName="zipCode" (blur)="trackPageAction('zip_code')">
+                      <label for="billingZipCode">Zip Code</label>
+                      <span class="helper-text red-text"
+                            *ngIf="finalDetailsFormGroup.get('billingAddress.zipCode').touched && !finalDetailsFormGroup.get('billingAddress.zipCode').valid">Required</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col offset-l1 l3 s12">
+    <div class="card">
+      <div class="card-content">
+        <checkout-element [projectDetails]="project.details" [proposal]="project.selectedProposal"
+                          [promoCode]="project.promoCode" [pending]="pending" [chargeDetails]="chargeDetails"
+                          [btnText]="project.isCheckedOut() ? 'booked' : 'place order'" [btnEnabled]="finalDetailsFormGroup.valid && !project.isCheckedOut()"
+                          (editDetailsClicked)="onEditDetailsClicked()" (viewDetailsClicked)="onViewDetailsClicked()"
+                          (checkoutButtonClicked)="onCheckoutButtonClick()" (getDiscountClicked)="onGetDiscountClicked($event)">
+        </checkout-element>
+      </div>
+    </div>
+  </div>
+</div>
+
+<final-details-modal [open]="finalDetailsModal.open" [details]="finalDetailsModal.details"
+                     (close)="onCloseFinalDetails()"></final-details-modal>

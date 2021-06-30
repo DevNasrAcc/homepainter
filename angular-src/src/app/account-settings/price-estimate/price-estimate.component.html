@@ -1,0 +1,30 @@
+<div class="section">
+  <form [formGroup]="priceEstimateForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="input-field col s12">
+        <input formControlName="perGallon" id="per_gallon" type="number"
+               [ngClass]="priceEstimateForm.get('perGallon').touched ? priceEstimateForm.get('perGallon').valid ? 'valid' : 'invalid' : ''"/>
+        <label for="per_gallon">Price Per Gallon (USD)</label>
+        <span class="helper-text red-text"
+              *ngIf="priceEstimateForm.get('perGallon').touched && !priceEstimateForm.get('perGallon').valid">
+          Please enter a valid amount
+        </span>
+      </div>
+      <div class="input-field col s12">
+        <input formControlName="hourlyWage" id="hourly_wage" type="number"
+               [ngClass]="priceEstimateForm.get('hourlyWage').touched ? priceEstimateForm.get('hourlyWage').valid ? 'valid' : 'invalid' : ''"/>
+        <label for="hourly_wage">Hourly Wage (USD)</label>
+        <span class="helper-text red-text"
+              *ngIf="priceEstimateForm.get('hourlyWage').touched && !priceEstimateForm.get('hourlyWage').valid">
+          Please enter a valid amount
+        </span>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col s12 right-align">
+        <button type="submit" class="btn waves-effect waves-light blue white-text" [disabled]="!priceEstimateForm.valid">update</button>
+      </div>
+    </div>
+  </form>
+</div>

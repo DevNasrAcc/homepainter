@@ -1,0 +1,39 @@
+<div class="image-viewer" [ngClass]="{'open': open}">
+  <div class="image-name-and-close">
+    <button class="btn blue white-text z-depth-0 right" (click)="openClose()"><i class="material-icons">close</i></button>
+    <div class="valign-wrapper">
+      <i class="white-text material-icons">image</i>
+      <div class="ml10" style="display: inline-block">
+        <p class="white-text mar0">{{images[index]?.originalName}}</p>
+        <p class="white-text mar0">Image · {{images[index]?.size | fileSize}}</p>
+      </div>
+    </div>
+  </div>
+  <button class="btn-floating blue white-text z-depth-0 prev" *ngIf="images.length > 1" (click)="prevImage()">
+    <i class="material-icons">chevron_left</i>
+  </button>
+  <button class="btn-floating blue white-text z-depth-0 next" *ngIf="images.length > 1" (click)="nextImage()">
+    <i class="material-icons">chevron_right</i>
+  </button>
+  <div class="number-of-images">
+    <p class="white-text">{{index + 1}}/{{images.length}}</p>
+  </div>
+  <div class="zoom-buttons">
+    <button class="btn-floating blue white-text z-depth-0" (click)="zoomOut()"><i class="material-icons">zoom_out</i></button>
+    <button class="btn-floating blue white-text z-depth-0 ml15" (click)="zoomIn()"><i class="material-icons">zoom_in</i></button>
+  </div>
+  <div class="zoom">
+    <p class="white-text">{{imageProperties.zoom | percent:'1.1'}}</p>
+  </div>
+  <div class="a">
+    <div class="b">
+      <div class="c">
+        <img #image class="d1" draggable="false"
+             [ngStyle]="{'width': imageProperties.width + 'px', 'height': imageProperties.height + 'px', 'cursor': imageProperties.cursor}"
+             [src]="images[index]?.url"
+             (load)="onImageLoad()">
+        <div class="d2"></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,251 @@
+<!-- Jumbo header -->
+<div class="section blue lighten-3">
+  <div class="container m-headers center wd100">
+    <div class="row">
+      <div class="col s12 offset-l1 l4 ipad_w50">
+        <div class="row">
+          <div class="col s12 offset-m1 m10 l12 mleft">
+            <h1 class="textleft ml-2 center fontChange text_left">Earn up to <span class="fontChange blue-text">$100</span> and save your clients <span class="fontChange blue-text">5%</span> on their project.</h1>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 offset-l1 l5 ipad_w50">
+        <form class="form_ipad" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <h2 class="center mg10">Ready to refer?</h2>
+            <div class="col s6 textleft">
+              <label for="first_name" class="labelfont">First Name</label>
+              <input id="first_name" class="inputClass" type="text" formControlName="firstName" autocomplete="given-name"
+                     [ngClass]="this.formGroup.get('firstName').touched ? this.formGroup.get('firstName').valid ? 'valid' : 'invalid' : ''"
+                     (blur)="trackPageAction('first_name')"/>
+              <span class="helper-text red-text"
+                    *ngIf="formGroup.get('firstName').touched && !formGroup.get('firstName').valid">Enter your first name</span>
+            </div>
+            <div class="col s6 textleft">
+              <label for="last_name" class="labelfont">Last Name</label>
+              <input id="last_name" type="text" class="inputClass" formControlName="lastName" autocomplete="family-name"
+                     [ngClass]="this.formGroup.get('lastName').touched ? this.formGroup.get('lastName').valid ? 'valid' : 'invalid' : ''"
+                     (blur)="trackPageAction('last_name')"/>
+              <span class="helper-text red-text"
+                    *ngIf="formGroup.get('lastName').touched && !formGroup.get('lastName').valid">Enter your last name</span>
+            </div>
+            <div class="col s12 textleft" formGroupName="email">
+              <label for="email" class="labelfont">Email</label>
+              <input id="email" type="email" class="inputClass" formControlName="address" autocomplete="email"
+                     [ngClass]="this.formGroup.get('email.address').touched ? this.formGroup.get('email.address').valid ? 'valid' : 'invalid' : ''"
+                     (blur)="trackPageAction('email')"/>
+              <span class="helper-text red-text"
+                    *ngIf="formGroup.get('email.address').touched && !formGroup.get('email.address').valid">Enter a valid email</span>
+            </div>
+            <!-- <div class="col s12 textleft" formGroupName="mobile">
+              <label for="mobile" class="labelfont">Phone</label>
+              <input id="mobile" type="text" class="inputClass" formControlName="number" autocomplete="tel"
+                     [ngClass]="this.formGroup.get('mobile.number').touched ? this.formGroup.get('mobile.number').valid ? 'valid' : 'invalid' : ''"
+                     (blur)="trackPageAction('mobile_number')"/>
+              <span class="helper-text red-text"
+                    *ngIf="formGroup.get('mobile.number').touched && !formGroup.get('mobile.number').valid">Enter a valid phone number</span>
+            </div> -->
+            <div class="col s12 textleft">
+              <label for="companyName" class="labelfont">Company/Agency</label>
+              <input id="companyName" type="text" class="inputClass" formControlName="companyName"
+                     [ngClass]="this.formGroup.get('companyName').touched ? this.formGroup.get('companyName').valid ? 'valid' : 'invalid' : ''"
+                     autocomplete="organization" (blur)="trackPageAction('companyName')"/>
+              <span class="helper-text red-text"
+                    *ngIf="formGroup.get('companyName').touched && !formGroup.get('companyName').valid">Enter your Company Name</span>
+            </div>
+            <div class="col s12 textleft">
+              <label for="password" class="labelfont">Password</label>
+              <input id="password" type="password" class="inputClass" formControlName="password" autocomplete="current-password"
+                     [ngClass]="this.formGroup.get('password').touched ? this.formGroup.get('password').valid ? 'valid' : 'invalid' : ''"
+                     (blur)="trackPageAction('password')"/>
+              <span class="helper-text red-text" *ngIf="formGroup.get('password').touched && formGroup.get('password').value.length >= 8 && formGroup.get('password').invalid">
+              Password should contain one lowercase character, one uppercase character, one number, and one special character (!, #, $, etc.).
+            </span>
+              <span class="helper-text red-text" *ngIf="formGroup.get('password').touched && formGroup.get('password').value.length < 8">
+              Password must be at least eight characters long.
+            </span>
+            </div>
+            <!-- <div class="col s12 input-field">
+              <input id="confirmPassword" type="password" class="inputClass" formControlName="confirmPassword" autocomplete="confirmPassword"
+                     [ngClass]="this.formGroup.get('confirmPassword').touched ? formGroup.get('password').value === formGroup.get('confirmPassword').value && this.formGroup.get('confirmPassword').valid ? 'valid' : 'invalid' : ''"
+                     (blur)="trackPageAction('confirmPassword')"/>
+              <label for="confirmPassword">Confirm Password</label>
+              <span class="helper-text red-text"
+                    *ngIf="formGroup.get('confirmPassword').touched && formGroup.get('confirmPassword').value.length >= 8 && formGroup.get('confirmPassword').invalid">
+              Confirmation Password should contain one lowercase character, one uppercase character, one number, and one special character (!, #, $, etc.).
+            </span>
+              <span class="helper-text red-text" *ngIf="formGroup.get('confirmPassword').touched && formGroup.get('confirmPassword').value.length < 8">
+              Confirmation Password must be at least eight characters long.
+            </span>
+              <span class="helper-text red-text"
+                    *ngIf="formGroup.get('confirmPassword').touched && formGroup.get('confirmPassword').valid && formGroup.get('confirmPassword').value !== formGroup.get('password').value">Passwords do not match</span>
+            </div> -->
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <p>
+                <label>
+                  <input type="checkbox" class="filled-in" formControlName="acceptedTermsAndPrivacy"
+                         (blur)="trackPageAction('terms_and_privacy')">
+                  <span>I have read and agree to the
+                    <a routerLink="/terms-and-conditions" target="_blank">HP Terms of Use</a> and
+                    <a routerLink="/privacy-policy" target="_blank">Privacy Policy</a>.
+                  </span>
+                </label>
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12 center">
+              <div class="preloader-wrapper small active mr20" *ngIf="submitting">
+                <div class="spinner-layer spinner-blue">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="gap-patch">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+                <div class="spinner-layer spinner-red">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="gap-patch">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+                <div class="spinner-layer spinner-yellow">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="gap-patch">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+                <div class="spinner-layer spinner-green">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="gap-patch">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+              </div>
+              <button class="btn blue white-text waves-effect waves-light letter_spacing" type="submit"
+                      [disabled]="!formGroup.valid"
+                      >SIGN UP</button>
+            </div>
+          </div>
+          <a class="already_account" href="/login">Have an account? Sign in</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- FAQ -->
+<div class="section container pl15 pr15 faq-top">
+  <div class="row">
+    <div class="col s12 offset-l1 l4">
+      <div class="row">
+        <div class="col s12 offset-m1 m10 l12">
+          <h1 class="faq-title-margins center">What it's like to work with us</h1>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 offset-l1 l5">
+      <div class="row">
+        <div class="hide-on-med-and-down" style="margin-top: 27px"></div>
+        <div class="col s12 offset-m1 m10">
+          <h2 class="mt0" style="display: inline-flex;">
+            <i class="material-icons black-text pr10 iconsize">check_circle</i>
+            <span class="nav-text icontext">Added value for your clients</span></h2>
+            <h2 class="mt0" style="display: inline-flex;">
+              <span class="nav-text icontext2">Whether they are buying or selling, homepainter is the fastest and easiest way for your clients to complete their painting project.</span>
+            </h2>
+          <h2 class="mt0" style="display: inline-flex;">
+            <i class="material-icons black-text pr10 iconsize">account_circle</i>
+            <span class="nav-text icontext">Professional project support</span></h2>
+            <h2 class="mt0" style="display: inline-flex;">
+              <span class="nav-text icontext2">Our local project managers are here to ensure the project is frictionless, keeping your timeline on track.</span>
+            </h2>
+          <h2 class="mt0" style="display: inline-flex;">
+            <i class="material-icons black-text pr10 iconsize">monetization_on</i>
+            <span class="nav-text icontext">They save and you earn</span></h2>
+            <h2 class="mt0" style="display: inline-flex;">
+              <span class="nav-text icontext2">Your referrals are valuable. Make up to $100 per referral and save your client 5% on their project.</span>
+            </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="section container pl15 pr15 wd50">
+  <div class="row">
+        <div class="col s12 offset-m1 m10">
+          <h1 class="faq-title-margins center">Frequently Asked Questions</h1>
+        </div>
+        <div class="hide-on-med-and-down" style="margin-top: 27px"></div>
+        <div class="col s12 offset-m1 m10">
+          <ul class="collapsible expandable z-depth-0 no-border no-padding">
+            <li [id]="'li' + i" *ngFor="let item of faqItems; index as i">
+              <div class="collapsible-header no-border pl0 pr0 faq-question-container">
+                <i class="material-icons">{{item.open ? 'remove' : 'add'}}</i><p class="mt0 mb0 faq-question-text">{{item.q}}</p>
+              </div>
+              <div class="collapsible-body pl20 pr20"><p class="mt0 mb0">{{item.a}}</p></div>
+            </li>
+          </ul>
+        </div>
+  </div>
+</div>
+
+<div id="resp200" class="banner">
+  <div class="banner-content">
+    <div class="icon white-text blue circle">
+      <i class="material-icons">check</i>
+    </div>
+    <p>Thank you for signing up with homepainter. Your local account rep will contact you soon.<br></p>
+  </div>
+  <div class="banner-action">
+    <button class="btn-flat banner-close">dismiss</button>
+  </div>
+</div>
+<div id="resp409" class="banner">
+  <div class="banner-content">
+    <div class="icon white-text orange circle">
+      <i class="material-icons">error_outline</i>
+    </div>
+    <p>The email address you entered is already in use. If you think there is an error, please send us an email.</p>
+  </div>
+  <div class="banner-action">
+    <button class="btn-flat banner-close">dismiss</button>
+    <a href="mailto:support@thehomepainter.com"><button class="btn-flat">Send Email</button></a>
+  </div>
+</div>
+<div id="resp500" class="banner">
+  <div class="banner-content">
+    <div class="icon white-text orange circle">
+      <i class="material-icons">error_outline</i>
+    </div>
+    <p>Opps, there was a problem!<br>Please email us at support@thehomepainter.com</p>
+  </div>
+  <div class="banner-action">
+    <button class="btn-flat banner-close">dismiss</button>
+    <a href="mailto:support@thehomepainter.com"><button class="btn-flat">Send Email</button></a>
+  </div>
+</div>

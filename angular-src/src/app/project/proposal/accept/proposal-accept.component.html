@@ -1,0 +1,238 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12 l6">
+      <app-final-details [editable]="false" [showEstimates]="true" [details]="details"></app-final-details>
+    </div>
+    <div class="col s12 l6">
+      <div class="card" *ngIf="contractor.accountStatus === 'restricted'">
+        <div class="card-content">
+          <div class="section">
+            <div class="row">
+              <div class="col offset offset-s1 s10 offset-m2 m8 center">
+                <div class="section">
+                  <h3>In order to bid on this job, you'll need to get approved. Reach out to your homepainter contact to
+                    see what we need from you, or get in touch below.</h3>
+                </div>
+                <div class="section">
+                  <a href="mailto:support@thehomepainter.com">
+                    <button class="btn full-width blue white-text waves-effect waves-light">
+                      Email support@thehomepainter.com
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card" *ngIf="contractor.accountStatus === 'approved'">
+        <div class="card-content">
+          <div class="section">
+            <div class="row">
+              <div class="col offset offset-s1 s10 offset-m2 m8 center">
+                <div class="section">
+                  <h3>You can bid projects and get hired. We'll ask you to fill out your bank details when it's time to
+                    send you a down payment. You can also set them up now.</h3>
+                </div>
+                <div class="section">
+                  <button class="btn full-width blue white-text waves-effect waves-light" routerLink="/complete-setup">
+                    Setup Payouts
+                  </button>
+                  <p class="desc-text grey-text mt5">Takes 3 minutes to complete</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card" [ngClass]="contractor.accountStatus === 'restricted' ? 'grey lighten-3 disabled' : ''">
+        <div class="card-content">
+          <div class="row">
+            <form class="col offset offset-s1 s10 offset-m2 m8" [formGroup]="contractorProposalFormGroup"
+                  (submit)="onSubmit()">
+              <div class="section">
+                <div class="row">
+                  <div class="col s12 center">
+                    <p>{{submitted ? 'Your quote' : 'Enter your quote'}}</p>
+                    <p class="mt25" style="display: inline-block">Questions?</p>
+                    <button type="button" class="btn blue white-text waves-effect waves-light ml15 modal-trigger"
+                            data-target="send_message_modal"
+                            [disabled]="submitting || contractor.accountStatus === 'restricted'">
+                      Message Customer
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="section">
+                <div class="row mb0">
+                  <div class="col s12 input-field">
+                    <input id="quote" type="text" formControlName="price"
+                           [ngClass]="!contractorProposalFormGroup.get('price').touched ? '' : contractorProposalFormGroup.get('price').valid ? 'valid' : 'invalid'">
+                    <label for="quote">Quote</label>
+                    <span class="helper-text red-text"
+                          *ngIf="contractorProposalFormGroup.get('price').touched && !contractorProposalFormGroup.get('price').valid && !submitted">
+                    {{
+                      !contractorProposalFormGroup.get('price').value
+                        ? 'Required'
+                        : contractorProposalFormGroup.get('price').value.includes(',') || contractorProposalFormGroup.get('price').value.includes('$')
+                        ? 'Remove any commas or dollar signs from the value'
+                        : 'Please enter a valid number greater than 0'
+                      }}
+                  </span>
+                  </div>
+                </div>
+                <div class="row mb0">
+                  <div class="col s12 input-field">
+                    <input formControlName="earliestStartDate" type="text" class="datepicker" id="earliestStartDate"
+                           (change)="onSelectedEarliestDate($event)">
+                    <label for="earliestStartDate">Earliest you can start the project</label>
+                  </div>
+                </div>
+                <div class="row mb0">
+                  <div class="col s12 input-field">
+                    <textarea id="message" class="materialize-textarea" formControlName="message" data-length="350"></textarea>
+                    <label for="message">Optional - Message to customer</label>
+                    <span class="helper-text red-text"
+                          *ngIf="contractorProposalFormGroup.get('message').touched && !contractorProposalFormGroup.get('message').valid">
+                      Please enter a message under 350 characters
+                  </span>
+                  </div>
+                </div>
+              </div>
+              <div class="section">
+                <div class="row">
+                  <div class="col s12">
+                    <p>Tips</p>
+                    <p>Say hello, mention availability, or tell the customer anything you think will help you win the
+                      job!</p>
+                  </div>
+                </div>
+              </div>
+              <div class="section">
+                <div class="row">
+                  <div class="col s12" *ngIf="submitting">
+                    <div class="preloader-wrapper small active">
+                      <div class="spinner-layer spinner-blue">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                      <div class="spinner-layer spinner-red">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                      <div class="spinner-layer spinner-yellow">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                      <div class="spinner-layer spinner-green">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col s12">
+                    <button type="submit" class="btn full-width waves-effect waves-light" style="width: 100%"
+                            [disabled]="submitting || submitted || contractorProposalFormGroup.invalid || contractor.accountStatus === 'restricted'">
+                      {{submitted ? 'Submitted' : 'Submit'}}
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s12 center">
+                    <a class="secondary" (click)="decline()">Not interested? Decline Proposal.</a>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="resp500" class="banner">
+  <div class="banner-content">
+    <div class="icon white-text orange circle">
+      <i class="material-icons">error_outline</i>
+    </div>
+    <p>There was an error performing this action. If you feel there is an error, please contact us at
+      support@thehomepainter.com</p>
+  </div>
+  <div class="banner-action">
+    <button class="btn-flat banner-close">dismiss</button>
+    <a href="mailto:support@homepainter.com">
+      <button class="btn-flat">Send Email</button>
+    </a>
+  </div>
+</div>
+<div id="missingProjectDetailsBanner" class="banner">
+  <div class="banner-content">
+    <div class="icon white-text orange circle">
+      <i class="material-icons">error_outline</i>
+    </div>
+    <p>There was an error retrieving the project details. Please refresh the page or contact us at
+      support@thehomepainter.com.</p>
+  </div>
+  <div class="banner-action">
+    <button class="btn-flat banner-close">dismiss</button>
+    <a href="mailto:support@homepainter.com">
+      <button class="btn-flat">Send Email</button>
+    </a>
+  </div>
+</div>
+
+<div id="send_message_modal" class="modal">
+  <div class="modal-content">
+    <div class="row">
+      <div class="col s12">
+        <button class="btn-flat blue-text modal-close right">
+          <i class="material-icons">close</i>
+        </button>
+        <p class="truncate mt0 mr0" style="font-size: 1.3rem !important;">Message to {{customer.firstName}}</p>
+      </div>
+    </div>
+    <div class="row mb0">
+      <form class="col s12" [formGroup]="sendMessageModalForm" (submit)="sendMessage()">
+        <div class="input-field">
+          <textarea class="materialize-textarea" formControlName="message" placeholder="Send a message to the customer"
+                    (keydown.enter)="$event.stopPropagation(); sendMessage();"></textarea>
+        </div>
+        <div class="progress" *ngIf="sendMessageModalForm.disabled">
+          <div class="indeterminate blue"></div>
+        </div>
+        <button type="submit" class="right btn blue white-text waves-effect waves-light"
+                [disabled]="sendMessageModalForm.invalid || sendMessageModalForm.disabled">Send Message</button>
+        <button type="button" class="right btn-flat modal-close mr15">cancel</button>
+      </form>
+    </div>
+  </div>
+</div>

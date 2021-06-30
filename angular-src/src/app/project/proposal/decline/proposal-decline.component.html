@@ -1,0 +1,135 @@
+<div class="container">
+  <div class="row">
+    <div class="col offset-xl3 xl6 offset-l2 l8 s12">
+      <div class="card">
+        <div class="card-content">
+          <div class="row">
+            <form class="col offset offset-s2 s8" [formGroup]="contractorProposalFormGroup" (submit)="onSubmit()">
+              <div class="section">
+                <div class="row">
+                  <div class="col s12 center">
+                    <p>Decline a Job</p>
+                  </div>
+                </div>
+              </div>
+              <div class="section">
+                <div class="section">
+                  <div class="row">
+                    <div class="col s12">
+                      <p>Interested in sharing why? Share your feedback so we can improve!</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb0">
+                  <div class="col s12 input-field">
+                    <select formControlName="reason">
+                      <option value="none" selected>None / Prefer not to specify</option>
+                      <option value="tooBusyScheduleFull">Too Busy / Schedule Full</option>
+                      <option value="notEnoughProjectDetails">Not enough project details</option>
+                      <option value="projectTooSmall">Project too small</option>
+                      <option value="projectTooLarge">Project too large</option>
+                      <option value="other">Other</option>
+                    </select>
+                    <label>Reason</label>
+                  </div>
+                  <div class="col s12 input-field">
+                    <textarea id="feedback" class="materialize-textarea" formControlName="feedback"></textarea>
+                    <label for="feedback">Optional - Feedback</label>
+                  </div>
+                </div>
+              </div>
+              <div class="section">
+                <div class="row">
+                  <div class="col s12" *ngIf="submitting">
+                    <div class="preloader-wrapper small active">
+                      <div class="spinner-layer spinner-blue">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                      <div class="spinner-layer spinner-red">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                      <div class="spinner-layer spinner-yellow">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                      <div class="spinner-layer spinner-green">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col s12">
+                    <button type="submit" class="btn full-width waves-effect waves-light"
+                            [ngClass]="{'pulse slow': contractorProposalFormGroup.valid }"
+                            [disabled]="submitting || !contractorProposalFormGroup.valid">Submit
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s12 center">
+                    <a class="secondary" (click)="accept()">Want the job? Accept Proposal.</a>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="resp200" class="banner">
+  <div class="banner-content">
+    <div class="icon white-text blue circle">
+      <i class="material-icons">check</i>
+    </div>
+    <p>Your response has been submitted!<br></p>
+  </div>
+  <div class="banner-action">
+    <button class="btn-flat banner-close">dismiss</button>
+  </div>
+</div>
+<div id="resp500" class="banner">
+  <div class="banner-content">
+    <div class="icon white-text orange circle">
+      <i class="material-icons">error_outline</i>
+    </div>
+    <p>There was an error declining this proposal. This may be because your link has expired, or you have tried to
+      decline a proposal more than once. If you feel there is an error, please contact us at support@thehomepainter.com</p>
+  </div>
+  <div class="banner-action">
+    <button class="btn-flat banner-close">dismiss</button>
+    <a href="mailto:support@homepainter.com"><button class="btn-flat">Send Email</button></a>
+  </div>
+</div>

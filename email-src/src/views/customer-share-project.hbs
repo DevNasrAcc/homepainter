@@ -1,0 +1,16 @@
+<h1>{{storageName2DisplayName this.user.firstName}} shared a project with you.</h1>
+
+{{#if this.message.message}}
+    <p>{{storageName2DisplayName this.user.firstName}} writes:</p>
+    <p style="margin-left: 10%; margin-right: 10%">"{{this.message.message}}"</p>
+    <br>
+{{/if}}
+<p>Use the link below to view the project. You'll receive quotes from painters over the next several days.</p>
+<br>
+<p><small>By continuing to homepainter, you agree to accept our <a href="{{url}}/terms-and-conditions" target="_blank" rel="noopener">terms of use</a> and
+    <a href="{{url}}/privacy-policy" target="_blank" rel="noopener">privacy policy</a></small>.</p>
+<div class="center">
+    <a href="{{url}}/login?projectId={{this.project._id}}&token={{this.jwt.token}}">
+    <button class="btn">View Project</button>
+    </a>
+</div>

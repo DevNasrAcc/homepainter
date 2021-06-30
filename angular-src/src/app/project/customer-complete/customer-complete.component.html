@@ -1,0 +1,211 @@
+<div class="container">
+  <div class="row">
+    <div class="col m2 hide-on-small-only">
+      <div class="card pushpin">
+        <div class="card-content">
+          <div class="progress">
+            <div class="determinate" [ngStyle]="{width: ((progress.length / numQuestions) * 100) + '%'}"></div>
+          </div>
+          <small>{{progress.length}} / {{numQuestions}} questions answered</small>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m8">
+      <div class="card">
+        <div class="card-content">
+          <div class="row">
+            <form class="col offset-s1 s10" [formGroup]="projectCompleteFormGroup" (submit)="onSubmit()">
+              <div class="section">
+                <div class="row">
+                  <div class="col s12 center">
+                    <h2>Project Feedback</h2>
+                    <p>Please fill out the following survey to provide feedback on the painter.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="section">
+                <project-feedback [id]="'contractorOverall'"
+                                  [question]="'How satisfied are you with the painter overall?'"
+                                  [inputLabel]="'Can you tell us more? (optional)'"
+                                  [rating]="projectCompleteFormGroup.get('contractorOverallRating')"
+                                  [comment]="projectCompleteFormGroup.get('contractorOverallComment')"
+                                  (keyup)="trackPageAction('contractorOverall')"
+                                  (click)="trackPageAction('contractorOverall'); updateProgress();"></project-feedback>
+
+                <project-feedback [id]="'contractorProfessionalism'"
+                                  [question]="'How satisfied are you with the painters professionalism?'"
+                                  [inputLabel]="'Can you tell us more? (optional)'"
+                                  [rating]="projectCompleteFormGroup.get('contractorProfessionalismRating')"
+                                  [comment]="projectCompleteFormGroup.get('contractorProfessionalismComment')"
+                                  (keyup)="trackPageAction('contractorProfessionalism')"
+                                  (click)="trackPageAction('contractorProfessionalism'); updateProgress();"></project-feedback>
+
+                <project-feedback [id]="'contractorQuality'"
+                                  [question]="'How satisfied are you with the painters quality?'"
+                                  [inputLabel]="'Can you tell us more? (optional)'"
+                                  [rating]="projectCompleteFormGroup.get('contractorQualityRating')"
+                                  [comment]="projectCompleteFormGroup.get('contractorQualityComment')"
+                                  (keyup)="trackPageAction('contractorQuality')"
+                                  (click)="trackPageAction('contractorQuality'); updateProgress();"></project-feedback>
+
+                <div class="row">
+                  <div class="col s12">
+                    <p>Additional comments about the painter</p>
+                    <div class="divider"></div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col offset-s1 s10 input-field">
+                    <textarea id="contractorAdditionalComment" class="materialize-textarea"
+                              formControlName="contractorAdditionalComment" (blur)="trackPageAction('contractorAdditionalComment')"></textarea>
+                    <label for="contractorAdditionalComment">Optional</label>
+                  </div>
+                </div>
+              </div>
+              <div class="section">
+                <project-feedback [id]="'homepainterOverall'"
+                                  [question]="'How satisfied are you with homepainter?'"
+                                  [inputLabel]="'How can we improve?'"
+                                  [rating]="projectCompleteFormGroup.get('homepainterOverallRating')"
+                                  [comment]="projectCompleteFormGroup.get('homepainterOverallComment')"
+                                  (keyup)="trackPageAction('homepainterOverall')"
+                                  (click)="trackPageAction('homepainterOverall'); updateProgress();"></project-feedback>
+                <div class="row">
+                  <div class="col s12">
+                    <p>Additional comments about homepainter</p>
+                    <div class="divider"></div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col offset-s1 s10 input-field">
+                    <textarea id="homepainterAdditionalComment" class="materialize-textarea"
+                              formControlName="homepainterAdditionalComment" (blur)="trackPageAction('homepainterAdditionalComment')"></textarea>
+                    <label for="homepainterAdditionalComment">Optional</label>
+                  </div>
+                </div>
+              </div>
+              <div class="section" *ngIf="showAdditionalWebsites">
+                <p>Would you consider rating us on these websites?
+                  <materialize-tooltip class="right" [data]="'Rating us on other sites helps us be more relevant so others can find us too!'">
+                  </materialize-tooltip>
+                </p>
+                <div class="divider"></div>
+                <div class="row mt25">
+                  <div class="col offset-l2 l2 s4 center">
+                    <a href="https://www.facebook.com/hirehomepainter/reviews" target="_blank" (click)="externalLinkClicked('facebook')">
+                      <picture>
+                        <source data-srcset="/assets/images/facebookIcon.webp" type="image/webp">
+                        <source data-srcset="/assets/images/facebookIcon.png" type="image/png">
+                        <img class="responsive-img lazyload" data-src="/assets/images/facebookIcon.png" alt="facebook logo">
+                      </picture>
+                    </a>
+                  </div>
+                  <div class="col offset-l1 l2 s4 center">
+                    <a href="https://g.page/HomePainter/review" target="_blank" (click)="externalLinkClicked('google')">
+                      <picture>
+                        <source data-srcset="/assets/images/googleIcon.webp" type="image/webp">
+                        <source data-srcset="/assets/images/googleIcon.png" type="image/png">
+                        <img class="responsive-img lazyload" data-src="/assets/images/googleIcon.png" alt="google logo">
+                      </picture>
+                    </a>
+                  </div>
+                  <div class="col offset-l1 l2 s4 center">
+                    <a href="https://nextdoor.com/pages/homepainter-llc-ames-ia/recommend/" target="_blank" (click)="externalLinkClicked('nextdoor')">
+                      <picture>
+                        <source data-srcset="/assets/images/nextdoorIcon.webp" type="image/webp">
+                        <source data-srcset="/assets/images/nextdoorIcon.png" type="image/png">
+                        <img class="responsive-img lazyload" data-src="/assets/images/nextdoorIcon.png" alt="nextdoor logo">
+                      </picture>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="section">
+                <div class="row">
+                  <div class="col s12" *ngIf="submitting">
+                    <div class="preloader-wrapper small active">
+                      <div class="spinner-layer spinner-blue">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                      <div class="spinner-layer spinner-red">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                      <div class="spinner-layer spinner-yellow">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                      <div class="spinner-layer spinner-green">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col s12">
+                    <button type="submit" class="btn full-width waves-effect waves-light"
+                            [disabled]="submitting || !projectCompleteFormGroup.valid">Submit Feedback
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="resp200" class="banner">
+  <div class="banner-content">
+    <div class="icon white-text blue circle">
+      <i class="material-icons">check</i>
+    </div>
+    <p>We have received your response! Thank you for your feedback!</p>
+  </div>
+  <div class="banner-action">
+    <button class="btn-flat banner-close">dismiss</button>
+  </div>
+</div>
+<div id="resp500" class="banner">
+  <div class="banner-content">
+    <div class="icon white-text orange circle">
+      <i class="material-icons">error_outline</i>
+    </div>
+    <p>There was an issue submitting your feedback. If you feel there is an error, please contact us at
+      support@thehomepainter.com</p>
+  </div>
+  <div class="banner-action">
+    <button class="btn-flat banner-close">dismiss</button>
+    <a href="mailto:support@thehomepainter.com"><button class="btn-flat">Send Email</button></a>
+  </div>
+</div>

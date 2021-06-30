@@ -1,0 +1,199 @@
+<div class="container">
+  <div class="section">
+    <div class="row">
+      <div class="col s12 offset-l2 l8">
+        <h1 [ngClass]="tokenPayload ? 'blue-text' : 'grey-text'">Notification Preferences</h1>
+        <hr class="gray-border">
+
+        <div class="card red" *ngIf="!tokenPayload">
+          <div class="card-content">
+            <p class="white-text"><i class="material-icons white-text left">error_outline</i> We could not retrieve your
+              information because you are missing the required information containing your email and security token.</p>
+          </div>
+        </div>
+
+        <div class="card green" *ngIf="success">
+          <div class="card-content">
+            <p class="white-text"><i class="material-icons white-text left">check</i> Your preferences have been updated!</p>
+          </div>
+        </div>
+
+        <div class="card red" *ngIf="error">
+          <div class="card-content">
+            <p class="white-text"><i class="material-icons white-text left">error_outline</i> There was an error
+              updating your preferences. Please email us at
+              <a class="white-text underline-text" href="mailto:support@thehomepainter.com">support@thehomepainter.com</a>.</p>
+          </div>
+        </div>
+
+        <form class="white br2 pt25 pb25 pl25 pr25 mt25 z-depth-1" [formGroup]="notificationPreferencesForm" (submit)="onSubmit()">
+          <div class="row">
+            <div class="col s12">
+              <table class="striped">
+                <thead>
+                <tr>
+                  <th><h2 class="mar0" [ngClass]="{'grey-text': !tokenPayload}">Homepainter Updates</h2></th>
+                  <th class="grey-text"><i class="material-icons tiny-small left">email</i><br class="show-on-small hide-on-med-and-up"> EMAIL</th>
+                  <th class="grey-text"><i class="material-icons tiny-small left">smartphone</i><br class="show-on-small hide-on-med-and-up"> TEXT</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>
+                    <p [ngClass]="{'grey-text': !tokenPayload}"><b>Product Updates</b></p>
+                    <p class="grey-text text-darken-2">Get the latest features and product updates from homepainter.</p>
+                  </td>
+                  <td formGroupName="email">
+                    <p>
+                      <label>
+                        <input type="checkbox" class="filled-in" formControlName="sendProductNews" />
+                        <span></span>
+                      </label>
+                    </p>
+                  </td>
+                  <td>
+                    <p>
+                      <label>
+                        <input type="checkbox" class="filled-in" disabled />
+                        <span></span>
+                      </label>
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p [ngClass]="{'grey-text': !tokenPayload}"><b>Homepainter News and Offers</b></p>
+                    <p class="grey-text text-darken-2">Company news, promotions, discounts, and events for you.</p>
+                  </td>
+                  <td formGroupName="email">
+                    <p>
+                      <label>
+                        <input type="checkbox" class="filled-in" formControlName="sendPromotional" />
+                        <span></span>
+                      </label>
+                    </p>
+                  </td>
+                  <td>
+                    <p>
+                      <label>
+                        <input type="checkbox" class="filled-in" disabled />
+                        <span></span>
+                      </label>
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p [ngClass]="{'grey-text': !tokenPayload}"><b>Homepainter Blog</b></p>
+                    <p class="grey-text text-darken-2">Get the latest home improvement topics and articles sent directly to you.</p>
+                  </td>
+                  <td formGroupName="email">
+                    <p>
+                      <label>
+                        <input type="checkbox" class="filled-in" formControlName="sendBlog" />
+                        <span></span>
+                      </label>
+                    </p>
+                  </td>
+                  <td>
+                    <p>
+                      <label>
+                        <input type="checkbox" class="filled-in" disabled />
+                        <span></span>
+                      </label>
+                    </p>
+                  </td>
+                </tr>
+
+<!--                <tr class="hide"></tr>-->
+                <tr>
+                  <th colspan="3" class="pt50">
+                    <h2 class="mar0" [ngClass]="{'grey-text': !tokenPayload}">Your Projects</h2>
+                  </th>
+                </tr>
+                <tr *ngIf="this.tokenPayload && this.tokenPayload.__t === 'contractor'">
+                  <td>
+                    <p [ngClass]="{'grey-text': !tokenPayload}"><b>New & Invited Projects</b></p>
+                    <p class="grey-text text-darken-2">Get notified when a new project is available or when a homeowner invites you to bid on a project.</p>
+                  </td>
+                  <td formGroupName="email">
+                    <p>
+                      <label>
+                        <input type="checkbox" class="filled-in" formControlName="sendProjectNotices" />
+                        <span></span>
+                      </label>
+                    </p>
+                  </td>
+                  <td formGroupName="mobile">
+                    <p>
+                      <label>
+                        <input type="checkbox" class="filled-in" formControlName="sendProjectNotices" />
+                        <span></span>
+                      </label>
+                    </p>
+                  </td>
+                </tr>
+                <tr *ngIf="this.tokenPayload && this.tokenPayload.__t === 'customer'">
+                  <td>
+                    <p [ngClass]="{'grey-text': !tokenPayload}"><b>New Quotes</b></p>
+                    <p class="grey-text text-darken-2">Get notices when a painter enters a bid on your project.</p>
+                  </td>
+                  <td formGroupName="email">
+                    <p>
+                      <label>
+                        <input type="checkbox" class="filled-in" formControlName="sendProjectNotices" />
+                        <span></span>
+                      </label>
+                    </p>
+                  </td>
+                  <td formGroupName="mobile">
+                    <p>
+                      <label>
+                        <input type="checkbox" class="filled-in" formControlName="sendProjectNotices" />
+                        <span></span>
+                      </label>
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p [ngClass]="{'grey-text': !tokenPayload}"><b>New Messages</b></p>
+                    <p class="grey-text text-darken-2">Get notified when you receive a new message on homepainter.</p>
+                  </td>
+                  <td formGroupName="email">
+                    <p>
+                      <label>
+                        <input type="checkbox" class="filled-in" formControlName="sendMessageNotices" />
+                        <span></span>
+                      </label>
+                    </p>
+                  </td>
+                  <td formGroupName="mobile">
+                    <p>
+                      <label>
+                        <input type="checkbox" class="filled-in" formControlName="sendMessageNotices" />
+                        <span></span>
+                      </label>
+                    </p>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <hr class="gray-border">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12 l4">
+              <button class="btn-flat blue-text underline-text" type="button" [disabled]="notificationPreferencesForm.disabled"
+                      (click)="onSubmit(true)">UNSUBSCRIBE FROM ALL</button>
+            </div>
+            <div class="col s12 show-on-small hide-on-med-and-up mt25"></div>
+            <div class="col s12 l8 right-align">
+              <button class="btn blue white-text waves-effect waves-light mr10" type="submit" [disabled]="notificationPreferencesForm.disabled">update preferences</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

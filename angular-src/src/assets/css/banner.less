@@ -1,0 +1,83 @@
+.banner {
+  visibility: hidden;
+  position: fixed;
+  top: 64px;
+  z-index: 996;
+  background-color: white;
+  border-bottom: 1px solid lightgray;
+  width: 100%;
+  padding: 8px;
+
+  @media (max-width: 600px) {
+    top: 56px;
+  }
+
+  .banner-content {
+    display: inline-block;
+    position: relative;
+    left: calc(50% - (668px / 2));
+    width: 440px;
+    padding-top: 4px;
+
+    .icon {
+      padding-left: 8px;
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      top: 50%;
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+
+      .material-icons {
+        position: relative;
+        top: 20%;
+      }
+    }
+
+    p {
+      padding-left: 16px;
+      width: 440px;
+      display: inline-block;
+    }
+
+    .icon + p {
+      margin-left: 48px; // account for icon position: absolute
+      padding-left: 24px;
+      width: 400px;
+    }
+
+    @media (max-width: 720px) {
+      left: 0;
+      width: 100%;
+
+      .icon {
+        padding-left: 8px;
+      }
+
+      p {
+        padding: 0 8px;
+        width: 100%;
+      }
+
+      .icon + p {
+        padding-left: 16px;
+        padding-right: 8px;
+        width: calc(100% - 40px);
+      }
+    }
+  }
+
+  .banner-action {
+    display: inline-block;
+    position: relative;
+    left: calc(50% - (668px / 2));
+    bottom: 0;
+    width: 248px;
+    text-align: right;
+
+    @media (max-width: 720px) {
+      left: 0;
+      width: 100%;
+    }
+  }
+}

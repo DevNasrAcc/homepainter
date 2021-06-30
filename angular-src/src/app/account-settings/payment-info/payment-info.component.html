@@ -1,0 +1,166 @@
+<div class="section">
+  <h5 class="generalheading">Payment Info</h5>
+  <hr/>
+  <h6 class="mb15 letter2">Manage Payment Settings</h6>
+  <p class="indenttext">We work with Stripe to securely process and manage payments. Use stripe to view and manage payouts from homepainter.</p>
+  <form [formGroup]="paymentInfoForm" (ngSubmit)="onSubmit()" *ngIf="general.accountStatus === 'approved' || contractor.accountStatus === 'restricted'">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 offset-l2 l8">
+          <div class="card">
+            <div class="card-content">
+              <div class="row">
+                <div class="col s12">
+                  <h1 class="center">Let's get you paid</h1>
+                  <p>We use Stripe to process secure payouts for all projects you book through homepainter. Use the link
+                    below to set up your preferred method for receiving payments.</p>
+                </div>
+              </div>
+    
+              <div class="center">
+                <a>
+                  <img data-src="/assets/images/stripe-button.png" class="lazyload" alt="stripe button">
+                </a>
+              </div>
+    
+              <div class="center" *ngIf="!error">
+                <div class="preloader-wrapper small active">
+                  <div class="spinner-layer spinner-blue">
+                    <div class="circle-clipper left">
+                      <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                  <div class="spinner-layer spinner-red">
+                    <div class="circle-clipper left">
+                      <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                  <div class="spinner-layer spinner-yellow">
+                    <div class="circle-clipper left">
+                      <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                  <div class="spinner-layer spinner-green">
+                    <div class="circle-clipper left">
+                      <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="center" *ngIf="error">
+                <p class="red-text"><i class="material-icons">error_outline</i> There was an error :(</p>
+              </div>
+    
+              <div class="center">
+                <p class="green-text"><i class="material-icons">check</i> All Done!</p>
+                <p>You may now close the page.</p>
+              </div>
+    
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="successBanner" class="banner">
+      <div class="banner-content">
+        <div class="icon white-text blue circle">
+          <i class="material-icons">check</i>
+        </div>
+        <p>Your profile is set up. Please close the window.<br></p>
+      </div>
+      <div class="banner-action">
+        <button class="btn-flat banner-close">dismiss</button>
+      </div>
+    </div>
+    <div id="errorBanner" class="banner">
+      <div class="banner-content">
+        <div class="icon white-text orange circle">
+          <i class="material-icons">error_outline</i>
+        </div>
+        <p>Opps, there was a problem!<br>Please email us at support@thehomepainter.com</p>
+      </div>
+      <div class="banner-action">
+        <button class="btn-flat banner-close">dismiss</button>
+        <a href="mailto:support@thehomepainter.com"><button class="btn-flat">Send Email</button></a>
+      </div>
+    </div>    
+  </form>
+  <form [formGroup]="paymentInfoForm" (ngSubmit)="onSubmit()" *ngIf="general.accountStatus === 'active'">
+    
+    <!-- <div class="row">
+      <div class="input-field col s12">
+        <input formControlName="stripeLink" id="stripe_link" type="text"
+               [ngClass]="paymentInfoForm.get('stripeLink').touched ? paymentInfoForm.get('stripeLink').valid ? 'valid' : 'invalid' : ''"/>
+        <label for="stripe_link">Stripe Link</label>
+        <span class="helper-text red-text"
+              *ngIf="paymentInfoForm.get('stripeLink').touched && !paymentInfoForm.get('stripeLink').valid">
+          Please enter a valid Stripe link
+        </span>
+      </div>
+      <div class="input-field col s12">
+        <input formControlName="w9Info" id="w9_info" type="text"
+               [ngClass]="paymentInfoForm.get('w9Info').touched ? paymentInfoForm.get('w9Info').valid ? 'valid' : 'invalid' : ''"/>
+        <label for="w9_info">W9 Info</label>
+        <span class="helper-text red-text"
+              *ngIf="paymentInfoForm.get('w9Info').touched && !paymentInfoForm.get('w9Info').valid">
+          Please enter a valid W9 code
+        </span>
+      </div>
+    </div> -->
+    <div class="row">
+      <div class="col s12 left-align">
+        <a href="{{urlstripe}}" class="btn waves-effect waves-light blue white-text w150">
+          Set up stripe account
+        </a>
+      </div>
+    </div>
+  </form>
+  <br>
+  <br>
+</div>
+<!-- <div class="section">
+  <p>Recent Payments</p>
+  <table class="striped">
+    <thead>
+    <tr>
+      <th>Date</th>
+      <th>Details</th>
+      <th>Amount (USD)</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    </tbody>
+  </table>
+</div> -->

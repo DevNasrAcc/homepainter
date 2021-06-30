@@ -1,0 +1,112 @@
+<div class="section mb-50">
+  <h5 class="generalheading">General Settings</h5>
+  <hr/>
+  <div class="chip letter2 nobg">
+    ACCOUNT STATUS
+    <div class="flexcol" style="display: flex;" *ngIf="general.accountStatus === 'approved'">
+      <span class="blue spanClass white-text">
+        <div class="div1"><i class="wdinherit material-icons pr25 green-text">fiber_manual_record_icon</i></div>
+        <div class="div2"><b>APPROVED ACCOUNT</b></div>
+      </span>
+      <span class="font_and_line" style="margin-left: 5px;margin-top: 5px;">*Payment not setup</span>
+    </div>
+    <div style="display: flex;" *ngIf="general.accountStatus === 'rejected'">
+      <span class="blue spanClass white-text">
+        <div class="div1"><i class="wdinherit material-icons pr25 red-text">fiber_manual_record_icon</i></div>
+        <div class="div2"><b>REJECTED ACCOUNT</b></div>
+      </span>
+    </div>
+    <div class="flexcol2" style="display: flex;" *ngIf="general.accountStatus === 'restricted'">
+    <span class="blue spanClass2 white-text">
+      <div class="div1"><i class="wdinherit material-icons pr25 orange-text">fiber_manual_record_icon</i></div>
+      <div class="div2"><b>RESTRICTED ACCOUNT</b></div>
+    </span>
+    <span class="font_and_line" style="margin-left: 5px;margin-top: 5px;">*Your account is restricted because it is either pending approval or requiring you to update insurance info.</span>
+    </div>
+    <div style="display: flex;" *ngIf="general.accountStatus === 'active'">
+      <span class="blue spanClass3 white-text">
+        <div class="div1"><i class="wdinherit material-icons pr25 green-text">fiber_manual_record_icon</i></div>
+        <div class="div2"><b>ACTIVE ACCOUNT</b></div>
+      </span>
+    </div>
+    <div style="display: flex;" *ngIf="general.accountStatus === 'inactive'">
+      <span class="blue spanClass white-text">
+        <div class="div1"><i class="wdinherit material-icons pr25 light-green-text">fiber_manual_record_icon</i></div>
+        <div class="div2"><b>INACTIVE ACCOUNT</b></div>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="section mb30">
+  <form [formGroup]="generalSettingsForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col s12 input-field">
+        <input formControlName="firstName" id="first_name" type="text" class="hp-text-input inputfieldnew"
+               [ngClass]="generalSettingsForm.get('firstName').touched ? generalSettingsForm.get('firstName').valid ? 'valid' : 'invalid' : ''"/>
+        <label for="first_name" class="ml10">First Name</label>
+        <span class="helper-text red-text"
+              *ngIf="generalSettingsForm.get('firstName').touched && !generalSettingsForm.get('firstName').valid">
+          Please enter a valid first name
+        </span>
+      </div>
+      <div class="col s12 input-field">
+        <input formControlName="lastName" id="last_name" type="text" class="hp-text-input inputfieldnew"
+               [ngClass]="generalSettingsForm.get('lastName').touched ? generalSettingsForm.get('lastName').valid ? 'valid' : 'invalid' : ''"/>
+        <label for="last_name" class="ml10">Last Name</label>
+        <span class="helper-text red-text"
+              *ngIf="generalSettingsForm.get('lastName').touched && !generalSettingsForm.get('lastName').valid">
+          Please enter a valid last name
+        </span>
+      </div>
+      <div class="col s12 input-field">
+        <input formControlName="email" id="email" type="email" class="hp-text-input inputfieldnew"
+               [ngClass]="generalSettingsForm.get('email').touched ? generalSettingsForm.get('email').valid ? 'valid' : 'invalid' : ''"/>
+        <label for="email" class="ml10">Email</label>
+        <span class="helper-text red-text"
+              *ngIf="generalSettingsForm.get('email').touched && !generalSettingsForm.get('email').valid">
+          Please enter a valid email address
+        </span>
+      </div>
+      <div class="col s12 input-field">
+        <input formControlName="mobile" id="mobile" type="tel" class="hp-text-input inputfieldnew"
+               [ngClass]="generalSettingsForm.get('mobile').touched ? generalSettingsForm.get('mobile').valid ? 'valid' : 'invalid' : ''"/>
+        <label for="mobile" class="ml10">Phone Number</label>
+        <span class="helper-text red-text"
+              *ngIf="generalSettingsForm.get('mobile').touched && !generalSettingsForm.get('mobile').valid">
+          Please enter a valid phone number (000-000-0000)
+        </span>
+      </div>
+      
+      <!-- <div class="col s12 input-field">
+        <select class="inputfieldnew">
+          <option value="" disabled selected>Choose your timezone</option>
+          <option value="1">(UTC-04:00) Eastern</option>
+          <option value="2">(UTC-05:00) Central</option>
+          <option value="3">(UTC-06:00) Mountain</option>
+          <option value="4">(UTC-07:00) Mountain AZ</option>
+          <option value="5">(UTC-07:00) Pacific</option>
+          <option value="6">(UTC-08:00) Alaskan</option>
+          <option value="7">(UTC-10:00) Hawaiian</option>
+        </select>
+        <label>Select Your Timezone</label>
+      </div> -->
+    </div>
+    <br>
+    <div class="row">
+      <div class="col s12 center">
+        <button type="submit" class="btn waves-effect waves-light blue white-text w150 btnletter" [disabled]="!generalSettingsForm.valid">update</button>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- <div class="section">
+  <div class="row mt25">
+    <div class="dangerzone col s12">
+      <blockquote>
+        <b>DANGER ZONE:</b> Account Deactivation. You will not
+        be able to access projects or submit quotes once you deactivate.
+      </blockquote>
+      <button type="button" class="btn waves-effect red">deactivate</button>
+    </div>
+  </div>
+</div> -->

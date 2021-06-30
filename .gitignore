@@ -1,0 +1,56 @@
+# compiled output
+/angular-src/dist
+/angular-src/tmp
+/angular-src/out-tsc
+/server-src/src/public
+
+# profiling files
+chrome-profiler-events*.json
+speed-measure-plugin*.json
+
+# dependencies
+node_modules
+
+# IDEs and editors
+.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+/HomePainter-Dev.iml
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# misc
+/angular-src/.sass-cache
+/angular-src/connect.lock
+/angular-src/coverage
+/angular-src/typings
+/angular-src/libpeerconnection.log
+.nyc_output
+npm-debug.log
+yarn-error.log
+testem.log
+zips.txt
+cities.txt
+report
+/stripe.exe
+/stripe
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# environment variables
+.env
+
+# generated pdf files
+generated-pdf-files/*.pdf

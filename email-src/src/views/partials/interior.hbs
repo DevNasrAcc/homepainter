@@ -1,0 +1,58 @@
+<h3>{{this.defaultName}}</h3>
+<table>
+    <tbody>
+    <tr style="border-bottom: none">
+        <td style="width: 50%"><p class="center-align" style="margin: 0">Size: {{this.size.label}}</p></td>
+        <td style="width: 50%"><p class="center-align" style="margin: 0">Height: {{this.height.label}}</p></td>
+    </tr>
+    </tbody>
+</table>
+<table>
+    <thead>
+    <tr>
+        <th style="width: 35%;">Item</th>
+        <th style="width: 65%">Details</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each this.items}}
+        <tr>
+            <td><strong>{{storageName2DisplayName this.type}}</strong></td>
+            <td>
+                <ul style="margin: 0">
+                    {{#if this.additionalDetails.ceilingType}}
+                        <li>Ceiling Type: {{storageName2DisplayName this.additionalDetails.ceilingType}}</li>
+                    {{/if}}
+                    {{#if this.additionalDetails.amount}}
+                        <li>Amount: {{this.additionalDetails.amount}}</li>
+                    {{/if}}
+                    {{#if this.additionalDetails.conditions.length}}
+                        <li>
+                            Conditions:
+                            {{#each this.additionalDetails.conditions}}
+                                {{storageName2DisplayName this}},
+                            {{/each}}
+                        </li>
+                    {{/if}}
+                    {{#if this.additionalDetails.cabinetGrainType}}
+                        <li>Cabinet Grain: {{storageName2DisplayName this.additionalDetails.cabinetGrainType}}</li>
+                    {{/if}}
+                    {{#if this.additionalDetails.cabinetCondition}}
+                        <li>Cabinet Condition: {{storageName2DisplayName this.additionalDetails.cabinetCondition}}</li>
+                    {{/if}}
+                    {{#if this.additionalDetails.cabinetTreatment}}
+                        <li>Cabinet Treatment: {{storageName2DisplayName this.additionalDetails.cabinetTreatment}}</li>
+                    {{/if}}
+                    {{#if this.additionalDetails.numberOfCabinetDrawers}}
+                        <li>Number of Drawers: {{this.additionalDetails.numberOfCabinetDrawers}}</li>
+                    {{/if}}
+                    {{#if this.additionalDetails.numberOfCabinetDoors}}
+                        <li>Number of Doors: {{this.additionalDetails.numberOfCabinetDoors}}</li>
+                    {{/if}}
+                </ul>
+            </td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
+{{>photos this}}

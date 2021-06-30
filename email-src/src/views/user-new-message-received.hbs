@@ -1,0 +1,14 @@
+<h1>You've received messages from {{from.firstName}}</h1>
+<br>
+<p>Hi {{to.firstName}},</p>
+<br>
+<p>{{from.firstName}} left you new messages on homepainter.</p>
+<br>
+<hr>
+<br>
+<p>{{message.message}}</p>
+<div class="center">
+    <a href="{{url}}/messages?selectedConversation={{from._id}}">
+    <button class="btn">View and Reply</button>
+    </a>
+</div>

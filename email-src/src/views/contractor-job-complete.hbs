@@ -1,0 +1,10 @@
+<h1>How is {{storageName2DisplayName this.customer.firstName}}'s job coming?</h1>
+
+<p>The end date you entered has arrived! To ask {{this.customer.firstName}} for the final payment, we need to know if
+    the job is complete. Please jump on our website and let us know! <small>This link will expire in 3 days.</small></p>
+
+<div class="center">
+    <a href="{{url}}/contractor-complete/{{order._id}}">
+        <button class="btn">Mark Project Complete</button>
+    </a>
+</div>

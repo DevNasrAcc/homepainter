@@ -1,0 +1,106 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12 offset-l2 l8">
+      <div class="card">
+        <div class="card-content">
+          <div class="row">
+            <div class="col s12">
+              <h1 class="center">Let's get you paid</h1>
+              <p>We use Stripe to process secure payouts for all projects you book through homepainter. Use the link
+                below to set up your preferred method for receiving payments.</p>
+            </div>
+          </div>
+
+          <div class="center" *ngIf="href">
+            <a [href]="href">
+              <img data-src="/assets/images/stripe-button.png" class="lazyload" alt="stripe button">
+            </a>
+          </div>
+
+          <div class="center" *ngIf="!href && !complete && !error">
+            <div class="preloader-wrapper small active">
+              <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                  <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+              <div class="spinner-layer spinner-red">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                  <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+              <div class="spinner-layer spinner-yellow">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                  <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+              <div class="spinner-layer spinner-green">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                  <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="center" *ngIf="error">
+            <p class="red-text"><i class="material-icons">error_outline</i> There was an error :(</p>
+          </div>
+
+          <div class="center" *ngIf="complete">
+            <p class="green-text"><i class="material-icons">check</i> All Done!</p>
+            <p>You may now close the page.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="successBanner" class="banner">
+  <div class="banner-content">
+    <div class="icon white-text blue circle">
+      <i class="material-icons">check</i>
+    </div>
+    <p>Your profile is set up. Please close the window.<br></p>
+  </div>
+  <div class="banner-action">
+    <button class="btn-flat banner-close">dismiss</button>
+  </div>
+</div>
+<div id="errorBanner" class="banner">
+  <div class="banner-content">
+    <div class="icon white-text orange circle">
+      <i class="material-icons">error_outline</i>
+    </div>
+    <p>Opps, there was a problem!<br>Please email us at support@thehomepainter.com</p>
+  </div>
+  <div class="banner-action">
+    <button class="btn-flat banner-close">dismiss</button>
+    <a href="mailto:support@thehomepainter.com"><button class="btn-flat">Send Email</button></a>
+  </div>
+</div>

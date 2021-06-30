@@ -1,0 +1,19 @@
+{
+    "projectId": {
+        "type": "mongoId",
+        "required": true
+    },
+    "reason": {
+        "type": "string",
+        "required": true,
+        "enum": [
+            "none",
+            "tooBusyScheduleFull",
+            "notEnoughProjectDetails",
+            "projectTooSmall",
+            "projectTooLarge",
+            "other"
+        ]
+    },
+    "feedback": "string"
+}

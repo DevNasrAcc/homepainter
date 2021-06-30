@@ -1,0 +1,86 @@
+<div class="grey lighten-4" style="border-top: solid 1px lightgray" *ngIf="displayFooter">
+  <div class="container">
+    <div class="section">
+      <div class="row mb0">
+        <div class="col s12 m12 l5 center-on-med-and-down mt20 mb20">
+          <picture class="hide-on-small-only center">
+            <source data-srcset="/assets/images/homeIconLarge.webp" type="image/webp">
+            <source data-srcset="/assets/images/homeIconLarge.png" type="image/png">
+            <img class="wd30 lazyload" data-src="/assets/images/homeIconLarge.png" alt="homeIconLarge logo">
+          </picture><br>
+          <picture class="center">
+            <source data-srcset="/assets/images/logo.webp" type="image/webp">
+            <source data-srcset="/assets/images/logo.png" type="image/png">
+            <img class="lazyload" data-src="/assets/images/logo.png" alt="logo">
+          </picture>
+          <p class="mb0" style="color: #384F69;">An online marketplace for painting</p>
+        </div>
+        <div class="col s6 m3 l2 mb10 line_height">
+          <h3 class="footer_heading">ABOUT</h3>
+          <p class="mb0"><a class="fontcnfrm" href="https://thehomepainter.com/blog/get-to-know-homepainter/" target="_blank">
+            How it works</a></p>
+          <p class="mb0"><a class="fontcnfrm" href="https://thehomepainter.com/blog/tag/homepainter-news/" target="_blank">
+            Homepainter News</a></p>
+          <p class="mb0"><a class="fontcnfrm" href="https://thehomepainter.com/blog/" target="_blank">
+            Blog</a></p>
+        </div>
+        <div class="col s6 m3 l2 mb10 line_height">
+          <h3 class="footer_heading">SITE</h3>
+          <p class="mb0"><a class="fontcnfrm" routerLink="/">Homepage</a></p>
+          <p class="mb0"><a class="fontcnfrm" routerLink="/painter-signup">Painter Signup</a></p>
+          <p class="mb0"><a class="fontcnfrm" routerLink="/realtor-signup">Realtor Signup</a></p>
+          <p class="mb0"><a class="fontcnfrm" routerLink="/project/details">Create a project</a></p>
+        </div>
+        <div class="col s12 m6 l3 mb10">
+          <h3 class="footer_heading">contact</h3>
+          <p class="mb0" style="color: #384F69;">Reach out to our team via email or by filling out our <a class="contactustag" routerLink="/contact-us">contact us </a> form.</p>
+          <p class="mb0"><a class="fontcnfrm" href="mailto:support@thehomepainter.com">support@thehomepainter.com</a></p>
+        </div>
+      </div>
+      <hr>
+      <div class="row mb0">
+        <div class="col m8 s12">
+          <p class="lt_space5"><span (click)="resetLocalStorage()">©{{year}}</span> THEHOMEPAINTER. ALL RIGHTS RESERVED.
+            <!-- <a routerLink="/privacy-policy">Privacy</a> · <a routerLink="/terms-and-conditions">Terms</a> -->
+          </p>
+        </div>
+        <div class="col m4 s12 right-align">
+          <a href="https://www.facebook.com/HomePainter-1252435358245828/" target="_blank"
+             (click)="externalLinkClicked('facebook')">
+            <picture>
+              <source data-srcset="/assets/images/facebookIcon.svg" type="image/svg">
+              <source data-srcset="/assets/images/facebookIcon.webp" type="image/webp">
+              <source data-srcset="/assets/images/facebookIcon.png" type="image/png">
+              <img class="social-media-icon lazyload" data-src="/assets/images/facebookIcon.png" alt="facebook logo">
+            </picture>
+          </a>
+          <a href="https://www.instagram.com/homepainter_" target="_blank"
+             (click)="externalLinkClicked('instagram')">
+            <picture>
+              <source data-srcset="/assets/images/instagramIcon.svg" type="image/svg">
+              <source data-srcset="/assets/images/instagramIcon.webp" type="image/webp">
+              <source data-srcset="/assets/images/instagramIcon.png" type="image/png">
+              <img class="social-media-icon lazyload" data-src="/assets/images/instagramIcon.png" alt="instagram logo">
+            </picture>
+          </a>
+          <a href="https://g.page/homepainter" target="_blank"
+             (click)="externalLinkClicked('google')">
+            <picture>
+              <source data-srcset="/assets/images/googleIcon.webp" type="image/webp">
+              <source data-srcset="/assets/images/googleIcon.png" type="image/png">
+              <img class="social-media-icon lazyload" data-src="/assets/images/googleIcon.png" alt="google logo">
+            </picture>
+          </a>
+          <a href="https://nextdoor.com/pages/homepainter-llc-ames-ia/recommend/" target="_blank"
+             (click)="externalLinkClicked('nextdoor')">
+            <picture>
+              <source data-srcset="/assets/images/nextdoorIcon.webp" type="image/webp">
+              <source data-srcset="/assets/images/nextdoorIcon.png" type="image/png">
+              <img class="social-media-icon lazyload" data-src="/assets/images/nextdoorIcon.png" alt="nextdoor logo">
+            </picture>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

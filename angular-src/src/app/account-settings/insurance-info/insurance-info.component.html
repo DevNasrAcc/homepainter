@@ -1,0 +1,53 @@
+<div class="section">
+  <h5 class="generalheading">Insurance Info</h5>
+  <hr/>
+  <h6 class="mb15 letter2">Insurance Status</h6>
+  <div *ngIf="contractor.insurance.verified===true" class="chip" style="border-radius: 5px;background-color:rgb(125 208 113);">
+    <span class="white-text"><b>Verified</b></span>
+    <!-- <ng-template #notInsured><span class="white-text" *ngIf="contractor.insurance; else notInsured"><b>EXPIRED</b></span></ng-template> -->
+  </div>
+  <div *ngIf="contractor.insurance.insured===false" class="chip" style="border-radius: 5px;background-color:rgb(226 69 47);">
+    <span class="white-text"><b>Incomplete</b></span>
+  </div>
+  <div *ngIf="curdate>contractor.insurance.expirationDate" class="chip" style="border-radius: 5px;background-color:rgb(226 69 47);">
+    <span class="white-text"><b>Expired</b></span>
+  </div>
+  <div *ngIf="contractor.insurance.verified===false" class="chip" style="border-radius: 5px;background-color:rgb(216 215 79);">
+    <span class="white-text"><b>In Review</b></span>
+  </div>
+</div>
+<div class="section">
+  <form [formGroup]="insuranceInfoForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <label class="ml10 insuranctext">Insurance File</label>
+      <div class="col s12 file-field input-field flexdis">
+        <div class="file-path-wrapper">
+          <input class="file-path validate inputfieldnew hp-text-input" type="text">
+        </div>
+        <div class="white btn ml20 inputfieldnew2">
+          <div (click)="uploadPdf()" class="dpflex">
+            <img src="../../../assets/images/baseline_backup_black_24dp.png" class="insurancesvg"/>
+            <span>Upload</span>
+          </div>
+          <input class="inputfieldnew hp-text-input" (change)="savefile($event)" id="insurance_file" formControlName="insuranceFile" type="file">
+        </div>
+      </div>
+      <div class="col s3 input-field" style="width: auto;">
+        <input formControlName="insuranceStart" class="inputfieldnew hp-text-input" type="text" id="insurance_start"
+        />
+        <label for="insurance_start" class="ml10">Name of Provider</label>
+      </div>
+      <div class="col s3 input-field" style="width: auto;">
+        <input formControlName="insuranceEnd" type="text" class="datepicker hp-text-input inputfieldnew" id="insurance_end"
+               [ngClass]="insuranceInfoForm.get('insuranceEnd').touched ? insuranceInfoForm.get('insuranceEnd').valid ? 'valid' : 'invalid' : ''"/>
+        <label for="insurance_end" class="ml10">Expiration Date</label>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col s12 center">
+        <button type="submit" class="btn waves-effect waves-light blue white-text w150 btnletter">update</button>
+      </div>
+    </div>
+  </form>
+</div>

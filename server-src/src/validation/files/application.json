@@ -1,0 +1,44 @@
+{
+    "firstName": {
+        "type": "string",
+        "minLength": 3,
+        "required": true
+    },
+    "lastName": {
+        "type": "string",
+        "minLength": 3,
+        "required": true
+    },
+    "email": {
+        "type": "object",
+        "required": true,
+        "fields": {
+            "address": {
+                "type": "email",
+                "required": true
+            },
+            "sendPromotional": {
+                "type": "boolean",
+                "required": true
+            }
+        }
+    },
+    "mobile": {
+        "type": "object",
+        "fields": {
+            "number": {
+                "type": "mobilePhone",
+                "required": true
+            }
+        }
+    },
+    "companyName": "string",
+    "password": {
+        "type": "password",
+        "required": true
+    },
+    "acceptedTermsAndPrivacy": {
+        "type": "boolean",
+        "required": true
+    }
+}

@@ -1,0 +1,63 @@
+<div class="container pt10 pb10" *ngIf="project.details.getProgress() > 0.99">
+  <div class="row mb0">
+    <div class="col s12" [ngClass]="{'m6 l9': projectViewState === 'awaitingContactInfo'}">
+      <p *ngIf="projectViewState==='awaitingContactInfo'">We're almost there! Enter your contact info to receive emails about incoming quotes.</p>
+      <p *ngIf="projectViewState==='invitingPainters'">Your project is submitted. Send requests to more painters to get additional quotes.</p>
+      <p *ngIf="projectViewState==='selectedPainter'">Your paint project is ready to book! Review the final details and checkout.</p>
+    </div>
+    <div class="col s12 m6 l3 right-align mt10" *ngIf="projectViewState === 'awaitingContactInfo'">
+      <div class="center-on-small-only">
+        <button class="btn white blue-text waves-effect waves-light waves-blue" (click)="modalOpenSubject.next()">Enter Contact Info</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="project-content" class="blue lighten-3">
+  <div class="container">
+    <div class="section">
+      <div class="row">
+        <div class="col offset-l1 l10 s12">
+          <div class="tab-wrapper z-depth-1" [ngClass]="router.url !== '/project/explore-painters' ? router.url !== '/project/hire' ? '' : 'blue-second-half' : 'blue-first-half'">
+            <a routerLinkActive="active" class="tab" routerLink="explore-painters"><span>Explore <span class="hide-on-small-only">Painters</span></span></a>
+            <a routerLinkActive="active" class="tab" routerLink="details"><span><span class="hide-on-small-only">View </span>Project</span></a>
+            <a routerLinkActive="active" class="tab" routerLink="view-quotes"><span><span class="hide-on-small-only">View </span>Quotes</span></a>
+            <a routerLinkActive="active" class="tab" routerLink="hire"><span>Hire</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="row mb0" *ngIf="project.isCheckedOut()">
+        <div class="col offset-l1 l10 s12">
+          <div class="card horizontal">
+            <div class="card-image blue valign-wrapper">
+              <i class="material-icons white-text pl25 pr25">check</i>
+            </div>
+            <div class="card-stacked">
+              <div class="card-content">
+                <p>This project is booked. Visit the <a routerLinkActive="active" routerLink="/messages">messages</a> page to talk with your painter about the next steps.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+    <div class="section">
+      <div class="row mb0">
+        <div class="col s12 center-align">
+          <button class="btn-flat black-text" (click)="giveFeedbackClicked()">
+            <i class="material-icons left black-text">feedback</i>Give Feedback
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<user-management-contact-info [showStartInvitingPainters]="true" [openSubject]="modalOpenSubject">
+</user-management-contact-info>
+
+<general-feedback-element [asModal]="true" [open]="generalFeedbackModal.open" (close)="onCloseFeedback()"
+                          (fieldUpdated)="onUpdateGeneralFeedbackField($event)" (formSubmit)="onSubmitFeedback($event)">
+</general-feedback-element>

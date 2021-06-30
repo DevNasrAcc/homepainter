@@ -1,0 +1,56 @@
+<table>
+    <tbody>
+    <tr>
+        <td>Project Location</td>
+        <td>{{this.address.zipCode}}</td>
+    </tr>
+    <tr>
+        <td>Type of home</td>
+        <td>{{storageName2DisplayName this.jobType}}</td>
+    </tr>
+    <tr>
+        <td>Type of project</td>
+        <td>
+            {{storageName2DisplayName this.decorType}}
+        </td>
+    </tr>
+    {{#if this.interior.length}}
+        <tr>
+            <td>Number of rooms</td>
+            <td>{{this.interior.length}}</td>
+        </tr>
+    {{/if}}
+    {{#if this.exterior.length}}
+        <tr>
+            <td>Exterior</td>
+            <td>{{#each this.exterior}}
+                {{this.defaultName}}{{#unless @last}},{{/unless}}
+            {{/each}}</td>
+        </tr>
+    {{/if}}
+    <tr>
+        <td>Who will supply the paint</td>
+        <td>
+            {{storageName2DisplayName this.paintSupplier}}
+            {{#if (eq this.paintSupplier 'customer')}}
+                <p>Brand: {{#if (eq this.paintBrand '')}}TBD{{else}}{{this.paintBrand}}{{/if}}</p>
+                <p>Product: {{#if (eq this.paintProduct '')}}TBD{{else}}{{this.paintProduct}}{{/if}}</p>
+            {{/if}}
+        </td>
+    </tr>
+    {{#if (eq this.decorType 'interior')}}
+        <tr>
+            <td>Occupancy</td>
+            <td>{{storageName2DisplayName this.occupancy}}</td>
+        </tr>
+    {{/if}}
+    <tr>
+        <td>Project time frame</td>
+        <td>{{storageName2DisplayName this.timeFrameStart}}<br>{{storageName2DisplayName this.timeFrameEnd}}
+            {{#if (eq this.timeFrameEnd "endDateInMind")}}
+                (by {{this.expectedEndDate}})
+            {{/if}}
+        </td>
+    </tr>
+    </tbody>
+</table>

@@ -1,0 +1,67 @@
+@import "../../../../variables";
+
+agm-map {
+  height: 300px;
+
+  * {
+    font-family: Lato;
+  }
+
+  a {
+    color: darkblue;
+  }
+}
+
+.card-title {
+  padding: 15px 34px;
+  margin-bottom: 0 !important;
+  background: #F3F3F0;
+}
+
+.card-content {
+  padding: 0 !important;
+  background-color: #ebebeb;
+
+  &.white {
+    background-color: white;
+  }
+
+  .row {
+    margin-bottom: 0;
+
+    @media @mobile {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  .card-action {
+    background-color: white;
+
+    &.hazy-blue {
+      background-color: #E3F4F8;
+    }
+
+    .sectional {
+      border-right: 2px solid rgba(151, 151, 151, .4);
+
+      &:last-child {
+        border-right: none;
+      }
+
+      @media @mobile {
+        border-right: none;
+        border-top: 2px solid rgba(151, 151, 151, .4);
+        width: 100%;
+
+        &:first-child {
+          border-top: none;
+        }
+      }
+    }
+  }
+}
+
+tbody > tr:last-child {
+  border-bottom: none !important;
+}

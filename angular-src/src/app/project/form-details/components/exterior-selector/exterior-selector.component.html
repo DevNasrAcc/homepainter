@@ -1,0 +1,11 @@
+<h1 class="center">What would you like to get painted?</h1>
+
+<div class="center mb25">
+  <button class="big-btn square"
+          [ngClass]="structure.selected ? 'selected' : ''"
+          *ngFor="let structure of exteriorStructures; let i = index"
+          (click)="selectStructure(i)">
+    {{structure.title}}
+  </button>
+</div>
+

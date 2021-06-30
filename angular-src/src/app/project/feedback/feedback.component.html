@@ -1,0 +1,40 @@
+<div class="section">
+  <div class="row">
+    <div class="col s12">
+      <p>{{question}}</p>
+      <div class="divider"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col offset-s1 s2 push-s8 center input-field star-button" [ngClass]="{'selected': rating.value >= 5}" (click)="rate(5)">
+      <i class="material-icons small star-border">star_border</i>
+      <i class="material-icons small star-full">star</i>
+      <br>
+      <i class="material-icons tiny">thumb_up</i>
+    </div>
+    <div class="col s2 push-s4 center input-field star-button" [ngClass]="{'selected': rating.value >= 4}" (click)="rate(4)">
+      <i class="material-icons small star-border">star_border</i>
+      <i class="material-icons small star-full">star</i>
+    </div>
+    <div class="col s2 center input-field star-button" [ngClass]="{'selected': rating.value >= 3}" (click)="rate(3)">
+      <i class="material-icons small star-border">star_border</i>
+      <i class="material-icons small star-full">star</i>
+    </div>
+    <div class="col s2 pull-s4 center input-field star-button" [ngClass]="{'selected': rating.value >= 2}" (click)="rate(2)">
+      <i class="material-icons small star-border">star_border</i>
+      <i class="material-icons small star-full">star</i>
+    </div>
+    <div class="col s2 pull-s8 center input-field star-button" [ngClass]="{'selected': rating.value >= 1}" (click)="rate(1)">
+      <i class="material-icons small star-border">star_border</i>
+      <i class="material-icons small star-full">star</i>
+      <br>
+      <i class="material-icons tiny">thumb_down</i>
+    </div>
+  </div>
+  <div class="row" *ngIf="rating.value && rating.value < 4">
+    <div class="col offset-s1 s10 input-field">
+      <textarea [id]="id + 'Textarea'" class="materialize-textarea" (keyup)="updateText($event.target.value)"></textarea>
+      <label [for]="id + 'Textarea'">{{inputLabel}}</label>
+    </div>
+  </div>
+</div>

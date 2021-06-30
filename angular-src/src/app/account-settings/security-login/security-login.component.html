@@ -1,0 +1,46 @@
+<div class="section mb30">
+  <h5 class="generalheading">Security & login</h5>
+  <hr/>
+  <h6 class="mb15 cp">Change Password</h6>
+  <form [formGroup]="securitySettingsForm" (ngSubmit)="onSubmit()">
+    <div class="row mt30">
+      <div class="input-field col s12">
+        <input formControlName="currentPassword" id="currentPassword" class="hp-text-input inputfieldnew" type="password"
+               [ngClass]="securitySettingsForm.get('currentPassword').touched ? securitySettingsForm.get('currentPassword').valid ? 'valid' : 'invalid' : ''"/>
+        <label for="currentPassword" class="ml10">Current Password</label>
+        <span class="helper-text red-text"
+              *ngIf="securitySettingsForm.get('currentPassword').touched && !securitySettingsForm.get('currentPassword').valid">
+          Please enter your current password with: at least 8 characters, a digit, a lowercase character, an uppercase character, and a special character
+        </span>
+      </div>
+      <div class="input-field col s12">
+        <input formControlName="newPassword" id="newPassword" class="hp-text-input inputfieldnew" type="password"
+               [ngClass]="securitySettingsForm.get('newPassword').touched ? securitySettingsForm.get('newPassword').valid ? 'valid' : 'invalid' : ''"/>
+        <label for="newPassword" class="ml10">New Password</label>
+        <span class="helper-text red-text"
+              *ngIf="securitySettingsForm.get('newPassword').touched && !securitySettingsForm.get('newPassword').valid">
+          Please enter a new password with: at least 8 characters, a digit, a lowercase character, an uppercase character, and a special character
+        </span>
+      </div>
+      <div class="input-field col s12">
+        <input formControlName="confirmNewPassword" id="confirmNewPassword" type="password" class="hp-text-input inputfieldnew"
+        [ngClass]="securitySettingsForm.get('confirmNewPassword').touched ? securitySettingsForm.get('email').valid ? 'valid' : 'invalid' : ''"/>
+        <label for="confirmNewPassword" class="ml10">Confirm Password</label>
+        <span class="helper-text red-text"
+              *ngIf="securitySettingsForm.get('confirmNewPassword').touched && !securitySettingsForm.get('confirmNewPassword').valid && securitySettingsForm.get('confirmNewPassword').value!==securitySettingsForm.get('newPassword').value">
+              Confirm password does not match new password
+        </span>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col s12 left-align">
+        <button type="submit" class="btn waves-effect waves-light blue white-text w150 btnletter"
+                [disabled]="!securitySettingsForm.valid">
+          update
+        </button>
+      </div>
+    </div>
+    <hr/>
+  </form>
+</div>

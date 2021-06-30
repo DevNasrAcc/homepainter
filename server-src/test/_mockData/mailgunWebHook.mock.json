@@ -1,0 +1,55 @@
+{
+    "signature": {
+        "timestamp": "1564606837",
+        "token": "e11d57a8812b0c79e126d74739131346f9a7d5dcf20c8fac58",
+        "signature": "9b8ca8a8d80696acd95970134c516ccd8c4bb7e8110711f3ed99556e60443a6f"
+    },
+    "event-data": {
+        "tags": [],
+        "timestamp": 1564606837.25495,
+        "storage": {
+            "url": "https://se.api.mailgun.net/v3/domains/mail.thehomepainter.com/messages/AgEFchLZZZoIl2JXyGZMUYeH6wyZUL7-ZA==",
+            "key": "AgEFchLZZZoIl2JXyGZMUYeH6wyZUL7-ZA=="
+        },
+        "recipient-domain": "thehomepainter.com",
+        "id": "2PBM53lvT7qnZS9zfalWsw",
+        "campaigns": [],
+        "user-variables": {},
+        "flags": {
+            "is-routed": false,
+            "is-authenticated": true,
+            "is-system-test": false,
+            "is-test-mode": false
+        },
+        "log-level": "info",
+        "envelope": {
+            "sending-ip": "69.72.42.4",
+            "sender": "jacob@thehomepainter.com",
+            "transport": "smtp",
+            "targets": "jacob@thehomepainter.com"
+        },
+        "message": {
+            "headers": {
+                "to": "jacob@thehomepainter.com",
+                "message-id": "7211b931-854c-ade8-b43e-aa170ae4431a@thehomepainter.com",
+                "from": "donotreply@thehomepainter.com",
+                "subject": "Completed Estimate to Follow Up With"
+            },
+            "attachments": [],
+            "size": 3431
+        },
+        "recipient": "jacob@thehomepainter.com",
+        "event": "delivered",
+        "delivery-status": {
+            "tls": true,
+            "mx-host": "aspmx.l.google.com",
+            "attempt-no": 1,
+            "description": "",
+            "session-seconds": 0.7517960071563721,
+            "utf8": true,
+            "code": 250,
+            "message": "OK",
+            "certificate-verified": true
+        }
+    }
+}

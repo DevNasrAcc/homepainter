@@ -1,0 +1,289 @@
+<!-- Jumbo header -->
+<div class="section blue lighten-3">
+  <div class="container m-headers center wd100">
+    <div class="row">
+      <div class="col s12 offset-l1 l4 ipad_w50">
+        <div class="row">
+          <div class="col s12 offset-m1 m10 l12 mleft">
+            <h1 class="style-1 textleft ml-2 textcenter">Create an account</h1>
+              <h2 class="mt0" style="display: inline-flex;">
+                <i class="material-icons blue-text pr10 iconsize">location_on</i>
+                <span class="nav-text icontext">Build a free local listing for customers to find your business. </span></h2>
+              <h2 class="mt0" style="display: inline-flex;">
+                <i class="material-icons blue-text pr10 iconsize">find_in_page</i>
+                <span class="nav-text icontext">View project details and quote available projects near you. </span></h2>
+              <h2 class="mt0" style="display: inline-flex;">
+                <i class="material-icons blue-text pr10 iconsize">show_chart</i>
+                <span class="nav-text icontext">Ditch lead sites and spend less time chasing leads and more time producing jobs. </span></h2>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 offset-l1 l5 ipad_w50">
+        <form class="form_ipad" [formGroup]="becomeAProFromGroup" (ngSubmit)="onSubmit()">
+          <div class="row">
+          <h2 class="center mg10">Ready to book jobs?</h2>
+          <div class="col s6 textleft">
+            <label for="firstName" class="labelfont">First Name</label>
+            <input id="firstName" class="inputClass" type="text" formControlName="firstName" autocomplete="given-name"
+                   [ngClass]="this.becomeAProFromGroup.get('firstName').touched ? this.becomeAProFromGroup.get('firstName').valid ? 'valid' : 'invalid' : ''"
+                   (blur)="trackPageAction('first_name')"/>
+            <span class="helper-text red-text"
+                  *ngIf="becomeAProFromGroup.get('firstName').touched && !becomeAProFromGroup.get('firstName').valid">Enter your first name</span>
+          </div>
+          <div class="col s6 textleft">
+            <label for="lastName" class="labelfont">Last Name</label>
+            <input id="lastName" class="inputClass" type="text" formControlName="lastName" autocomplete="family-name"
+                   [ngClass]="this.becomeAProFromGroup.get('lastName').touched ? this.becomeAProFromGroup.get('lastName').valid ? 'valid' : 'invalid' : ''"
+                   (blur)="trackPageAction('last_name')"/>
+            <span class="helper-text red-text"
+                  *ngIf="becomeAProFromGroup.get('lastName').touched && !becomeAProFromGroup.get('lastName').valid">Enter your last name</span>
+          </div>
+          <div class="col s12 textleft" formGroupName="email">
+            <label for="email" class="labelfont">Email</label>
+            <input id="email" class="inputClass" type="email" formControlName="address" autocomplete="email"
+                   [ngClass]="this.becomeAProFromGroup.get('email.address').touched ? this.becomeAProFromGroup.get('email.address').valid ? 'valid' : 'invalid' : ''"
+                   (blur)="trackPageAction('email')"/>
+            <span class="helper-text red-text"
+                  *ngIf="becomeAProFromGroup.get('email.address').touched && !becomeAProFromGroup.get('email.address').valid">Enter a valid email</span>
+          </div>
+          <div class="col s12 textleft" formGroupName="mobile">
+            <label for="phone" class="labelfont">Phone</label>
+            <input id="phone" class="inputClass" type="text" formControlName="number" autocomplete="tel"
+                   [ngClass]="this.becomeAProFromGroup.get('mobile.number').touched ? this.becomeAProFromGroup.get('mobile.number').valid ? 'valid' : 'invalid' : ''"
+                   (blur)="trackPageAction('mobile_number')"/>
+            <span class="helper-text red-text"
+                  *ngIf="becomeAProFromGroup.get('mobile.number').touched && !becomeAProFromGroup.get('mobile.number').valid">Enter a valid phone number</span>
+          </div>
+          <div class="col s12 textleft">
+            <label for="password" class="labelfont">Password</label>
+            <input id="password" class="inputClass" type="password" formControlName="password" autocomplete="current-password"
+                   [ngClass]="this.becomeAProFromGroup.get('password').touched ? this.becomeAProFromGroup.get('password').valid ? 'valid' : 'invalid' : ''"
+                   (blur)="trackPageAction('password')"/>
+            <span class="helper-text red-text" *ngIf="becomeAProFromGroup.get('password').touched && becomeAProFromGroup.get('password').value.length >= 8 && becomeAProFromGroup.get('password').invalid">
+              Password should contain one lowercase character, one uppercase character, one number, and one special character (!, #, $, etc.).
+            </span>
+            <span class="helper-text red-text" *ngIf="becomeAProFromGroup.get('password').touched && becomeAProFromGroup.get('password').value.length < 8">
+              Password must be at least eight characters long.
+            </span>
+          </div>
+          <!-- <div class="input-field">
+            <input id="confirmPassword" type="password" formControlName="confirmPassword" autocomplete="current-password"
+                   [ngClass]="this.becomeAProFromGroup.get('confirmPassword').touched ? this.becomeAProFromGroup.get('confirmPassword').valid && becomeAProFromGroup.get('confirmPassword').value === becomeAProFromGroup.get('password').value ? 'valid' : 'invalid' : ''"
+                   (blur)="trackPageAction('confirmPassword')"/>
+            <label for="confirmPassword">Confirm Password</label>
+            <span class="helper-text red-text"
+                  *ngIf="becomeAProFromGroup.get('confirmPassword').touched && becomeAProFromGroup.get('confirmPassword').value.length >= 8 && becomeAProFromGroup.get('confirmPassword').invalid">
+              Confirmation Password should contain one lowercase character, one uppercase character, one number, and one special character (!, #, $, etc.).
+            </span>
+            <span class="helper-text red-text" *ngIf="becomeAProFromGroup.get('confirmPassword').touched && becomeAProFromGroup.get('confirmPassword').value.length < 8">
+              Confirmation Password must be at least eight characters long.
+            </span>
+            <span class="helper-text red-text"
+                  *ngIf="becomeAProFromGroup.get('confirmPassword').touched && becomeAProFromGroup.get('confirmPassword').valid && becomeAProFromGroup.get('confirmPassword').value !== becomeAProFromGroup.get('password').value">Passwords do not match</span>
+          </div> -->
+          <!-- marketing / promotion -->
+          <div class="row">
+            <div class="col s12">
+              <p>
+                <label>
+                  <input type="checkbox" class="filled-in checkboxClass" formControlName="acceptedTermsAndPrivacy"
+                         (blur)="trackPageAction('terms_and_privacy')">
+                  <span>I have read and agree to the
+                    <a routerLink="/terms-and-conditions" target="_blank">HP Terms of Use</a> and
+                    <a routerLink="/privacy-policy" target="_blank">Privacy Policy</a>.
+                  </span>
+                </label>
+              </p>
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="row">
+            <div class="col s12 center">
+              <div class="preloader-wrapper small active mr20" *ngIf="submitting">
+                <div class="spinner-layer spinner-blue">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="gap-patch">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+                <div class="spinner-layer spinner-red">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="gap-patch">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+                <div class="spinner-layer spinner-yellow">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="gap-patch">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+                <div class="spinner-layer spinner-green">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="gap-patch">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+              </div>
+              <button class="btn waves-effect" type="submit" [disabled]="!becomeAProFromGroup.valid">
+                Create Profile
+              </button>
+            </div>
+          </div>
+        </div>
+          <a class="already_account" href="/login">Have an account? Sign in</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Why homepainter -->
+<div class="show-on-extra-large hide-on-large-only hide-on-med-and-down mt25 mb25"></div>
+<div class="section container pl15 pr15 ipad_container">
+  <div class="row">
+    <div class="col s12 offset-m1 m10 offset-l1 l10">
+      <p class="center ipad_none" style="margin-top: 42px">Ditch leads and start booking jobs online</p>
+      <h1 class="mt0 center ipad_padding">The only risk-free service for professionals</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12 offset-l1 l10">
+      <div class="row mb0">
+        <div class="col s12 l4 col14">
+          <div class="row mb0 value-prop-wrapper">
+            <div class="col s4 offset-m1 m2 l12 col-icons">
+              <picture>
+                <source data-srcset="/assets/images/custom-icons/Professionalism.webp" type="image/webp">
+                <source data-srcset="/assets/images/custom-icons/Professionalism.png" type="image/png">
+                <img data-src="/assets/images/custom-icons/Professionalism.png" class="responsive-img lazyload" alt="Free local listing">
+              </picture>
+            </div>
+            <div class="col s8 l12 col-icons-text">
+              <h2 class="mt0">Free local listing</h2>
+              <p>Homepainter is the only risk-free service helping your business succeed. Start getting local awareness by building your company profile.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 l4 col14">
+          <div class="row mb0 value-prop-wrapper">
+            <div class="col s4 offset-m1 m2 l12 col-icons">
+              <picture>
+                <source data-srcset="/assets/images/custom-icons/reviewing.webp" type="image/webp">
+                <source data-srcset="/assets/images/custom-icons/reviewing.png" type="image/png">
+                <img data-src="/assets/images/custom-icons/reviewing.png" class="responsive-img lazyload" alt="Get projects, not leads">
+              </picture>
+            </div>
+            <div class="col s8 l12 col-icons-text">
+              <h2 class="mt0">Get projects, not leads</h2>
+              <p>The days of purchasing expensive and unreliable leads are in the past. We send you real customer projects with all the info you need to provide a quote.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 l4 col14">
+          <div class="row mb0 value-prop-wrapper">
+            <div class="col s4 offset-m1 m2 l12 col-icons">
+              <picture>
+                <source data-srcset="/assets/images/custom-icons/project-support.webp" type="image/webp">
+                <source data-srcset="/assets/images/custom-icons/project-support.png" type="image/png">
+                <img data-src="/assets/images/custom-icons/project-support.png" class="responsive-img lazyload" alt="Project Support Image">
+              </picture>
+            </div>
+            <div class="col s8 l12 col-icons-text">
+              <h2 class="mt0">Project Support</h2>
+              <p>Our job is to help you succeed. Whether you have questions, concerns or customer disputes, our local project managers are here to help.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="section container pl15 pr15">
+  <div class="row">
+    <div class="col s12 offset-l1 l4 faq-top">
+      <div class="row">
+        <div class="col s12 offset-m1 m10 l12">
+          <h1 class="faq-title-margins center">Frequently Asked Questions</h1>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 offset-l1 l5">
+      <div class="row">
+        <div class="hide-on-med-and-down" style="margin-top: 27px"></div>
+        <div class="col s12 offset-m1 m10">
+          <ul class="collapsible expandable z-depth-0 no-border no-padding">
+            <li [id]="'li' + i" *ngFor="let item of faqItems; index as i">
+              <div class="collapsible-header no-border pl0 pr0 faq-question-container">
+                <i class="material-icons">{{item.open ? 'remove' : 'add'}}</i><p class="mt0 mb0 faq-question-text">{{item.q}}</p>
+              </div>
+              <div class="collapsible-body pl20 pr20"><p class="mt0 mb0">{{item.a}}</p></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="resp200" class="banner">
+  <div class="banner-content">
+    <div class="icon white-text blue circle">
+      <i class="material-icons">check</i>
+    </div>
+    <p>Thank you for signing up with homepainter. Your local account rep will contact you soon.<br></p>
+  </div>
+  <div class="banner-action">
+    <button class="btn-flat banner-close">dismiss</button>
+  </div>
+</div>
+<div id="resp409" class="banner">
+  <div class="banner-content">
+    <div class="icon white-text orange circle">
+      <i class="material-icons">error_outline</i>
+    </div>
+    <p>The email address you entered is already in use. If you think there is an error, please send us an email.</p>
+  </div>
+  <div class="banner-action">
+    <button class="btn-flat banner-close">dismiss</button>
+    <a href="mailto:support@thehomepainter.com">
+      <button class="btn-flat">Send Email</button>
+    </a>
+  </div>
+</div>
+<div id="resp500" class="banner">
+  <div class="banner-content">
+    <div class="icon white-text orange circle">
+      <i class="material-icons">error_outline</i>
+    </div>
+    <p>Opps, there was a problem!<br>Please email us at support@thehomepainter.com</p>
+  </div>
+  <div class="banner-action">
+    <button class="btn-flat banner-close">dismiss</button>
+    <a href="mailto:support@thehomepainter.com">
+      <button class="btn-flat">Send Email</button>
+    </a>
+  </div>
+</div>

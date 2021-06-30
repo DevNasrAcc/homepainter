@@ -1,0 +1,9 @@
+<h1 class="center-align">What is your zip code?</h1>
+<div class="row">
+  <div class="col s8 offset-s2">
+    <input type="number" placeholder="ZIP CODE" [(ngModel)]="details.address.zipCode"
+           (keyup)="validateForm(false)"
+           (keyup.enter)="trackPageAction(); validateForm(true)"
+           (blur)="trackPageAction(); validateForm(false);">
+  </div>
+</div>

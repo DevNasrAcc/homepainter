@@ -1,0 +1,25 @@
+{
+    "firstName": {
+        "type": "string",
+        "minLength": 2,
+        "required": true
+    },
+    "lastName": {
+        "type": "string",
+        "minLength": 2,
+        "required": true
+    },
+    "email": {
+        "type": "email",
+        "required": true
+    },
+    "projectId": {
+        "type": "mongoId",
+        "required": true
+    },
+    "message": {
+        "type": "string",
+        "required": false,
+        "maxLength": 200
+    }
+}

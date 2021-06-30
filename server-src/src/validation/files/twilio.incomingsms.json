@@ -1,0 +1,78 @@
+{
+    "ToCountry": {
+        "type": "string",
+        "required": true
+    },
+    "ToState": {
+        "type": "string",
+        "required": true
+    },
+    "SmsMessageSid": {
+        "type": "string",
+        "required": true
+    },
+    "NumMedia": {
+        "type": "string",
+        "required": true
+    },
+    "ToCity": {
+        "type": "string",
+        "required": true
+    },
+    "FromZip": {
+        "type": "string",
+        "required": true
+    },
+    "SmsSid": {
+        "type": "string",
+        "required": true
+    },
+    "FromState": {
+        "type": "string",
+        "required": true
+    },
+    "SmsStatus": {
+        "type": "string",
+        "required": true
+    },
+    "FromCity": {
+        "type": "string",
+        "required": true
+    },
+    "Body": {
+        "type": "string",
+        "required": true
+    },
+    "FromCountry": {
+        "type": "string",
+        "required": true
+    },
+    "To": {
+        "type": "mobilePhone",
+        "required": true
+    },
+    "ToZip": {
+        "type": "string",
+        "required": true
+    },
+    "NumSegments": {
+        "type": "string",
+        "required": true
+    },
+    "MessageSid": {
+        "type": "string",
+        "required": true
+    },
+    "AccountSid": {
+        "type": "string",
+        "required": true
+    },
+    "From": {
+        "type": "mobilePhone",
+        "required": true
+    },
+    "ApiVersion": {
+        "type": "string",
+        "required": true
+    }
+}

@@ -1,0 +1,126 @@
+<!-- Company Details -->
+<div class="section">
+  <div class="row">
+    <div class="col l5 offset-m2 m3 s5">
+      <img class="responsive-img" [src]="proposal.contractor.picture" alt="company photo">
+    </div>
+    <div class="col l7 m5 s7 right-align">
+      <p>{{proposal.contractor.organizationName}}</p>
+      <p class="mt0 mb0 goldenrod-text" *ngIf="proposal.contractor.completedJobCount === 0">New to homepainter</p>
+      <p class="mt0 mb0 goldenrod-text" *ngIf="proposal.contractor.completedJobCount > 0 && proposal.contractor.completedJobCount <= 3">
+        <i class="material-icons tiny-small">star_half</i> Rising Talent
+      </p>
+      <p class="mt0 mb0 goldenrod-text" *ngIf="proposal.contractor.completedJobCount > 3 && proposal.contractor.ratingCount === 0">
+        <i class="material-icons tiny">star_half</i> No Reviews Yet!
+      </p>
+      <p class="mt0 mb0" *ngIf="proposal.contractor.completedJobCount > 3 && proposal.contractor.ratingCount > 0">
+        <app-star-rating [value]="proposal.contractor.rating"></app-star-rating>
+      </p>
+    </div>
+  </div>
+</div>
+<div class="row mb0">
+  <div class="col l12 offset-m2 m8 s12">
+    <div class="divider"></div>
+  </div>
+</div>
+<!-- Room Details -->
+<div class="section black-text">
+  <div class="row">
+    <div class="col l12 offset-m2 m8 s12">
+      <div class="row mb0">
+        <div class="col s6"><p>{{projectDetails.getJobDetailsAsString() | storageName2DisplayName}}</p></div>
+        <div class="col s6 right-align">
+          <p><a (click)="onViewDetailsClicked()">VIEW DETAILS</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col l12 offset-m2 m8 s12">
+      <p>{{projectDetails.getWorkDetailsAsString()}}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col l12 offset-m2 m8 s12">
+      <p>{{projectDetails.getMaterialDetailsAsString()}}</p>
+    </div>
+  </div>
+</div>
+<!-- Promo Code -->
+<div class="row mb0">
+  <div class="col l12 offset-m2 m8 s12">
+    <div class="divider"></div>
+  </div>
+</div>
+<div class="section">
+  <div class="row">
+    <div class="col s12 center">
+      <p>Have an offer code?</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col xl7 l12 offset-m2 m6 s7">
+      <input style="margin-bottom: 0; height: 2rem;" type="text" placeholder="Enter Code" [(ngModel)]="promoCode"
+             [disabled]="pending" (keyup.enter)="onSubmitPromoCode()"/>
+    </div>
+    <div class="col xl5 l12 m2 s5 promo-btn-align">
+      <button class="btn btn-small" [disabled]="pending" (click)="onSubmitPromoCode()">UPDATE</button>
+    </div>
+  </div>
+</div>
+<!-- Contract Details -->
+<div class="row mb0">
+  <div class="col l12 offset-m2 m8 s12">
+    <div class="divider"></div>
+  </div>
+</div>
+<div class="section">
+  <div class="row">
+    <div class="col l6 offset-m2 m4 s6"><p>Contract Price</p></div>
+    <div class="col l6 m4 s6 right-align"><p>{{chargeDetails.contractPrice | currency}}</p></div>
+  </div>
+  <div class="row">
+    <div class="col l6 offset-m2 m4 s6"><p>Service Fee</p></div>
+    <div class="col l6 m4 s6 right-align"><p>{{chargeDetails.serviceFee | currency}}</p></div>
+  </div>
+  <div class="row">
+    <div class="col l6 offset-m2 m4 s6"><p>Discount</p></div>
+    <div class="col l6 m4 s6 right-align"><p>({{chargeDetails.discount | currency}})</p></div>
+  </div>
+  <div class="row">
+    <div class="col l6 offset-m2 m4 s6"><p>Tax</p></div>
+    <div class="col l6 m4 s6 right-align"><p>{{chargeDetails.tax | currency}}</p></div>
+  </div>
+  <div class="row">
+    <div class="col l6 offset-m2 m4 s6"><p>Total</p></div>
+    <div class="col l6 m4 s6 right-align"><p>{{chargeDetails.total | currency}}</p></div>
+  </div>
+</div>
+<!-- Due Amounts -->
+<div class="row mb0">
+  <div class="col l12 offset-m2 m8 s12">
+    <div class="divider"></div>
+  </div>
+</div>
+<div class="section">
+  <div class="row">
+    <div class="col l6 offset-m2 m4 s6"><p>Due now</p></div>
+    <div class="col l6 m4 s6 right-align"><p>{{chargeDetails.downPaymentAmount | currency}}</p></div>
+  </div>
+  <div class="row">
+    <div class="col l6 offset-m2 m4 s6"><p>Due upon completion</p></div>
+    <div class="col l6 m4 s6 right-align"><p>{{chargeDetails.dueLater | currency}}</p></div>
+  </div>
+</div>
+<!-- checkout button -->
+<div class="row">
+  <div class="col l12 offset-m2 m8 s12" *ngIf="pending">
+    <app-preloader-spinner [size]="'small'"></app-preloader-spinner>
+  </div>
+  <div class="col l12 offset-m2 m8 s12">
+    <button class="btn full-width mt25 mb10 waves-effect waves-light"
+            [ngClass]="{'pulse slow' : btnEnabled}" [disabled]="!btnEnabled || pending"
+            (click)="onCheckoutButtonClick()">{{btnText}}</button>
+  </div>
+</div>

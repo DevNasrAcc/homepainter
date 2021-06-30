@@ -1,0 +1,1283 @@
+{
+    "_id": "5d8bc7c6ea4cc6178c768ac2",
+    "house": {
+        "livingRoom": {
+            "size": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ac5",
+                    "name": "small",
+                    "length": 10,
+                    "width": 10,
+                    "prepHours": 1,
+                    "label": "10'x10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ac4",
+                    "name": "medium",
+                    "length": 15,
+                    "width": 15,
+                    "prepHours": 1.5,
+                    "label": "10'x10' to 15'x15'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ac3",
+                    "name": "large",
+                    "length": 20,
+                    "width": 20,
+                    "prepHours": 2,
+                    "label": "15'x15' to 20'x20'"
+                }
+            ],
+            "height": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ac8",
+                    "name": "average",
+                    "height": 10,
+                    "label": "10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ac7",
+                    "name": "aboveAverage",
+                    "height": 14,
+                    "label": "11' to 14'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ac6",
+                    "name": "vaulted",
+                    "height": 17,
+                    "label": "15' to 17'"
+                }
+            ],
+            "paintingPrimingTimeMultiplier": 1
+        },
+        "bedRoom": {
+            "size": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768acb",
+                    "name": "small",
+                    "length": 10,
+                    "width": 10,
+                    "prepHours": 0.5,
+                    "label": "10'x10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768aca",
+                    "name": "medium",
+                    "length": 15,
+                    "width": 15,
+                    "prepHours": 0.75,
+                    "label": "10'x10' to 15'x15'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ac9",
+                    "name": "large",
+                    "length": 20,
+                    "width": 20,
+                    "prepHours": 1,
+                    "label": "15'x15' to 20'x20'"
+                }
+            ],
+            "height": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ace",
+                    "name": "average",
+                    "height": 10,
+                    "label": "10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768acd",
+                    "name": "aboveAverage",
+                    "height": 14,
+                    "label": "11' to 14'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768acc",
+                    "name": "vaulted",
+                    "height": 17,
+                    "label": "15' to 17'"
+                }
+            ],
+            "paintingPrimingTimeMultiplier": 1
+        },
+        "bathroom": {
+            "size": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ad1",
+                    "name": "small",
+                    "length": 5,
+                    "width": 5,
+                    "prepHours": 0.5,
+                    "label": "5'x5' to less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ad0",
+                    "name": "medium",
+                    "length": 5,
+                    "width": 8,
+                    "prepHours": 0.75,
+                    "label": "5'x5' to 5'x8'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768acf",
+                    "name": "large",
+                    "length": 8,
+                    "width": 10,
+                    "prepHours": 1,
+                    "label": "5'x8' to 8'x10'"
+                }
+            ],
+            "height": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ad4",
+                    "name": "average",
+                    "height": 10,
+                    "label": "10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ad3",
+                    "name": "aboveAverage",
+                    "height": 14,
+                    "label": "11' to 14'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ad2",
+                    "name": "vaulted",
+                    "height": 17,
+                    "label": "15' to 17'"
+                }
+            ],
+            "paintingPrimingTimeMultiplier": 1.1
+        },
+        "diningRoom": {
+            "size": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ad7",
+                    "name": "small",
+                    "length": 10,
+                    "width": 10,
+                    "prepHours": 1,
+                    "label": "10'x10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ad6",
+                    "name": "medium",
+                    "length": 15,
+                    "width": 15,
+                    "prepHours": 1.5,
+                    "label": "10'x10' to 15'x15'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ad5",
+                    "name": "large",
+                    "length": 20,
+                    "width": 20,
+                    "prepHours": 2,
+                    "label": "15'x15' to 20'x20'"
+                }
+            ],
+            "height": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ada",
+                    "name": "average",
+                    "height": 10,
+                    "label": "10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ad9",
+                    "name": "aboveAverage",
+                    "height": 14,
+                    "label": "11' to 14'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ad8",
+                    "name": "vaulted",
+                    "height": 17,
+                    "label": "15' to 17'"
+                }
+            ],
+            "paintingPrimingTimeMultiplier": 1
+        },
+        "kitchen": {
+            "size": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768add",
+                    "name": "small",
+                    "length": 7,
+                    "width": 10,
+                    "prepHours": 2,
+                    "label": "7'x10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768adc",
+                    "name": "medium",
+                    "length": 12,
+                    "width": 12,
+                    "prepHours": 2.5,
+                    "label": "7'x10' to 12'x12'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768adb",
+                    "name": "large",
+                    "length": 15,
+                    "width": 15,
+                    "prepHours": 3,
+                    "label": "12'x12' to 15'x15'"
+                }
+            ],
+            "height": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ae0",
+                    "name": "average",
+                    "height": 10,
+                    "label": "10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768adf",
+                    "name": "aboveAverage",
+                    "height": 14,
+                    "label": "11' to 14'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ade",
+                    "name": "vaulted",
+                    "height": 17,
+                    "label": "15' to 17'"
+                }
+            ],
+            "paintingPrimingTimeMultiplier": 1.1
+        },
+        "laundryRoom": {
+            "size": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ae3",
+                    "name": "small",
+                    "length": 3,
+                    "width": 5,
+                    "prepHours": 0.5,
+                    "label": "3'x5' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ae2",
+                    "name": "medium",
+                    "length": 5,
+                    "width": 5,
+                    "prepHours": 0.75,
+                    "label": "3'x5' to 5'x5'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ae1",
+                    "name": "large",
+                    "length": 10,
+                    "width": 10,
+                    "prepHours": 1,
+                    "label": "5'x5' to 10'x10'"
+                }
+            ],
+            "height": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ae6",
+                    "name": "average",
+                    "height": 10,
+                    "label": "10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ae5",
+                    "name": "aboveAverage",
+                    "height": 14,
+                    "label": "11' to 14'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ae4",
+                    "name": "vaulted",
+                    "height": 17,
+                    "label": "15' to 17'"
+                }
+            ],
+            "paintingPrimingTimeMultiplier": 1
+        },
+        "entryway": {
+            "size": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ae9",
+                    "name": "small",
+                    "length": 4,
+                    "width": 6,
+                    "prepHours": 1,
+                    "label": "4'x6' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ae8",
+                    "name": "medium",
+                    "length": 6,
+                    "width": 10,
+                    "prepHours": 1.5,
+                    "label": "4'x6' to 6'x10'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768ae7",
+                    "name": "large",
+                    "length": 10,
+                    "width": 10,
+                    "prepHours": 2,
+                    "label": "6'x10' to 10'x10'"
+                }
+            ],
+            "height": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768aec",
+                    "name": "average",
+                    "height": 10,
+                    "label": "10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768aeb",
+                    "name": "aboveAverage",
+                    "height": 14,
+                    "label": "11' to 14'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768aea",
+                    "name": "vaulted",
+                    "height": 17,
+                    "label": "15' to 17'"
+                }
+            ],
+            "paintingPrimingTimeMultiplier": 1
+        },
+        "hallway": {
+            "size": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768aef",
+                    "name": "small",
+                    "length": 4,
+                    "width": 6,
+                    "prepHours": 0.5,
+                    "label": "4'x6' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768aee",
+                    "name": "medium",
+                    "length": 4,
+                    "width": 10,
+                    "prepHours": 0.75,
+                    "label": "4'x6' to 4'x10'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768aed",
+                    "name": "large",
+                    "length": 5,
+                    "width": 15,
+                    "prepHours": 1,
+                    "label": "4'x10' to 5'x15'"
+                }
+            ],
+            "height": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768af2",
+                    "name": "average",
+                    "height": 10,
+                    "label": "10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768af1",
+                    "name": "aboveAverage",
+                    "height": 14,
+                    "label": "11' to 14'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768af0",
+                    "name": "vaulted",
+                    "height": 17,
+                    "label": "15' to 17'"
+                }
+            ],
+            "paintingPrimingTimeMultiplier": 1
+        },
+        "stairway": {
+            "size": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768af5",
+                    "name": "small",
+                    "length": 10,
+                    "width": 10,
+                    "prepHours": 0.5,
+                    "label": "10'x10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768af4",
+                    "name": "medium",
+                    "length": 15,
+                    "width": 15,
+                    "prepHours": 1,
+                    "label": "10'x10' to 15'x15'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768af3",
+                    "name": "large",
+                    "length": 20,
+                    "width": 20,
+                    "prepHours": 1.5,
+                    "label": "15'x15' to 20'x20'"
+                }
+            ],
+            "height": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768af8",
+                    "name": "average",
+                    "height": 10,
+                    "label": "10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768af7",
+                    "name": "aboveAverage",
+                    "height": 14,
+                    "label": "11' to 14'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768af6",
+                    "name": "vaulted",
+                    "height": 17,
+                    "label": "15' to 17'"
+                }
+            ],
+            "paintingPrimingTimeMultiplier": 1.1
+        },
+        "sunRoom": {
+            "size": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768afb",
+                    "name": "small",
+                    "length": 7,
+                    "width": 10,
+                    "prepHours": 1,
+                    "label": "7'x10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768afa",
+                    "name": "medium",
+                    "length": 12,
+                    "width": 12,
+                    "prepHours": 1.5,
+                    "label": "7'x10' to 12'x12'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768af9",
+                    "name": "large",
+                    "length": 15,
+                    "width": 15,
+                    "prepHours": 2,
+                    "label": "12'x12' to 15'x15'"
+                }
+            ],
+            "height": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768afe",
+                    "name": "average",
+                    "height": 10,
+                    "label": "10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768afd",
+                    "name": "aboveAverage",
+                    "height": 14,
+                    "label": "11' to 14'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768afc",
+                    "name": "vaulted",
+                    "height": 17,
+                    "label": "15' to 17'"
+                }
+            ],
+            "paintingPrimingTimeMultiplier": 1.1
+        },
+        "garage": {
+            "size": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b01",
+                    "name": "small",
+                    "length": 12,
+                    "width": 20,
+                    "prepHours": 0.5,
+                    "label": "12'x20' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b00",
+                    "name": "medium",
+                    "length": 20,
+                    "width": 20,
+                    "prepHours": 1,
+                    "label": "12'x20' to 20'x20'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768aff",
+                    "name": "large",
+                    "length": 32,
+                    "width": 20,
+                    "prepHours": 1.5,
+                    "label": "20'x20' to 32'x20'"
+                }
+            ],
+            "height": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b04",
+                    "name": "average",
+                    "height": 10,
+                    "label": "10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b03",
+                    "name": "aboveAverage",
+                    "height": 14,
+                    "label": "11' to 14'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b02",
+                    "name": "vaulted",
+                    "height": 17,
+                    "label": "15' to 17'"
+                }
+            ],
+            "paintingPrimingTimeMultiplier": 1
+        },
+        "other": {
+            "size": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b07",
+                    "name": "small",
+                    "length": 10,
+                    "width": 10,
+                    "prepHours": 1,
+                    "label": "10'x10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b06",
+                    "name": "medium",
+                    "length": 15,
+                    "width": 15,
+                    "prepHours": 1.5,
+                    "label": "10'x10' to 15'x15'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b05",
+                    "name": "large",
+                    "length": 20,
+                    "width": 20,
+                    "prepHours": 2,
+                    "label": "15'x15' to 20'x20'"
+                }
+            ],
+            "height": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b0a",
+                    "name": "average",
+                    "height": 10,
+                    "label": "10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b09",
+                    "name": "aboveaverage",
+                    "height": 14,
+                    "label": "11' to 14'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b08",
+                    "name": "vaulted",
+                    "height": 17,
+                    "label": "15' to 17'"
+                }
+            ],
+            "paintingPrimingTimeMultiplier": 1.1
+        }
+    },
+    "townhouse": {
+        "livingRoom": {
+            "size": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b0d",
+                    "name": "small",
+                    "length": 10,
+                    "width": 10,
+                    "prepHours": 1,
+                    "label": "10'x10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b0c",
+                    "name": "medium",
+                    "length": 15,
+                    "width": 15,
+                    "prepHours": 1.5,
+                    "label": "10'x10' to 15'x15'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b0b",
+                    "name": "large",
+                    "length": 20,
+                    "width": 20,
+                    "prepHours": 2,
+                    "label": "15'x15' to 20'x20'"
+                }
+            ],
+            "height": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b10",
+                    "name": "average",
+                    "height": 10,
+                    "label": "10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b0f",
+                    "name": "aboveAverage",
+                    "height": 14,
+                    "label": "11' to 14'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b0e",
+                    "name": "vaulted",
+                    "height": 17,
+                    "label": "15' to 17'"
+                }
+            ],
+            "paintingPrimingTimeMultiplier": 1
+        },
+        "bedRoom": {
+            "size": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b13",
+                    "name": "small",
+                    "length": 10,
+                    "width": 10,
+                    "prepHours": 0.5,
+                    "label": "10'x10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b12",
+                    "name": "medium",
+                    "length": 15,
+                    "width": 15,
+                    "prepHours": 0.75,
+                    "label": "10'x10' to 15'x15'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b11",
+                    "name": "large",
+                    "length": 20,
+                    "width": 20,
+                    "prepHours": 1,
+                    "label": "15'x15' to 20'x20'"
+                }
+            ],
+            "height": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b16",
+                    "name": "average",
+                    "height": 10,
+                    "label": "10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b15",
+                    "name": "aboveAverage",
+                    "height": 14,
+                    "label": "11' to 14'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b14",
+                    "name": "vaulted",
+                    "height": 17,
+                    "label": "15' to 17'"
+                }
+            ],
+            "paintingPrimingTimeMultiplier": 1
+        },
+        "bathroom": {
+            "size": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b19",
+                    "name": "small",
+                    "length": 5,
+                    "width": 5,
+                    "prepHours": 0.5,
+                    "label": "5'x5' to less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b18",
+                    "name": "medium",
+                    "length": 5,
+                    "width": 8,
+                    "prepHours": 0.75,
+                    "label": "5'x5' to 5'x8'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b17",
+                    "name": "large",
+                    "length": 8,
+                    "width": 10,
+                    "prepHours": 1,
+                    "label": "5'x8' to 8'x10'"
+                }
+            ],
+            "height": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b1c",
+                    "name": "average",
+                    "height": 10,
+                    "label": "10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b1b",
+                    "name": "aboveAverage",
+                    "height": 14,
+                    "label": "11' to 14'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b1a",
+                    "name": "vaulted",
+                    "height": 17,
+                    "label": "15' to 17'"
+                }
+            ],
+            "paintingPrimingTimeMultiplier": 1.1
+        },
+        "diningRoom": {
+            "size": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b1f",
+                    "name": "small",
+                    "length": 10,
+                    "width": 10,
+                    "prepHours": 1,
+                    "label": "10'x10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b1e",
+                    "name": "medium",
+                    "length": 15,
+                    "width": 15,
+                    "prepHours": 1.5,
+                    "label": "10'x10' to 15'x15'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b1d",
+                    "name": "large",
+                    "length": 20,
+                    "width": 20,
+                    "prepHours": 2,
+                    "label": "15'x15' to 20'x20'"
+                }
+            ],
+            "height": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b22",
+                    "name": "average",
+                    "height": 10,
+                    "label": "10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b21",
+                    "name": "aboveAverage",
+                    "height": 14,
+                    "label": "11' to 14'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b20",
+                    "name": "vaulted",
+                    "height": 17,
+                    "label": "15' to 17'"
+                }
+            ],
+            "paintingPrimingTimeMultiplier": 1
+        },
+        "kitchen": {
+            "size": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b25",
+                    "name": "small",
+                    "length": 7,
+                    "width": 10,
+                    "prepHours": 2,
+                    "label": "7'x10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b24",
+                    "name": "medium",
+                    "length": 12,
+                    "width": 12,
+                    "prepHours": 2.5,
+                    "label": "7'x10' to 12'x12'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b23",
+                    "name": "large",
+                    "length": 15,
+                    "width": 15,
+                    "prepHours": 3,
+                    "label": "12'x12' to 15'x15'"
+                }
+            ],
+            "height": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b28",
+                    "name": "average",
+                    "height": 10,
+                    "label": "10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b27",
+                    "name": "aboveAverage",
+                    "height": 14,
+                    "label": "11' to 14'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b26",
+                    "name": "vaulted",
+                    "height": 17,
+                    "label": "15' to 17'"
+                }
+            ],
+            "paintingPrimingTimeMultiplier": 1.1
+        },
+        "laundryRoom": {
+            "size": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b2b",
+                    "name": "small",
+                    "length": 3,
+                    "width": 5,
+                    "prepHours": 0.5,
+                    "label": "3'x5' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b2a",
+                    "name": "medium",
+                    "length": 5,
+                    "width": 5,
+                    "prepHours": 0.75,
+                    "label": "3'x5' to 5'x5'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b29",
+                    "name": "large",
+                    "length": 10,
+                    "width": 10,
+                    "prepHours": 1,
+                    "label": "5'x5' to 10'x10'"
+                }
+            ],
+            "height": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b2e",
+                    "name": "average",
+                    "height": 10,
+                    "label": "10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b2d",
+                    "name": "aboveAverage",
+                    "height": 14,
+                    "label": "11' to 14'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b2c",
+                    "name": "vaulted",
+                    "height": 17,
+                    "label": "15' to 17'"
+                }
+            ],
+            "paintingPrimingTimeMultiplier": 1
+        },
+        "entryway": {
+            "size": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b31",
+                    "name": "small",
+                    "length": 4,
+                    "width": 6,
+                    "prepHours": 1,
+                    "label": "4'x6' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b30",
+                    "name": "medium",
+                    "length": 6,
+                    "width": 10,
+                    "prepHours": 1.5,
+                    "label": "4'x6' to 6'x10'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b2f",
+                    "name": "large",
+                    "length": 10,
+                    "width": 10,
+                    "prepHours": 2,
+                    "label": "6'x10' to 10'x10'"
+                }
+            ],
+            "height": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b34",
+                    "name": "average",
+                    "height": 10,
+                    "label": "10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b33",
+                    "name": "aboveAverage",
+                    "height": 14,
+                    "label": "11' to 14'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b32",
+                    "name": "vaulted",
+                    "height": 17,
+                    "label": "15' to 17'"
+                }
+            ],
+            "paintingPrimingTimeMultiplier": 1
+        },
+        "hallway": {
+            "size": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b37",
+                    "name": "small",
+                    "length": 4,
+                    "width": 6,
+                    "prepHours": 0.5,
+                    "label": "4'x6' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b36",
+                    "name": "medium",
+                    "length": 4,
+                    "width": 10,
+                    "prepHours": 0.75,
+                    "label": "4'x6' to 4'x10'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b35",
+                    "name": "large",
+                    "length": 5,
+                    "width": 15,
+                    "prepHours": 1,
+                    "label": "4'x10' to 5'x15'"
+                }
+            ],
+            "height": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b3a",
+                    "name": "average",
+                    "height": 10,
+                    "label": "10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b39",
+                    "name": "aboveAverage",
+                    "height": 14,
+                    "label": "11' to 14'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b38",
+                    "name": "vaulted",
+                    "height": 17,
+                    "label": "15' to 17'"
+                }
+            ],
+            "paintingPrimingTimeMultiplier": 1
+        },
+        "stairway": {
+            "size": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b3d",
+                    "name": "small",
+                    "length": 10,
+                    "width": 10,
+                    "prepHours": 0.5,
+                    "label": "10'x10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b3c",
+                    "name": "medium",
+                    "length": 15,
+                    "width": 15,
+                    "prepHours": 1,
+                    "label": "10'x10' to 15'x15'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b3b",
+                    "name": "large",
+                    "length": 20,
+                    "width": 20,
+                    "prepHours": 1.5,
+                    "label": "15'x15' to 20'x20'"
+                }
+            ],
+            "height": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b40",
+                    "name": "average",
+                    "height": 10,
+                    "label": "10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b3f",
+                    "name": "aboveAverage",
+                    "height": 14,
+                    "label": "11' to 14'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b3e",
+                    "name": "vaulted",
+                    "height": 17,
+                    "label": "15' to 17'"
+                }
+            ],
+            "paintingPrimingTimeMultiplier": 1.1
+        },
+        "sunRoom": {
+            "size": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b43",
+                    "name": "small",
+                    "length": 7,
+                    "width": 10,
+                    "prepHours": 1,
+                    "label": "7'x10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b42",
+                    "name": "medium",
+                    "length": 12,
+                    "width": 12,
+                    "prepHours": 1.5,
+                    "label": "7'x10' to 12'x12'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b41",
+                    "name": "large",
+                    "length": 15,
+                    "width": 15,
+                    "prepHours": 2,
+                    "label": "12'x12' to 15'x15'"
+                }
+            ],
+            "height": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b46",
+                    "name": "average",
+                    "height": 10,
+                    "label": "10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b45",
+                    "name": "aboveAverage",
+                    "height": 14,
+                    "label": "11' to 14'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b44",
+                    "name": "vaulted",
+                    "height": 17,
+                    "label": "15' to 17'"
+                }
+            ],
+            "paintingPrimingTimeMultiplier": 1.1
+        },
+        "garage": {
+            "size": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b49",
+                    "name": "small",
+                    "length": 12,
+                    "width": 20,
+                    "prepHours": 0.5,
+                    "label": "12'x20' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b48",
+                    "name": "medium",
+                    "length": 20,
+                    "width": 20,
+                    "prepHours": 1,
+                    "label": "12'x20' to 20'x20'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b47",
+                    "name": "large",
+                    "length": 32,
+                    "width": 20,
+                    "prepHours": 1.5,
+                    "label": "20'x20' to 32'x20'"
+                }
+            ],
+            "height": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b4c",
+                    "name": "average",
+                    "height": 10,
+                    "label": "10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b4b",
+                    "name": "aboveAverage",
+                    "height": 14,
+                    "label": "11' to 14'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b4a",
+                    "name": "vaulted",
+                    "height": 17,
+                    "label": "15' to 17'"
+                }
+            ],
+            "paintingPrimingTimeMultiplier": 1
+        },
+        "other": {
+            "size": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b4f",
+                    "name": "small",
+                    "length": 10,
+                    "width": 10,
+                    "prepHours": 1,
+                    "label": "10'x10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b4e",
+                    "name": "medium",
+                    "length": 15,
+                    "width": 15,
+                    "prepHours": 1.5,
+                    "label": "10'x10' to 15'x15'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b4d",
+                    "name": "large",
+                    "length": 20,
+                    "width": 20,
+                    "prepHours": 2,
+                    "label": "15'x15' to 20'x20'"
+                }
+            ],
+            "height": [
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b52",
+                    "name": "average",
+                    "height": 10,
+                    "label": "10' or less"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b51",
+                    "name": "aboveAverage",
+                    "height": 14,
+                    "label": "11' to 14'"
+                },
+                {
+                    "_id": "5d8bc7c6ea4cc6178c768b50",
+                    "name": "vaulted",
+                    "height": 17,
+                    "label": "15' to 17'"
+                }
+            ],
+            "paintingPrimingTimeMultiplier": 1.1
+        }
+    },
+    "decorDetails": {
+        "cabinetDoor": {
+            "prepUnitsPerHour": 1.21,
+            "primingUnitsPerHour": 8,
+            "primingUnitsPerGallon": 10,
+            "paintingUnitsPerHour": 8,
+            "paintingUnitsPerGallon": 10,
+            "itemMarkup": 1.5
+        },
+        "cabinetDrawer": {
+            "prepUnitsPerHour": 3.15,
+            "primingUnitsPerHour": 13,
+            "primingUnitsPerGallon": 30,
+            "paintingUnitsPerHour": 13,
+            "paintingUnitsPerGallon": 30,
+            "itemMarkup": 1.5
+        },
+        "ceiling": {
+            "prepUnitsPerHour": 0,
+            "primingUnitsPerHour": 125,
+            "primingUnitsPerGallon": 400,
+            "paintingUnitsPerHour": 100,
+            "paintingUnitsPerGallon": 400,
+            "itemMarkup": 1
+        },
+        "crownMolding": {
+            "prepUnitsPerHour": 0,
+            "primingUnitsPerHour": 125,
+            "primingUnitsPerGallon": 600,
+            "paintingUnitsPerHour": 100,
+            "paintingUnitsPerGallon": 600,
+            "itemMarkup": 1
+        },
+        "wall": {
+            "prepUnitsPerHour": 0,
+            "primingUnitsPerHour": 125,
+            "primingUnitsPerGallon": 400,
+            "paintingUnitsPerHour": 100,
+            "paintingUnitsPerGallon": 400,
+            "itemMarkup": 1
+        },
+        "accentWall": {
+            "prepUnitsPerHour": 0,
+            "primingUnitsPerHour": 125,
+            "primingUnitsPerGallon": 400,
+            "paintingUnitsPerHour": 100,
+            "paintingUnitsPerGallon": 400,
+            "itemMarkup": 1
+        },
+        "door": {
+            "prepUnitsPerHour": 0,
+            "primingUnitsPerHour": 2,
+            "primingUnitsPerGallon": 7,
+            "paintingUnitsPerHour": 1.5,
+            "paintingUnitsPerGallon": 7,
+            "itemMarkup": 1
+        },
+        "doorFrame": {
+            "prepUnitsPerHour": 0,
+            "primingUnitsPerHour": 2,
+            "primingUnitsPerGallon": 17,
+            "paintingUnitsPerHour": 2,
+            "paintingUnitsPerGallon": 17,
+            "itemMarkup": 1
+        },
+        "baseboard": {
+            "prepUnitsPerHour": 0,
+            "primingUnitsPerHour": 125,
+            "primingUnitsPerGallon": 600,
+            "paintingUnitsPerHour": 100,
+            "paintingUnitsPerGallon": 600,
+            "itemMarkup": 1
+        },
+        "window": {
+            "prepUnitsPerHour": 0,
+            "primingUnitsPerHour": 5,
+            "primingUnitsPerGallon": 40,
+            "paintingUnitsPerHour": 4,
+            "paintingUnitsPerGallon": 40,
+            "itemMarkup": 1
+        },
+        "fireplaceMantel": {
+            "prepUnitsPerHour": 0,
+            "primingUnitsPerHour": 2.5,
+            "primingUnitsPerGallon": 10,
+            "paintingUnitsPerHour": 2,
+            "paintingUnitsPerGallon": 10,
+            "itemMarkup": 1
+        }
+    },
+    "city": ["ames"],
+    "zipCode": 50014,
+    "depositPercent": 0.1,
+    "salesTaxRate": 0.07,
+    "state": "IA",
+    "country": "US",
+    "serviced": true,
+    "laborRate": 17,
+    "markup": 2.575,
+    "__v": 0
+}

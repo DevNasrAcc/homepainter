@@ -1,0 +1,60 @@
+{
+    "orderId": {
+        "type": "mongoId",
+        "required": true
+    },
+    "contractorOverallRating": {
+        "type": "number",
+        "required": true,
+        "min": 1,
+        "max": 5
+    },
+    "contractorOverallComment": {
+        "type": "string",
+        "required": false,
+        "minLength": 1
+    },
+    "contractorProfessionalismRating": {
+        "type": "number",
+        "required": true,
+        "min": 1,
+        "max": 5
+    },
+    "contractorProfessionalismComment": {
+        "type": "string",
+        "required": false,
+        "minLength": 1
+    },
+    "contractorQualityRating": {
+        "type": "number",
+        "required": true,
+        "min": 1,
+        "max": 5
+    },
+    "contractorQualityComment": {
+        "type": "string",
+        "required": false,
+        "minLength": 1
+    },
+    "contractorAdditionalComment": {
+        "type": "string",
+        "required": false,
+        "minLength": 1
+    },
+    "homepainterOverallRating": {
+        "type": "number",
+        "required": true,
+        "min": 1,
+        "max": 5
+    },
+    "homepainterOverallComment": {
+        "type": "string",
+        "required": false,
+        "minLength": 1
+    },
+    "homepainterAdditionalComment": {
+        "type": "string",
+        "required": false,
+        "minLength": 1
+    }
+}

@@ -1,0 +1,90 @@
+{
+    "schemaVersion": "06-01-2020",
+    "address": {
+        "zipCodeRegEx": {},
+        "streetAddress": "",
+        "city": "",
+        "state": "",
+        "zipCode": 50014
+    },
+    "jobType": "house",
+    "decorType": "interior",
+    "paintSupplier": "painter",
+    "timeFrame": "lessThan1Month",
+    "occupancy": "furnishedAndOccupied",
+    "interior": [
+        {
+            "defaultName": "Bedroom 1",
+            "type": "bedRoom",
+            "size": {
+                "name": "medium",
+                "length": 15,
+                "width": 15,
+                "label": "10'x10' to 15'x15'"
+            },
+            "height": {
+                "name": "average",
+                "height": 10,
+                "label": "10' or less"
+            },
+            "photos": [
+                {
+                    "createdAt": "2020-06-08T15:31:15.893Z",
+                    "url": "https://us-east-1.linodeobjects.com/homepainter-images-development/example1.JPG",
+                    "originalName": "example1.JPG",
+                    "size": 305383
+                }
+            ],
+            "items": [
+                {
+                    "type": "wall",
+                    "additionalDetails": {
+                        "amount": 4,
+                        "conditions": ["drywallRepair"],
+                        "ceilingType": "",
+                        "cabinetGrainType": "",
+                        "cabinetTreatment": "",
+                        "numberOfCabinetDrawers": 0,
+                        "numberOfCabinetDoors": 0,
+                        "cabinetCondition": ""
+                    }
+                }
+            ]
+        },
+        {
+            "defaultName": "Living Room 1",
+            "type": "livingRoom",
+            "size": {
+                "labelRegEx": {},
+                "name": "small",
+                "length": 10,
+                "width": 10,
+                "label": "10'x10' or less"
+            },
+            "height": {
+                "labelRegEx": {},
+                "name": "average",
+                "height": 10,
+                "label": "10' or less"
+            },
+            "photos": [],
+            "items": [
+                {
+                    "type": "wall",
+                    "additionalDetails": {
+                        "amount": 4,
+                        "conditions": [],
+                        "ceilingType": "",
+                        "cabinetGrainType": "",
+                        "cabinetTreatment": "",
+                        "numberOfCabinetDrawers": 0,
+                        "numberOfCabinetDoors": 0,
+                        "cabinetCondition": ""
+                    }
+                }
+            ]
+        }
+    ],
+    "exterior": [],
+    "additionalDetailsComment": "this is just a test"
+}

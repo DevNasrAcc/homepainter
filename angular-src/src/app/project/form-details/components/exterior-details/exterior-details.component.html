@@ -1,0 +1,255 @@
+<h1 class="center">{{details.exterior[selectedIndex].defaultName}} Details</h1>
+<!-- numberOfStories -->
+<div class="row mb0" *ngIf="details.exterior[selectedIndex].type === 'house'">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-title">
+        How many stories does your home have?
+      </div>
+      <div class="card-content center">
+        <div class="row">
+          <div class="col l4 m4 s12">
+            <p>Number of stories</p>
+            <p style="color: #26a69a">{{details.exterior[selectedIndex].numberOfStories}}</p>
+          </div>
+          <div class="col l8 m8 s12">
+            <div class="row">
+              <div class="col offset-l2 l2 offset-m2 m2 s2 input-field">
+                <button class="btn-floating btn-small waves-effect waves-light red"
+                        (click)="decrementNumberOfStories()">-
+                </button>
+              </div>
+              <div class="col l6 m6 s8 input-field">
+                <materialize-select (change)="numberOfStoriesChange($event)" [data]="this.stories"
+                                    [id]="'numberOfStories'"
+                                    [selected]="details.exterior[selectedIndex].numberOfStories">
+                </materialize-select>
+              </div>
+              <div class="col l2 m2 s2 input-field">
+                <button class="btn-floating btn-small waves-effect waves-light red"
+                        (click)="incrementNumberOfStories()">+
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- exteriorItems -->
+<div class="row" *ngIf="details.exterior[selectedIndex].type !== 'deck'">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-title">
+        What do you need painted?
+      </div>
+      <div class="card-content center">
+        <button class="big-btn square" [ngClass]="paintItem.selected ? 'selected' : ''"
+                *ngFor="let paintItem of paintItems; let i = index;"
+                (click)="selectPaintItem(i)">{{paintItem.title}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- sidesToPaint -->
+<div class="row" *ngIf="details.exterior[selectedIndex].type !== 'deck' && paintItems[0].selected">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-title">
+        Which sides would you like to paint?
+      </div>
+      <div class="card-content center">
+        <button class="big-btn square" [ngClass]="side.selected ? 'selected' : ''"
+                *ngFor="let side of sides; let i = index;"
+                (click)="selectSidesToPaint(i)">{{side.title}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- sidingType -->
+<div class="row" *ngIf="details.exterior[selectedIndex].type !== 'deck' && paintItems[0].selected">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-title">
+        What material is the siding made of?
+      </div>
+      <div class="card-content center">
+        <button class="big-btn square" [ngClass]="type.selected ? 'selected' : ''"
+                *ngFor="let type of sidingTypes; let i = index;"
+                (click)="selectSidingType(i)">{{type.title}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- deckElevation -->
+<div class="row" *ngIf="details.exterior[selectedIndex].type === 'deck'">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-title">
+        How tall is your deck?
+      </div>
+      <div class="card-content center row">
+        <div class="col l4 m5 s12 offset-m1 offset-l2 mb10">
+          <button class="big-btn rectangle"
+                  [ngClass]="this.details.exterior[this.selectedIndex].deckElevation === 'groundFloor' ? 'selected' : ''"
+                  (click)="selectDeckElevation('groundFloor')">Ground Floor
+          </button>
+        </div>
+        <div class="col l4 m5 s12 mb10">
+          <button class="big-btn rectangle"
+                  [ngClass]="this.details.exterior[this.selectedIndex].deckElevation === 'elevated' ? 'selected' : ''"
+                  (click)="selectDeckElevation('elevated')">Elevated
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- deckTreatment -->
+<div class="row" *ngIf="details.exterior[selectedIndex].type === 'deck'">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-title">
+        What treatment would you like for your deck?
+      </div>
+      <div class="card-content center row">
+        <div class="col l4 m5 s12 offset-m1 offset-l2 mb10">
+          <button class="big-btn rectangle"
+                  [ngClass]="this.details.exterior[this.selectedIndex].deckTreatment === 'stain' ? 'selected' : ''"
+                  (click)="selectDeckTreatment('stain')">Stain
+          </button>
+        </div>
+        <div class="col l4 m5 s12 mb10">
+          <button class="big-btn rectangle"
+                  [ngClass]="this.details.exterior[this.selectedIndex].deckTreatment === 'paint' ? 'selected' : ''"
+                  (click)="selectDeckTreatment('paint')">Paint
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- deckSize -->
+<div class="row" *ngIf="details.exterior[selectedIndex].type === 'deck'">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-title">
+        Approximately how large is the deck?
+      </div>
+      <div class="card-content center">
+        <div class="row" *ngIf="this.deckSizes.length > 0">
+          <div *ngFor="let size of this.deckSizes;" class="col l4 m4 s12">
+            <button class="big-btn rectangle" *ngIf="details.exterior.length > 0"
+                    [ngClass]="{'selected': details.exterior[selectedIndex].deckSize.name === size.name}"
+                    (click)="selectDeckSize(size)">
+              {{size.name | storageName2DisplayName}}
+            </button>
+            <p class="desc-text">{{size.label}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- conditions -->
+<div class="row">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-title">
+        What is the condition of the existing paint?
+      </div>
+      <div class="card-content center">
+        <div class="row" *ngIf="this.paintConditions.length > 0">
+          <div *ngFor="let condition of paintConditions; let i = index;" class="col l4 m4 s12 mb10">
+            <button class="big-btn rectangle" [ngClass]="condition.selected ? 'selected' : ''"
+                    (click)="selectPaintCondition(i)">{{condition.title}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- garageSize -->
+<div class="row" *ngIf="details.exterior[selectedIndex].type !== 'deck' && details.exterior[selectedIndex].type !== 'house' && details.exterior[selectedIndex].type !== 'shed'">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-title">
+        What is the size of the garage?
+      </div>
+      <div class="card-content center">
+        <div class="row" *ngIf="this.paintConditions.length > 0">
+          <div *ngFor="let garage of garageSizes; let i = index;" class="col l3 m3 s12 mb10">
+            <button class="big-btn rectangle" [ngClass]="{'selected': details.exterior[selectedIndex].garageSize.label === garage.label}"
+                    (click)="selectGarageSize(garage)">{{garage.label}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- square footage if structure is a home -->
+<div class="row" *ngIf="this.details.exterior[this.selectedIndex].type === 'house'">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-title">
+        What is the square footage of your home?
+      </div>
+      <div class="card-content center">
+        <div class="row">
+          <div class="col offset-s1 s10 offset-m2 m8 offset-l3 l6 input-field">
+            <input (change)="onSquareFootageChange($event)" (keyup)="onSquareFootageChange($event)"
+                   id="squareFootage" placeholder="ex: 2600" type="number" min="1" max="10000"
+                   [(ngModel)]="details.exterior[selectedIndex].squareFootage"
+                   [ngClass]="details.exterior[selectedIndex].squareFootage === undefined
+                   ? ''
+                   : (details.exterior[selectedIndex].squareFootage >= 1 && details.exterior[selectedIndex].squareFootage <= 10000) ? 'valid' : 'invalid'"/>
+            <label for= "squareFootage" class="active">Square Footage</label>
+            <span class="helper-text red-text"
+                  *ngIf="details.exterior[selectedIndex].squareFootage < 1">Value must be greater than or equal to 1</span>
+            <span class="helper-text red-text"
+                  *ngIf="details.exterior[selectedIndex].squareFootage > 10000">Value must be less than or equal to 10000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- photos -->
+<div class="row mb0">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-title">
+        <div class="row mb0">
+          <div class="col s10 l4">Photos</div>
+          <div class="col l4 center hide-on-med-and-down">
+            <a class="tooltipped" data-position="top"
+               data-tooltip="Save your progress and switch to mobile for easier uploads" (click)="onSwitchToMobile()">
+              <i class="material-icons">computer</i>
+              <i class="material-icons">compare_arrows</i>
+              <i class="material-icons">smartphone</i>
+            </a>
+          </div>
+          <div class="col s2 l4 right-align">
+            <materialize-tooltip
+              [data]="'Photos help painters make a more accurate bid.'">
+            </materialize-tooltip>
+          </div>
+        </div>
+        <div class="center row mb0">
+          <p class="small" [ngClass]="details.exterior[selectedIndex].photos.length > 0 ? 'green-text' : 'red-text'">
+            <span *ngIf="details.exterior[selectedIndex].type !== 'deck'" class="small">Please include a photo of each side of the building.</span>
+            Photos for this structure are required, but can be uploaded later.
+            <i *ngIf="details.exterior[selectedIndex].photos.length > 0" class="material-icons left">check</i>
+          </p>
+        </div>
+      </div>
+      <div class="card-content center">
+        <upload-photo-element [id]="'photos'" [existingPhotos]="this.details.exterior[selectedIndex].photos"
+                              (photosChanged)="onFileListChange($event)"
+                              (uploadingFiles)="onUploadingFilesChange($event)"></upload-photo-element>
+      </div>
+    </div>
+  </div>
+</div>
+

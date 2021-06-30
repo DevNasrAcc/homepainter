@@ -1,0 +1,31 @@
+@import "../../../variables";
+
+.displayed-image {
+  min-height: 210px;
+  width: 210px;
+  background-color: whitesmoke;
+  position: relative;
+
+  @media @mobile {
+    width: auto;
+  }
+
+  .transformed-img {
+    max-height: 210px;
+    max-width: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translateY(-50%) translateX(-50%);
+    transform: translateY(-50%) translateX(-50%);
+  }
+
+  .mobile-no-img-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translateY(-50%) translateX(-50%);
+    transform: translateY(-50%) translateX(-50%);
+  }
+}

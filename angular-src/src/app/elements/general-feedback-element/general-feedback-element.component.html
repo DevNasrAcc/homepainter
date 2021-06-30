@@ -1,0 +1,104 @@
+<div id="general_feedback_modal" [ngClass]="{'modal': asModal}">
+  <div [ngClass]="{'modal-content': asModal}">
+    <div class="row" *ngIf="asModal">
+      <div class="col s10">
+        <h5>Give Feedback</h5>
+      </div>
+      <div class="col s2 right-align">
+        <button class="btn-flat modal-close">
+          <i class="material-icons">close</i>
+        </button>
+      </div>
+    </div>
+    <form [formGroup]="formGroup" (submit)="onFormSubmit()">
+      <div class="row">
+        <div class="col s12">
+          <p disabled>Please rate your overall experience with homepainter.</p>
+          <div class="input-field center">
+            <button type="button" class="btn-emoji" [ngClass]="{'not-selected': this.formGroup.get('overallRating').value && this.formGroup.get('overallRating').value !== 1}" [disabled]="formGroup.disabled" (click)="onEmojiClick(1)">😡</button>
+            <button type="button" class="btn-emoji" [ngClass]="{'not-selected': this.formGroup.get('overallRating').value && this.formGroup.get('overallRating').value !== 2}" [disabled]="formGroup.disabled" (click)="onEmojiClick(2)">🙁</button>
+            <button type="button" class="btn-emoji" [ngClass]="{'not-selected': this.formGroup.get('overallRating').value && this.formGroup.get('overallRating').value !== 3}" [disabled]="formGroup.disabled" (click)="onEmojiClick(3)">😐</button>
+            <button type="button" class="btn-emoji" [ngClass]="{'not-selected': this.formGroup.get('overallRating').value && this.formGroup.get('overallRating').value !== 4}" [disabled]="formGroup.disabled" (click)="onEmojiClick(4)">🙂</button>
+            <button type="button" class="btn-emoji" [ngClass]="{'not-selected': this.formGroup.get('overallRating').value && this.formGroup.get('overallRating').value !== 5}" [disabled]="formGroup.disabled" (click)="onEmojiClick(5)">😍</button>
+          </div>
+        </div>
+      </div>
+      <div class="row mb0">
+        <div class="col s12 input-field">
+          <p>I am giving feedback mainly around...</p>
+          <!--suppress TypeScriptUnresolvedVariable -->
+          <select id="feedback_around" formControlName="feedbackAround" (change)="onFieldUpdated($event.target.value)">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="bugs">Bugs</option>
+            <option value="lookAndFeel">Look And Feel</option>
+            <option value="features">Features</option>
+            <option value="value">Value</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <p>What are some ways we can improve?</p>
+          <div class="input-field">
+            <!--suppress TypeScriptUnresolvedVariable -->
+            <input id="additional_feedback" type="text" class="materialize-textarea"
+                   formControlName="additionalComment" (change)="onFieldUpdated($event.target.value)">
+            <label for="additional_feedback">Additional Feedback</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 right-align">
+          <div class="preloader-wrapper small active mr25" *ngIf="submitting">
+            <div class="spinner-layer spinner-blue">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+            <div class="spinner-layer spinner-red">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+            <div class="spinner-layer spinner-yellow">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+            <div class="spinner-layer spinner-green">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn blue white-text waves-effect waves-light" [disabled]="formGroup.disabled || !formGroup.valid">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

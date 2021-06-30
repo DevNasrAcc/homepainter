@@ -1,0 +1,280 @@
+@import "../../../variables";
+
+p.ng-touched.ng-invalid {
+  color: #F44336;
+}
+.input_img {
+  position: absolute;
+  bottom: 20px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.input-wrapper .select-wrapper input.select-dropdown{
+  border: none !important;
+  padding: 0 10px !important;
+}
+.placeHolder::placeholder {
+  color: gray;
+}
+.placeHolder{
+  color: gray;
+}
+
+.m-jumbo {
+  //margin-top: calc(64px + 350px);
+
+  @media @tablet {
+    margin-top: calc(64px + 350px);
+    margin-bottom: 15px;
+  }
+
+  @media @mobile {
+    margin-top: calc(56px + 175px);
+    margin-bottom: 0;
+  }
+}
+
+.desktop-header-padding{
+  padding: 50px 100px !important;
+}
+.width-40px{
+  width: 40px !important;
+}
+.p_font{
+  font-size: 14px !important;
+  margin-left: 12px;
+}
+.fontchange{
+  font-size: 22px;
+  color: black !important;
+  @media @tablet, @mobile{
+    font-size: 18px;
+    color: #3d85c6 !important;
+  }
+}
+.border-right{
+  border-right: 2px solid #e0d3d3 !important;
+}
+.mg200{
+  margin-top: 80px;
+  @media @mobile{
+    margin-top: 0;
+  }
+}
+
+.header-form-width{
+  width: 100vw !important;
+  max-width: 740px;
+  margin: auto !important;
+}
+
+.btn-font{
+  padding: 0;
+  height: 44px !important;
+  border-radius: 10px;
+}
+
+.header-text{
+  padding: 0 130px;
+  text-align: center;
+  font-size: 50px;
+
+  @media @mobile {
+    padding: 0;
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 20px;
+  }
+
+  @media @tablet, @desktop-sm {
+    padding: 0;
+    text-align: center;
+    font-size: 40px;
+  }
+}
+
+.center{
+  text-align: center;
+}
+
+.radius_pad{
+  border-radius: 25px !important;
+  padding: 0 20px 0 20px !important;
+}
+
+.desktop-jumbo-header-height {
+  height: 725px;
+
+  @media @mobile {
+    height: auto;
+  }
+}
+
+.desktop-form-margin-top {
+  margin-top: -580px;
+
+  @media @desktop-sm {
+    margin-top: -610px;
+  }
+
+  @media @mobile {
+    margin-top: 0;
+  }
+}
+
+.desktop-form-padding {
+  padding: 15px 40px;
+
+  @media @mobile, @tablet {
+    padding: 0;
+  }
+}
+
+.black-white-text {
+  color: white;
+
+  @media @mobile, @tablet {
+    color: black;
+  }
+}
+
+.card-image-heights {
+  overflow: hidden;
+  height: 250px;
+
+  @media @desktop-sm {
+    height: 200px;
+  }
+
+  @media @tablet {
+    height: 150px;
+  }
+
+  @media @mobile {
+    height: 100px;
+  }
+}
+
+.blog-card {
+  cursor: pointer;
+  transition: all .25s cubic-bezier(.02,.01,.47,1);
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  .blog-writer-image {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 35px;
+    height: 35px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+  }
+}
+
+.value-prop-wrapper {
+  @media @desktop, @desktop-lg {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+p {
+  font-size: 18px;
+}
+
+.fs16 {
+  font-size: 16px;
+}
+
+.faq-question-text {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.faq-question-container {
+  border-radius: 25px;
+  transition: background-color .5s;
+}
+
+.faq-question-container:hover {
+  background-color: #e0e0e0;
+}
+
+.faq-title-margins {
+  text-align: center;
+  @media @desktop-sm, @desktop, @desktop-lg {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 200px;
+  }
+}
+
+.input-wrapper {
+  background-color: @background-color;
+  height: 50px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.mobile-inputs ::-webkit-outer-spin-button,
+.mobile-inputs input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.mobile-inputs input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.mobile-inputs input[type=number], .mobile-inputs .select-wrapper.select-override input.select-dropdown {
+  width: calc(100% - 24px);
+  border: none !important;
+  padding: 0 12px !important;
+  border-radius: 2px !important;
+  height: auto !important;
+  line-height: 3rem;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+}
+
+.input-wrapper > label {
+  margin-left: 12px !important;
+}
+
+.select-dropdown {
+  border-bottom-width: 0 !important;
+}
+
+.width-48x48 {
+  width: 48px;
+  height: 48px;
+}
+
+.overflow-painters {
+  @media @desktop-sm {
+    max-height: 310px;
+    overflow: hidden;
+  }
+
+  @media @desktop {
+    max-height: 353px;
+    overflow: hidden;
+  }
+}
+
+.max-width-headers {
+  max-width: 600px;
+  margin: auto;
+  margin-bottom: 25px;
+}

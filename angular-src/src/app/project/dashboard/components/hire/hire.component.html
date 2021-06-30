@@ -1,0 +1,227 @@
+<div class="row">
+  <div class="col s12 offset-l1 l10">
+    <div id="page-content" class="white br2 z-depth-1">
+      <div *ngIf="project.selectedProposal === undefined">
+        <div class="row">
+          <div class="col s12 center-align">
+            <picture>
+              <source data-srcset="/assets/images/custom-icons/value.webp" type="image/webp">
+              <source data-srcset="/assets/images/custom-icons/value.png" type="image/png">
+              <img class="responsive-img lazyload mb10 mt25" data-src="/assets/images/custom-icons/value.png"
+                   alt="value image">
+            </picture>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12 center-align">
+            <h3>You have not selected a painter yet.</h3>
+            <p>Return here to review your order and checkout once you've selected a painter.</p>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="project.selectedProposal !== undefined">
+        <p class="pl15"><b>Painter's Information</b></p>
+        <div class="divider"></div>
+        <!-- Painter info -->
+        <div class="card z-depth-0 mb0" [ngClass]="{'horizontal': !responsiveService.isMobile()}">
+          <div class="card-image pr15 pb15 hide-on-med-and-down">
+            <div class="desktop-image br2 gray-border">
+              <img [src]="selectedPainter.picture" alt="user supplied image">
+            </div>
+          </div>
+          <div [ngClass]="{'card-stacked': !responsiveService.isMobile()}">
+            <div class="card-content">
+              <div class="left hide-on-large-only">
+                <img [src]="selectedPainter.picture" style="width: 75px; max-height: 180px;" class="mr10" alt="user supplied image">
+              </div>
+              <span class="card-title truncate">{{selectedPainter.organizationName}}</span>
+
+              <p class="mt0 mb0">
+            <span style="position: relative; top: 3px;">
+              <app-star-rating [value]="selectedPainter.rating"></app-star-rating>
+            </span>
+                ({{selectedPainter.rating | number:'1.1-1'}}) - {{selectedPainter.completedJobCount}} job{{selectedPainter.completedJobCount === 1 ? '' : 's'}} done
+              </p>
+              <p class="mt10">{{selectedPainter.bio || 'This painter does not have a bio.' | limitMessage}}</p>
+            </div>
+            <div class="card-action hide-on-small-only">
+              <p class="mt0">Overview</p>
+              <div class="chip blue lighten-3">Background Checked</div>
+              <div class="chip blue lighten-3">Licensed & Insured</div>
+              <div class="chip blue lighten-3">{{selectedPainter.numberOfEmployees}} Employee{{selectedPainter.numberOfEmployees === 1 ? '' : 's'}}</div>
+              <div class="chip blue lighten-3">{{year - selectedPainter.founded}} Year{{year - selectedPainter.founded === 1 ? '' : 's'}} in Business</div>
+            </div>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <!-- Main Details -->
+        <div class="row">
+          <div class="col s12">
+            <div class="card z-depth-0 mt25">
+              <div class="card-title brtl2 brtr2 grey lighten-3">
+                <p class="pl15 pr15 pt5 pb5 mar0">Main Details</p>
+              </div>
+              <div class="card-content gray-border border-top-none pt10 pb10 pl25 pr25 brbl2 brbr2">
+                <table>
+                  <tbody>
+                  <tr>
+                    <td>Type of home</td>
+                    <td>{{project.details.jobType | storageName2DisplayName}}</td>
+                  </tr>
+                  <tr>
+                    <td>Type of project</td>
+                    <td>{{project.details.decorType | storageName2DisplayName}}</td>
+                  </tr>
+                  <tr *ngIf="project.details.isInteriorProject()">
+                    <td>Number of rooms</td>
+                    <td>{{project.details.interior.length.toString()}}</td>
+                  </tr>
+                  <tr *ngIf="project.details.isExteriorProject()">
+                    <td>Exterior</td>
+                    <td>
+                      <span *ngFor="let structure of project.details.exterior; let i = index">
+                        {{structure.defaultName}}{{i !== project.details.exterior.length - 1 ? ', ' : ''}}
+                      </span>
+                    </td>
+                  </tr>
+                  <tr *ngIf="project.details.isExteriorProject() && project.details.exterior[0].type === 'house'">
+                    <td>Square footage of home</td>
+                    <td><span>{{project.details.exterior[0].squareFootage}}</span></td>
+                  </tr>
+                  <tr>
+                    <td>Who will supply the paint</td>
+                    <td>{{project.details.paintSupplier | storageName2DisplayName}}
+                      <div *ngIf="project.details.paintSupplier === 'customer'">Brand: {{project.details.paintBrand || 'TBD'}}</div>
+                      <div *ngIf="project.details.paintSupplier === 'customer'">Product type: {{project.details.paintProduct || 'TBD'}}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Occupancy</td>
+                    <td>{{project.details.occupancy | storageName2DisplayName}}</td>
+                  </tr>
+                  <tr class="no-border">
+                    <td>Project time frame</td>
+                    <td>
+                      {{project.details.timeFrameStart | storageName2DisplayName}}<br>
+                      {{project.details.timeFrameEnd | storageName2DisplayName}}
+                      <span *ngIf="project.details.timeFrameEnd == 'endDateInMind'"> (by {{project.details.expectedEndDate}})</span>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Payment info -->
+        <div class="row">
+          <div class="col offset-s1 s10 offset-m2 m8 l6">
+            <form class="row" [formGroup]="discountFormGroup" (submit)="onSubmitDiscount()">
+              <div class="col s7 m9 input-field">
+                <input id="discount" type="text" name="discount" formControlName="discount">
+                <label for="discount">Have an offer code?</label>
+              </div>
+              <div class="col s5 m3 right-align">
+                <button type="submit" class="btn mt25 blue white-text waves-effect waves-light" [disabled]="discountFormGroup.disabled">
+                  Update
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="col offset-s1 s10 offset-m2 m8 offset-l2 l4">
+            <div class="row mb0">
+              <div class="col s6 right-align">
+                <p class="mb0">Contract Price</p>
+              </div>
+              <div class="col s6 right-align">
+                <p class="mb0"><b>{{chargeDetails.contractPrice | currency}}</b></p>
+              </div>
+            </div>
+            <div class="row mb0">
+              <div class="col s6 right-align">
+                <p class="mb0">Service Fee</p>
+              </div>
+              <div class="col s6 right-align">
+                <p class="mb0"><b>{{chargeDetails.serviceFee | currency}}</b></p>
+              </div>
+            </div>
+            <div class="row mb0">
+              <div class="col s6 right-align">
+                <p class="mb0">Discount</p>
+              </div>
+              <div class="col s6 right-align">
+                <p class="mb0">(<b>{{chargeDetails.discount | currency}}</b>)</p>
+              </div>
+            </div>
+            <div class="row mb0">
+              <div class="col s6 right-align">
+                <p class="mb0">Subtotal</p>
+              </div>
+              <div class="col s6 right-align">
+                <p class="mb0"><b>{{chargeDetails.subtotal | currency}}</b></p>
+              </div>
+            </div>
+            <div class="row mb0">
+              <div class="col s6 right-align">
+                <p class="mb0">Tax</p>
+              </div>
+              <div class="col s6 right-align">
+                <p class="mb0"><b>{{chargeDetails.tax | currency}}</b></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s6 right-align">
+                <p class="mb0">Total</p>
+              </div>
+              <div class="col s6 right-align">
+                <p class="mb0"><b>{{chargeDetails.total | currency}}</b></p>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="row mb0">
+              <div class="col s6 right-align">
+                <p class="mb0">Due Now</p>
+              </div>
+              <div class="col s6 right-align">
+                <p class="mb0"><b>{{chargeDetails.downPaymentAmount | currency}}</b></p>
+              </div>
+            </div>
+            <div class="row mb0">
+              <div class="col s6 right-align">
+                <p class="mb0">Due Upon Completion</p>
+              </div>
+              <div class="col s6 right-align">
+                <p class="mb0"><b>{{chargeDetails.dueLater | currency}}</b></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- checkout btn -->
+        <div class="row" style="margin-top: 60px">
+          <div class="col s12 right-align">
+            <div class="center-on-small-only">
+              <button class="btn ml10 blue white-text waves-effect waves-light" routerLink="/checkout/notices"
+              [disabled]="project.status === 'awaitingDownPaymentConfirmation' || project.status === 'booked'">Proceed to Checkout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Next Page -->
+    <div class="row mt25 mb0">
+      <div class="col s12 right-align">
+        <div class="center-on-small-only">
+          <button class="btn white blue-text waves-effect waves-light waves-blue mr10" routerLink="/project/view-quotes">
+            <i class="material-icons" [ngClass]="{'left': !responsiveService.isMobile()}">chevron_left</i>
+            <span class="hide-on-small-only">Back</span>
+          </button>
+          <button class="btn blue white-text waves-effect waves-light" routerLink="/checkout/notices"
+                  [disabled]="project.selectedProposal === undefined || project.isCheckedOut()">
+            <i class="material-icons" [ngClass]="{'right': !responsiveService.isMobile()}">chevron_right</i>
+            <span class="hide-on-small-only white-text">Next Step</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

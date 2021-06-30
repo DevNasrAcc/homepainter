@@ -1,0 +1,24 @@
+<h1>Hi {{storageName2DisplayName this.user.firstName}},</h1>
+<br>
+<p>Click the button below to log in to your account. This link will expire after one use or 7 days.</p>
+<div class="center">
+    <a href="{{url}}/login?token={{this.jwt.token}}">
+    <button class="btn">Login</button>
+    </a>
+</div>
+<p>Or, copy and paste this url into your browser.</p>
+<!--<div class="card" style="margin: 10px 20px; max-width: 480px; word-wrap: break-word">-->
+<!--    <a href="{{url}}/login?token={{this.jwt.token}}">-->
+<!--        <p class="card-content" style="font-size: 12px">-->
+<!--            {{url}}/login?token={{this.jwt.token}}-->
+<!--        </p>-->
+<!--    </a>-->
+<!--</div>-->
+<blockquote style="max-width: 480px; word-wrap: break-word; border-left-color: #3d85c6;">
+    <a href="{{url}}/login?token={{this.jwt.token}}">
+        <p style="font-size: 12px; text-decoration: underline;">
+            {{url}}/login?token={{this.jwt.token}}
+        </p>
+    </a>
+</blockquote>
+<p>If you did not initiate this login request, please disregard this email.</p>
